@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    private let buttonWidth = CGFloat(UIScreen.main.bounds.width) * 0.19
+    private let operators: [Operator] = [.divide, .multiply, .subtraction, .addition, .equal]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+        VStack(spacing: 0) {
+            ForEach(operators, id: \.self) { item in
+                CircleText(text: item.rawValue)
+                    .frame(width: buttonWidth, height: buttonWidth)
+                    .padding()
+            }
+        } // VStack
+    } // body
 }
