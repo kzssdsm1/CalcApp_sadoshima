@@ -9,16 +9,29 @@ import SwiftUI
 
 struct CircleText: View {
     let text: String
+    let buttonColor: Color
     
     var body: some View {
         GeometryReader { proxy in
             if text == "0" {
-                
+                RoundedRectangle(cornerRadius: 60)
+                    .foregroundColor(buttonColor)
+                    .overlay(
+                        HStack {
+                            Text(text)
+                                .font(.system(size: proxy.size.width * 0.2, weight: .medium))
+                                .foregroundColor(.white)
+                                .padding(.leading, proxy.size.width * 0.16)
+                            
+                            Spacer(minLength: 0)
+                        } // HStack
+                    )
             } else {
                 Circle()
-                    .foregroundColor(.orange)
+                    .foregroundColor(buttonColor)
                     .overlay(
                         Group {
+                            // 符号反転ボタンのみSF Symbolsを使用
                             if text == "plusminus" {
                                 Image(systemName: "plus.slash.minus")
                                     .resizable()
@@ -30,7 +43,7 @@ struct CircleText: View {
                                     .foregroundColor(.white)
                             } else {
                                 Text(text)
-                                    .font(.system(size: proxy.size.width * 0.4))
+                                    .font(.system(size: proxy.size.width * 0.4, weight: .medium))
                                     .foregroundColor(.white)
                             }
                         }
