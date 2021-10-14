@@ -19,8 +19,6 @@ struct ContentView: View {
     
     // 各ボタンの標準の横幅
     private let buttonWidth = CGFloat(UIScreen.main.bounds.width) * 0.19
-    // ForEachで回すための演算子を格納した配列
-    private let operators: [Operator] = [.divide, .multiply, .subtraction, .addition, .equal]
     // ForEachで回すための数値を格納した配列
     private let numbers = [["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"]]
     
