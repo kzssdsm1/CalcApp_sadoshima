@@ -7,11 +7,41 @@
 
 import Foundation
 
-enum Operator: String {
-    case persent = "%"
-    case divide = "÷"
-    case multiply = "×"
-    case subtraction = "-"
-    case addition = "+"
-    case equal = "="
+enum Operator: CaseIterable {
+    case allClear
+    case plusMinus
+    case percent
+    case divide
+    case multiply
+    case subtraction
+    case addition
+    case equal
+    case none
+    
+    func buttonText(_ isAC: Bool) -> String {
+        switch self {
+        case .percent:
+            return "%"
+        case .divide:
+            return "÷"
+        case .multiply:
+            return "x"
+        case .subtraction:
+            return "-"
+        case .addition:
+            return "+"
+        case .equal:
+            return "="
+        case .plusMinus:
+            return "plusminus"
+        case .allClear:
+            if isAC {
+                return "AC"
+            } else {
+                return "C"
+            }
+        case .none:
+            return ""
+        }
+    }
 }
