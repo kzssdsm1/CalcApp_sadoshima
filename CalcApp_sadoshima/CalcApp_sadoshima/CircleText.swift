@@ -32,7 +32,7 @@ struct CircleText: View {
                     .overlay(
                         Group {
                             // 符号反転ボタンのみSF Symbolsを使用
-                            if text == "plusminus" {
+                            if text == Operator.plusMinus.buttonText(false) {
                                 Image(systemName: "plus.slash.minus")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
