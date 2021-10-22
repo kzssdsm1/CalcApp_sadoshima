@@ -11,6 +11,8 @@
 		543AC33327048BB0008BFCB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543AC33227048BB0008BFCB0 /* ContentView.swift */; };
 		543AC33527048BB1008BFCB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543AC33427048BB1008BFCB0 /* Assets.xcassets */; };
 		543AC33827048BB1008BFCB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543AC33727048BB1008BFCB0 /* Preview Assets.xcassets */; };
+		547E2E2D2706C206004F3565 /* CircleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2C2706C206004F3565 /* CircleText.swift */; };
+		547E2E2F2706DA09004F3565 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2E2706DA09004F3565 /* Operator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		543AC33227048BB0008BFCB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		543AC33427048BB1008BFCB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		543AC33727048BB1008BFCB0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		547E2E2C2706C206004F3565 /* CircleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleText.swift; sourceTree = "<group>"; };
+		547E2E2E2706DA09004F3565 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				543AC33227048BB0008BFCB0 /* ContentView.swift */,
 				543AC33427048BB1008BFCB0 /* Assets.xcassets */,
 				543AC33627048BB1008BFCB0 /* Preview Content */,
+				547E2E2C2706C206004F3565 /* CircleText.swift */,
+				547E2E2E2706DA09004F3565 /* Operator.swift */,
 			);
 			path = CalcApp_sadoshima;
 			sourceTree = "<group>";
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				543AC33327048BB0008BFCB0 /* ContentView.swift in Sources */,
+				547E2E2F2706DA09004F3565 /* Operator.swift in Sources */,
 				543AC33127048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift in Sources */,
+				547E2E2D2706C206004F3565 /* CircleText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
