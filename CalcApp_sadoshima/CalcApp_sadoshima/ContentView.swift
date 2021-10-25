@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = CalculatorViewModel()
+    
     // 入力された数値及び演算子を格納する状態変数
     @State private var displayingNum = "0"
     // ディスプレイテキストのフォントサイズ
@@ -28,7 +30,7 @@ struct ContentView: View {
                 Spacer(minLength: 0)
                 
                 // 入力された数値及び演算子のディスプレイ
-                Text(displayingNum)
+                Text(viewModel.displayingNum)
                     .font(.system(size: fontSize, weight: .medium))
                     .foregroundColor(.white)
                     .padding()
@@ -39,7 +41,8 @@ struct ContentView: View {
                             ForEach(Operator.allCases, id: \.self) { item in
                                 if item == .percent || item == .allClear || item == .plusMinus {
                                     Button(action: {
-                                        setOperator(item)
+                                        viewModel.setOperator(item)
+                                        setFontSize()
                                     }, label: {
                                         CircleText(text: item.buttonText(displayingNum == "0" && isCalculating == .none), buttonColor: .gray)
                                         
@@ -64,7 +67,7 @@ struct ContentView: View {
                                             fontSize = proxy.size.width * 0.2
                                         }
                                         
-                                        insertNumber(numbers[row][col])
+                                        viewModel.insertNumber(numbers[row][col])
                                     }, label: {
                                         CircleText(text: numbers[row][col], buttonColor: .gray)
                                         
@@ -78,7 +81,8 @@ struct ContentView: View {
                         HStack {
                             // 0だけ横幅が大きいの別途設定
                             Button(action: {
-                                insertNumber("0")
+                                viewModel.insertNumber("0")
+                                setFontSize()
                             }, label: {
                                 CircleText(text: "0", buttonColor: .gray)
                                 
@@ -100,7 +104,8 @@ struct ContentView: View {
                                 EmptyView()
                             } else {
                                 Button(action: {
-                                    setOperator(item)
+                                    viewModel.setOperator(item)
+                                    setFontSize()
                                 }, label: {
                                     CircleText(text: item.buttonText(false), buttonColor: .orange)
                                     
