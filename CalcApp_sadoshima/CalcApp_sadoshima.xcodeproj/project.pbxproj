@@ -13,6 +13,7 @@
 		543AC33827048BB1008BFCB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543AC33727048BB1008BFCB0 /* Preview Assets.xcassets */; };
 		547E2E2D2706C206004F3565 /* CircleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2C2706C206004F3565 /* CircleText.swift */; };
 		547E2E2F2706DA09004F3565 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2E2706DA09004F3565 /* Operator.swift */; };
+		54A7ED812722751400523136 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A7ED802722751400523136 /* CalculatorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		543AC33727048BB1008BFCB0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		547E2E2C2706C206004F3565 /* CircleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleText.swift; sourceTree = "<group>"; };
 		547E2E2E2706DA09004F3565 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		54A7ED802722751400523136 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				543AC33627048BB1008BFCB0 /* Preview Content */,
 				547E2E2C2706C206004F3565 /* CircleText.swift */,
 				547E2E2E2706DA09004F3565 /* Operator.swift */,
+				54A7ED802722751400523136 /* CalculatorViewModel.swift */,
 			);
 			path = CalcApp_sadoshima;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				547E2E2F2706DA09004F3565 /* Operator.swift in Sources */,
 				543AC33127048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift in Sources */,
 				547E2E2D2706C206004F3565 /* CircleText.swift in Sources */,
+				54A7ED812722751400523136 /* CalculatorViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

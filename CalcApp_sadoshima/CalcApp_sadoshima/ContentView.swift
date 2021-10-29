@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    // 入力された数値及び演算子を格納する状態変数
-    @State private var displayingNum = "0"
+    @StateObject private var viewModel = CalculatorViewModel()
+    
     // ディスプレイテキストのフォントサイズ
     @State private var fontSize: CGFloat = .zero
-    @State private var isCalculating: Operator = .none
-    @State private var argument1: Double?
-    @State private var argument2: Double = 0
-    @State private var isNotInserting = false
     
     // 各ボタンの標準の横幅
     private let buttonWidth = CGFloat(UIScreen.main.bounds.width) * 0.19
@@ -28,7 +24,7 @@ struct ContentView: View {
                 Spacer(minLength: 0)
                 
                 // 入力された数値及び演算子のディスプレイ
-                Text(displayingNum)
+                Text(viewModel.displayingNum)
                     .font(.system(size: fontSize, weight: .medium))
                     .foregroundColor(.white)
                     .padding()
@@ -39,7 +35,8 @@ struct ContentView: View {
                             ForEach(Operator.allCases, id: \.self) { item in
                                 if item == .percent || item == .allClear || item == .plusMinus {
                                     Button(action: {
-                                        setOperator(item)
+                                        viewModel.setOperator(item)
+                                        setFontSize()
                                     }, label: {
                                         CircleText(text: item.buttonText(displayingNum == "0" && isCalculating == .none), buttonColor: .gray)
                                         
@@ -64,7 +61,7 @@ struct ContentView: View {
                                             fontSize = proxy.size.width * 0.2
                                         }
                                         
-                                        insertNumber(numbers[row][col])
+                                        viewModel.insertNumber(numbers[row][col])
                                     }, label: {
                                         CircleText(text: numbers[row][col], buttonColor: .gray)
                                         
@@ -78,7 +75,8 @@ struct ContentView: View {
                         HStack {
                             // 0だけ横幅が大きいの別途設定
                             Button(action: {
-                                insertNumber("0")
+                                viewModel.insertNumber("0")
+                                setFontSize()
                             }, label: {
                                 CircleText(text: "0", buttonColor: .gray)
                                 
@@ -100,7 +98,8 @@ struct ContentView: View {
                                 EmptyView()
                             } else {
                                 Button(action: {
-                                    setOperator(item)
+                                    viewModel.setOperator(item)
+                                    setFontSize()
                                 }, label: {
                                     CircleText(text: item.buttonText(false), buttonColor: .orange)
                                     
@@ -120,147 +119,6 @@ struct ContentView: View {
             .background(Color.black.edgesIgnoringSafeArea(.all))
         } // GeometryReader
     } // body
-    
-    private func insertNumber(_ text: String) {
-        if isNotInserting || displayingNum == "0" {
-            displayingNum = ""
-            isNotInserting = false
-        }
-        
-        displayingNum += text
-        
-        argument2 = Double(displayingNum)!
-        print(argument2)
-    }
-    
-    private func setOperator(_ paramOperator: Operator) {
-        isNotInserting = true
-        
-        switch paramOperator {
-        case .percent:
-            return
-        case .divide:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! /= argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .multiply:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! *= argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .subtraction:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! -= argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .addition:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! += argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .equal:
-            switch isCalculating {
-            case .percent:
-                return
-            case .divide:
-                argument1! /= argument2
-            case .multiply:
-                argument1! *= argument2
-            case .subtraction:
-                argument1! -= argument2
-            case .addition:
-                argument1! += argument2
-            case .equal:
-                return
-            case .none:
-                return
-            case .plusMinus:
-                return
-            case .allClear:
-                return
-            }
-            
-            if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                let num = Int(argument1!)
-                displayingNum = String(num)
-            } else {
-                displayingNum = String(argument1!)
-            }
-            
-            setFontSize()
-            argument2 = 0
-            isCalculating = .none
-            isNotInserting = false
-        case .none:
-            return
-        case .plusMinus:
-            return
-        case .allClear:
-            displayingNum = "0"
-            argument1 = nil
-            argument2 = 0
-            isCalculating = .none
-            isNotInserting = false
-            setFontSize()
-        }
-    }
     
     private func setFontSize() {
         if displayingNum.count > 5 {
