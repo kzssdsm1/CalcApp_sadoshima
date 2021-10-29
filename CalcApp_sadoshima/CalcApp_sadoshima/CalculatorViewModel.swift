@@ -37,11 +37,11 @@ final class CalculatorViewModel: ObservableObject {
     func setOperator(_ paramOperator: Operator) {
         switch paramOperator {
         case .plusMinus:
-            return
+            changeSign()
         case .allClear:
             clearText()
         case .percent:
-            return
+            percent()
         case .divide:
             divide()
         case .multiply:
@@ -106,6 +106,7 @@ final class CalculatorViewModel: ObservableObject {
         displayingNum = arrangeDispNum(firstArgument!)
     }
     
+    // 等号
     private func equal() {
         if isCalculating == .addition {
             addition()
@@ -120,10 +121,29 @@ final class CalculatorViewModel: ObservableObject {
         secondArgument = nil
     }
     
-    private func changeSign() {
-
+    // 割合化
+    private func percent() {
+        secondArgument = 100
+        
+        divide()
+        
+        secondArgument = nil
     }
     
+    // 符号反転
+    private func changeSign() {
+        let changeNum = Double(displayingNum)! * -1
+        
+        displayingNum = arrangeDispNum(changeNum)
+        
+        if isCalculating != .none {
+            secondArgument = changeNum
+        } else {
+            firstArgument = changeNum
+        }
+    }
+    
+    // 情報のクリア
     private func clearText() {
         displayingNum = "0"
         isCalculating = .none
