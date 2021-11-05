@@ -10,15 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel = CalculatorViewModel()
     
-    // 入力された数値及び演算子を格納する状態変数
-    @State private var displayingNum = "0"
     // ディスプレイテキストのフォントサイズ
     @State private var fontSize: CGFloat = .zero
-    @State private var isCalculating: Operator = .none
-    @State private var argument1: Double?
-    @State private var argument2: Double = 0
-    @State private var isNotInserting = false
-    
     // 各ボタンの標準の横幅
     private let buttonWidth = CGFloat(UIScreen.main.bounds.width) * 0.19
     // ForEachで回すための数値を格納した配列
@@ -44,7 +37,7 @@ struct ContentView: View {
                                         viewModel.setOperator(item)
                                         setFontSize()
                                     }, label: {
-                                        CircleText(text: item.buttonText(displayingNum == "0" && isCalculating == .none), buttonColor: .gray)
+                                        CircleText(text: item.buttonText(viewModel.displayingNum == "0" && viewModel.isCalculating == .none), buttonColor: .gray)
                                         
                                     })
                                         .frame(width: buttonWidth, height: buttonWidth)
@@ -61,8 +54,8 @@ struct ContentView: View {
                                 ForEach(0...2, id: \.self) { col in
                                     Button(action: {
                                         // Textのmodifierで設定しようとするとネストが深くなりすぎてコンパイルが通らないのでここで数値の桁数に依ってフォントのサイズを変更する
-                                        if displayingNum.count > 5 {
-                                            fontSize = proxy.size.width * 0.2 - CGFloat((displayingNum.count - 5)) * (proxy.size.width * 0.02)
+                                        if viewModel.displayingNum.count > 5 {
+                                            fontSize = proxy.size.width * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (proxy.size.width * 0.02)
                                         } else {
                                             fontSize = proxy.size.width * 0.2
                                         }
@@ -91,7 +84,13 @@ struct ContentView: View {
                                 .padding(proxy.size.width * 0.01)
                             
                             // 小数点ボタン
-                            CircleText(text: ".", buttonColor: .gray)
+                            Button(action: {
+                                viewModel.insertDemicalPoint()
+                                setFontSize()
+                            }, label: {
+                                CircleText(text: ".", buttonColor: .gray)
+                                
+                            })
                                 .frame(width: buttonWidth, height: buttonWidth)
                                 .padding(proxy.size.width * 0.01)
                         } // HStack
@@ -126,150 +125,9 @@ struct ContentView: View {
         } // GeometryReader
     } // body
     
-    private func insertNumber(_ text: String) {
-        if isNotInserting || displayingNum == "0" {
-            displayingNum = ""
-            isNotInserting = false
-        }
-        
-        displayingNum += text
-        
-        argument2 = Double(displayingNum)!
-        print(argument2)
-    }
-    
-    private func setOperator(_ paramOperator: Operator) {
-        isNotInserting = true
-        
-        switch paramOperator {
-        case .percent:
-            return
-        case .divide:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! /= argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .multiply:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! *= argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .subtraction:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! -= argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .addition:
-            if argument1 == nil {
-                argument1 = argument2
-            } else {
-                argument1! += argument2
-            }
-            
-            if isCalculating != .none {
-                if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                    let num = Int(argument1!)
-                    displayingNum = String(num)
-                    setFontSize()
-                } else {
-                    displayingNum = String(argument1!)
-                    setFontSize()
-                }
-            }
-            
-            isCalculating = paramOperator
-        case .equal:
-            switch isCalculating {
-            case .percent:
-                return
-            case .divide:
-                argument1! /= argument2
-            case .multiply:
-                argument1! *= argument2
-            case .subtraction:
-                argument1! -= argument2
-            case .addition:
-                argument1! += argument2
-            case .equal:
-                return
-            case .none:
-                return
-            case .plusMinus:
-                return
-            case .allClear:
-                return
-            }
-            
-            if argument1!.truncatingRemainder(dividingBy: 1.0) == 0 {
-                let num = Int(argument1!)
-                displayingNum = String(num)
-            } else {
-                displayingNum = String(argument1!)
-            }
-            
-            setFontSize()
-            argument2 = 0
-            isCalculating = .none
-            isNotInserting = false
-        case .none:
-            return
-        case .plusMinus:
-            return
-        case .allClear:
-            displayingNum = "0"
-            argument1 = nil
-            argument2 = 0
-            isCalculating = .none
-            isNotInserting = false
-            setFontSize()
-        }
-    }
-    
     private func setFontSize() {
-        if displayingNum.count > 5 {
-            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2 - CGFloat((displayingNum.count - 5)) * (CGFloat(UIScreen.main.bounds.width) * 0.02)
+        if viewModel.displayingNum.count > 5 {
+            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (CGFloat(UIScreen.main.bounds.width) * 0.02)
         } else {
             fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2
         }

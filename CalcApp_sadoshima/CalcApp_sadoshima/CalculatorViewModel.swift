@@ -11,13 +11,28 @@ final class CalculatorViewModel: ObservableObject {
     @Published var displayingNum = "0"
     @Published var isCalculating: Operator = .none
     
+//    private let numberFormatter: NumberFormatter = {
+//        let formatter = NumberFormatter()
+//
+//        formatter.numberStyle = .decimal
+//        formatter.generatesDecimalNumbers = true
+//        formatter.usesGroupingSeparator = true
+//        formatter.groupingSeparator = ","
+//        formatter.groupingSize = 3
+//        formatter.maximumIntegerDigits = 9
+//        formatter.maximumFractionDigits = 8
+//        formatter.maximumSignificantDigits = 9
+//
+//        return formatter
+//    }()
+    
     private var isInserting = false
     // 第1引数
-    private var firstArgument: Double?
+    private var firstArgument: NSDecimalNumber?
     // 第2引数
-    private var secondArgument: Double?
+    private var secondArgument: NSDecimalNumber?
     // 隠れ引数
-    private var hiddenArgument: Double?
+    private var hiddenArgument: NSDecimalNumber?
     
     func insertNumber(_ text: String) {
         if displayingNum == "0" || isInserting {
@@ -28,9 +43,9 @@ final class CalculatorViewModel: ObservableObject {
         displayingNum += text
         
         if isCalculating != .none {
-            secondArgument = Double(displayingNum)!
+            secondArgument = NSDecimalNumber(string: displayingNum)
         } else {
-            firstArgument = Double(displayingNum)!
+            firstArgument = NSDecimalNumber(string: displayingNum)
         }
     }
     
@@ -58,16 +73,29 @@ final class CalculatorViewModel: ObservableObject {
         }
     }
     
+    func insertDemicalPoint() {
+        if !displayingNum.contains(".") {
+            displayingNum += "."
+            
+            if isCalculating != .none {
+                secondArgument = NSDecimalNumber(string: displayingNum)
+            } else {
+                firstArgument = NSDecimalNumber(string: displayingNum)
+            }
+        }
+    }
+    
     // 加算
     private func addition() {
         isCalculating = .addition
         isInserting = true
-       
+        
         guard let secondArgument = secondArgument else { return }
         
-        firstArgument! += secondArgument
+        firstArgument?.adding(secondArgument)
         
         displayingNum = arrangeDispNum(firstArgument!)
+        calcLog()
     }
     
     // 減算
@@ -77,9 +105,10 @@ final class CalculatorViewModel: ObservableObject {
         
         guard let secondArgument = secondArgument else { return }
         
-        firstArgument! -= secondArgument
+        firstArgument?.subtracting(secondArgument)
         
         displayingNum = arrangeDispNum(firstArgument!)
+        calcLog()
     }
     
     // 乗算
@@ -89,9 +118,10 @@ final class CalculatorViewModel: ObservableObject {
         
         guard let secondArgument = secondArgument else { return }
         
-        firstArgument! *= secondArgument
+        firstArgument?.multiplying(by: secondArgument)
         
         displayingNum = arrangeDispNum(firstArgument!)
+        calcLog()
     }
     
     // 除算
@@ -101,9 +131,10 @@ final class CalculatorViewModel: ObservableObject {
         
         guard let secondArgument = secondArgument else { return }
         
-        firstArgument! /= secondArgument
+        firstArgument?.dividing(by: secondArgument)
         
         displayingNum = arrangeDispNum(firstArgument!)
+        calcLog()
     }
     
     // 等号
@@ -135,6 +166,7 @@ final class CalculatorViewModel: ObservableObject {
         let changeNum = Double(displayingNum)! * -1
         
         displayingNum = arrangeDispNum(changeNum)
+        calcLog()
         
         if isCalculating != .none {
             secondArgument = changeNum
@@ -152,12 +184,37 @@ final class CalculatorViewModel: ObservableObject {
     }
     
     // 小数点以下に数値を持たない場合に整数に整える関数
-    private func arrangeDispNum(_ num: Double) -> String {
-        if num.truncatingRemainder(dividingBy: 1.0) == 0 {
-            let toInt = Int(num)
+    private func arrangeDispNum(_ num: NSDecimalNumber) -> String {
+        if num.doubleValue.truncatingRemainder(dividingBy: 1.0) == 0 {
+            let toInt = Int(truncating: num)
             return String(toInt)
         } else {
             return String(num)
         }
+    }
+    
+    // 対数関数(Double型由来の誤差発生によりまともに機能していないのであとで書き直す)
+    private func calcLog() {
+        if Double(displayingNum)! > 999999999.99999 {
+            let remainder = Double(displayingNum)!.truncatingRemainder(dividingBy: 10.0)
+            print(remainder)
+            let num = Double(displayingNum)! - remainder
+            print(num)
+            let log10 = log10(num)
+            
+            displayingNum = "\(String(remainder))e\(String(log10))"
+        }
+    }
+    
+    // Double型をNSDemicalNumber型に変換する関数
+    private func doubleToDemicalNumber(_ double: Double) -> NSDecimalNumber {
+        let num = double as NSNumber
+        
+        return NSDecimalNumber(string: num.stringValue)
+    }
+    
+    // あとで実装する
+    private func test() {
+        
     }
 }
