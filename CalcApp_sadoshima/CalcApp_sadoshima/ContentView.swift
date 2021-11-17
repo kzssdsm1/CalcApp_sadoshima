@@ -85,7 +85,7 @@ struct ContentView: View {
                             
                             // 小数点ボタン
                             Button(action: {
-                                viewModel.insertDemicalPoint()
+                                viewModel.insertDecimalPoint()
                                 setFontSize()
                             }, label: {
                                 CircleText(text: ".", buttonColor: .gray)
