@@ -96,6 +96,10 @@ final class CalculatorViewModel: ObservableObject {
     
     // 加算
     private func addition() {
+        if isCalculating != .addition {
+            equal()
+        }
+        
         isCalculating = .addition
         isInserting = true
         
@@ -111,6 +115,10 @@ final class CalculatorViewModel: ObservableObject {
     
     // 減算
     private func subtraction() {
+        if isCalculating != .subtraction {
+            equal()
+        }
+        
         isCalculating = .subtraction
         isInserting = true
         
@@ -126,6 +134,10 @@ final class CalculatorViewModel: ObservableObject {
     
     // 乗算
     private func multiply() {
+        if isCalculating != .multiply {
+            equal()
+        }
+        
         isCalculating = .multiply
         isInserting = true
         
@@ -141,6 +153,10 @@ final class CalculatorViewModel: ObservableObject {
     
     // 除算
     private func divide() {
+        if isCalculating != .divide {
+            equal()
+        }
+        
         isCalculating = .divide
         isInserting = true
         
@@ -232,6 +248,12 @@ final class CalculatorViewModel: ObservableObject {
         let log = log10(Double(truncating: multiplied as NSNumber))
         
         return "1e\(String(log))"
+    }
+    
+    // 試作
+    private func test(_ num: Decimal) -> String {
+        
+        return ""
     }
     
     private func arrangeDispNum(_ strValue: String) -> String {
