@@ -36,6 +36,8 @@ final class CalculatorViewModel: ObservableObject {
     // 隠れ引数
     private var hiddenArgument: Decimal?
     
+    private var hiddenOperator: Operator = .none
+    
     func insertNumber(_ text: String) {
         if input == "0" || isInserting {
             input = ""
@@ -43,7 +45,7 @@ final class CalculatorViewModel: ObservableObject {
         }
         
         input += text
-        displayingNum = arrangeDispNum(input)
+        displayingNum = arrangeDispNum(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9)))
         
         if text == "0" && input.suffix(2) == ".0" {
             displayingNum += ".0"
@@ -101,6 +103,9 @@ final class CalculatorViewModel: ObservableObject {
         
         firstArgument! += secondArgument
         
+        hiddenArgument = secondArgument
+        hiddenOperator = isCalculating
+        
         displayingNum = convertToString(firstArgument!)
     }
     
@@ -112,6 +117,9 @@ final class CalculatorViewModel: ObservableObject {
         guard let secondArgument = secondArgument else { return }
         
         firstArgument! -= secondArgument
+        
+        hiddenArgument = secondArgument
+        hiddenOperator = isCalculating
         
         displayingNum = convertToString(firstArgument!)
     }
@@ -125,7 +133,8 @@ final class CalculatorViewModel: ObservableObject {
         
         firstArgument! *= secondArgument
         
-        print()
+        hiddenArgument = secondArgument
+        hiddenOperator = isCalculating
         
         displayingNum = convertToString(firstArgument!)
     }
@@ -139,6 +148,9 @@ final class CalculatorViewModel: ObservableObject {
         
         firstArgument! /= secondArgument
         
+        hiddenArgument = secondArgument
+        hiddenOperator = isCalculating
+        
         displayingNum = convertToString(firstArgument!)
     }
     
@@ -150,16 +162,21 @@ final class CalculatorViewModel: ObservableObject {
             subtraction()
         } else if isCalculating == .multiply {
             multiply()
-        } else {
+        } else if isCalculating == .divide {
             divide()
+        } else if isCalculating == .none && hiddenArgument != nil {
+            isCalculating = hiddenOperator
+            secondArgument = hiddenArgument
+            equal()
         }
         
+        isCalculating = .none
         secondArgument = nil
     }
     
     // 割合化
     private func percent() {
-        secondArgument = 100
+        secondArgument = Decimal(string: "100")!
         
         divide()
         
@@ -186,9 +203,11 @@ final class CalculatorViewModel: ObservableObject {
     private func clearText() {
         displayingNum = "0"
         isCalculating = .none
+        hiddenOperator = .none
         input = ""
         firstArgument = nil
         secondArgument = nil
+        hiddenArgument = nil
     }
     
     private func convertToString(_ num: Decimal) -> String {
@@ -208,6 +227,8 @@ final class CalculatorViewModel: ObservableObject {
         let diviser = Decimal(string: "10")!
         let divided = num / diviser
         let multiplied = divided * diviser
+        print(divided)
+        print(multiplied)
         let log = log10(Double(truncating: multiplied as NSNumber))
         
         return "1e\(String(log))"
