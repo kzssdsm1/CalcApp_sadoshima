@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class CalculatorViewModel: ObservableObject {
     @Published var displayingNum = "0"
     @Published var isCalculating: Operator = .none
+    @Published var isPressing: Operator = .none
+    @Published var fontSize: CGFloat = .zero
     
     private let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -26,6 +29,8 @@ final class CalculatorViewModel: ObservableObject {
         return formatter
     }()
     
+    var dispSize: CGFloat = .zero
+    
     private var input = ""
     
     private var isInserting = false
@@ -39,6 +44,8 @@ final class CalculatorViewModel: ObservableObject {
     private var hiddenOperator: Operator = .none
     
     func insertNumber(_ text: String) {
+        isPressing = .none
+        
         if input == "0" || isInserting {
             input = ""
             isInserting = false
@@ -50,6 +57,8 @@ final class CalculatorViewModel: ObservableObject {
         if text == "0" && input.suffix(2) == ".0" {
             displayingNum += ".0"
         }
+        
+        setFontSize()
         
         if isCalculating != .none {
             secondArgument = convertToDecimal(input)
@@ -92,15 +101,18 @@ final class CalculatorViewModel: ObservableObject {
             input += "."
             displayingNum = input
         }
+        
+        setFontSize()
     }
     
     // 加算
     private func addition() {
-        if isCalculating != .addition {
+        if isCalculating != .addition && isCalculating != .none {
             equal()
         }
         
         isCalculating = .addition
+        isPressing = isCalculating
         isInserting = true
         
         guard let secondArgument = secondArgument else { return }
@@ -111,15 +123,17 @@ final class CalculatorViewModel: ObservableObject {
         hiddenOperator = isCalculating
         
         displayingNum = convertToString(firstArgument!)
+        setFontSize()
     }
     
     // 減算
     private func subtraction() {
-        if isCalculating != .subtraction {
+        if isCalculating != .subtraction && isCalculating != .none {
             equal()
         }
         
         isCalculating = .subtraction
+        isPressing = isCalculating
         isInserting = true
         
         guard let secondArgument = secondArgument else { return }
@@ -130,15 +144,17 @@ final class CalculatorViewModel: ObservableObject {
         hiddenOperator = isCalculating
         
         displayingNum = convertToString(firstArgument!)
+        setFontSize()
     }
     
     // 乗算
     private func multiply() {
-        if isCalculating != .multiply {
+        if isCalculating != .multiply && isCalculating != .none {
             equal()
         }
         
         isCalculating = .multiply
+        isPressing = isCalculating
         isInserting = true
         
         guard let secondArgument = secondArgument else { return }
@@ -149,15 +165,17 @@ final class CalculatorViewModel: ObservableObject {
         hiddenOperator = isCalculating
         
         displayingNum = convertToString(firstArgument!)
+        setFontSize()
     }
     
     // 除算
     private func divide() {
-        if isCalculating != .divide {
+        if isCalculating != .divide && isCalculating != .none {
             equal()
         }
         
         isCalculating = .divide
+        isPressing = isCalculating
         isInserting = true
         
         guard let secondArgument = secondArgument else { return }
@@ -168,6 +186,7 @@ final class CalculatorViewModel: ObservableObject {
         hiddenOperator = isCalculating
         
         displayingNum = convertToString(firstArgument!)
+        setFontSize()
     }
     
     // 等号
@@ -186,7 +205,9 @@ final class CalculatorViewModel: ObservableObject {
             equal()
         }
         
+        setFontSize()
         isCalculating = .none
+        isPressing = isCalculating
         secondArgument = nil
     }
     
@@ -207,11 +228,20 @@ final class CalculatorViewModel: ObservableObject {
         
         input = convertToString(changeNum)
         displayingNum = input
+        setFontSize()
         
         if isCalculating != .none {
             secondArgument = changeNum
         } else {
             firstArgument = changeNum
+        }
+    }
+    
+    private func setFontSize() {
+        if displayingNum.count > 5 {
+            fontSize = dispSize * 0.2 - CGFloat((displayingNum.count - 5)) * (dispSize * 0.012)
+        } else {
+            fontSize = dispSize * 0.2
         }
     }
     
@@ -224,14 +254,16 @@ final class CalculatorViewModel: ObservableObject {
         firstArgument = nil
         secondArgument = nil
         hiddenArgument = nil
+        setFontSize()
     }
     
     private func convertToString(_ num: Decimal) -> String {
-        if num > 999999999 {
-            return calcLog(num)
-        } else {
-            return arrangeDispNum("\(num)")
-        }
+        return arrangeDispNum("\(num)")
+        //        if num > 999999999.999997 {
+        //            return test(num)
+        //        } else {
+        //            return arrangeDispNum("\(num)")
+        //        }
     }
     
     private func convertToDecimal(_ strValue: String) -> Decimal {
@@ -251,9 +283,69 @@ final class CalculatorViewModel: ObservableObject {
     }
     
     // 試作
-    private func test(_ num: Decimal) -> String {
+    private func test(_ decimalVaule: Decimal) -> String {
+        let num = NSDecimalNumber(decimal: decimalVaule)
         
-        return ""
+        if decimalVaule < 0 {
+            num.multiplying(by: -1)
+        }
+        
+        // 切り捨て
+        let behaviors1: NSDecimalNumberHandler = NSDecimalNumberHandler(
+            roundingMode: NSDecimalNumber.RoundingMode.down,
+            scale: 0,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        let diviser = NSDecimalNumber(string: "10")
+        let divided = num.dividing(by: diviser)
+        let rounded1 = divided.rounding(accordingToBehavior: behaviors1)
+        print(rounded1)
+        let multiplied = diviser.multiplying(by: rounded1)
+        print(multiplied)
+        let divided2 = num.dividing(by: multiplied)
+        print("dividing: \(divided2)")
+        
+        let behaviors2: NSDecimalNumberHandler = NSDecimalNumberHandler(
+            roundingMode: NSDecimalNumber.RoundingMode.plain,
+            scale: 0,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        
+        let log10 = log10(multiplied.doubleValue)
+        let logString = String(log10)
+        let rounded2 = NSDecimalNumber(string: logString).rounding(accordingToBehavior: behaviors2)
+        
+        var scale: Int16 {
+            if log10 >= 10 {
+                return 4
+            } else if log10 >= 100 {
+                return 3
+            } else {
+                return 5
+            }
+        }
+        
+        let behaviors3: NSDecimalNumberHandler = NSDecimalNumberHandler(
+            roundingMode: NSDecimalNumber.RoundingMode.plain,
+            scale: scale,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        let rounded3 = divided2.rounding(accordingToBehavior: behaviors3)
+        
+        if decimalVaule < 0 {
+            rounded3.multiplying(by: -1)
+        }
+        
+        return "\(rounded3)e\(rounded2)"
     }
     
     private func arrangeDispNum(_ strValue: String) -> String {

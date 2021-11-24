@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject private var viewModel = CalculatorViewModel()
     
     // ディスプレイテキストのフォントサイズ
-    @State private var fontSize: CGFloat = .zero
+//    @State private var fontSize: CGFloat = .zero
     // 各ボタンの標準の横幅
     private let buttonWidth = CGFloat(UIScreen.main.bounds.width) * 0.19
     // ForEachで回すための数値を格納した配列
@@ -24,7 +24,7 @@ struct ContentView: View {
                 
                 // 入力された数値及び演算子のディスプレイ
                 Text(viewModel.displayingNum)
-                    .font(.system(size: fontSize, weight: .medium))
+                    .font(.system(size: viewModel.fontSize, weight: .medium))
                     .foregroundColor(.white)
                     .padding()
                 
@@ -35,9 +35,8 @@ struct ContentView: View {
                                 if item == .percent || item == .allClear || item == .plusMinus {
                                     Button(action: {
                                         viewModel.setOperator(item)
-                                        setFontSize()
                                     }, label: {
-                                        CircleText(text: item.buttonText(viewModel.displayingNum == "0" && viewModel.isCalculating == .none), buttonColor: .gray)
+                                        CircleText(isCalculating: $viewModel.isPressing, text: item.buttonText(viewModel.displayingNum == "0" && viewModel.isCalculating == .none), buttonColor: .gray)
                                         
                                     })
                                         .frame(width: buttonWidth, height: buttonWidth)
@@ -54,15 +53,15 @@ struct ContentView: View {
                                 ForEach(0...2, id: \.self) { col in
                                     Button(action: {
                                         // Textのmodifierで設定しようとするとネストが深くなりすぎてコンパイルが通らないのでここで数値の桁数に依ってフォントのサイズを変更する
-                                        if viewModel.displayingNum.count > 5 {
-                                            fontSize = proxy.size.width * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (proxy.size.width * 0.02)
-                                        } else {
-                                            fontSize = proxy.size.width * 0.2
-                                        }
+//                                        if viewModel.displayingNum.count > 5 {
+//                                            fontSize = proxy.size.width * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (proxy.size.width * 0.02)
+//                                        } else {
+//                                            fontSize = proxy.size.width * 0.2
+//                                        }
                                         
                                         viewModel.insertNumber(numbers[row][col])
                                     }, label: {
-                                        CircleText(text: numbers[row][col], buttonColor: .gray)
+                                        CircleText(isCalculating: $viewModel.isPressing, text: numbers[row][col], buttonColor: .gray)
                                         
                                     })
                                         .frame(width: buttonWidth, height: buttonWidth)
@@ -75,9 +74,8 @@ struct ContentView: View {
                             // 0だけ横幅が大きいの別途設定
                             Button(action: {
                                 viewModel.insertNumber("0")
-                                setFontSize()
                             }, label: {
-                                CircleText(text: "0", buttonColor: .gray)
+                                CircleText(isCalculating: $viewModel.isPressing, text: "0", buttonColor: .gray)
                                 
                             })
                                 .frame(width: buttonWidth * 2.2, height: buttonWidth)
@@ -86,9 +84,8 @@ struct ContentView: View {
                             // 小数点ボタン
                             Button(action: {
                                 viewModel.insertDecimalPoint()
-                                setFontSize()
                             }, label: {
-                                CircleText(text: ".", buttonColor: .gray)
+                                CircleText(isCalculating: $viewModel.isPressing, text: ".", buttonColor: .gray)
                                 
                             })
                                 .frame(width: buttonWidth, height: buttonWidth)
@@ -104,9 +101,12 @@ struct ContentView: View {
                             } else {
                                 Button(action: {
                                     viewModel.setOperator(item)
-                                    setFontSize()
                                 }, label: {
-                                    CircleText(text: item.buttonText(false), buttonColor: .orange)
+                                    CircleText(
+                                        isCalculating: $viewModel.isPressing,
+                                        text: item.buttonText(false),
+                                        buttonColor: .orange
+                                    )
                                     
                                 })
                                     .frame(width: buttonWidth, height: buttonWidth)
@@ -117,7 +117,8 @@ struct ContentView: View {
                 } // HStack
             } // VStack
             .onAppear() {
-                fontSize = proxy.size.width * 0.2
+                viewModel.fontSize = proxy.size.width * 0.2
+                viewModel.dispSize = proxy.size.width
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity) // このmodifierを設定しないと画面が左に寄ってしまう(SwiftUI由来のバグ)
@@ -125,11 +126,11 @@ struct ContentView: View {
         } // GeometryReader
     } // body
     
-    private func setFontSize() {
-        if viewModel.displayingNum.count > 5 {
-            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (CGFloat(UIScreen.main.bounds.width) * 0.02)
-        } else {
-            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2
-        }
-    }
+//    private func setFontSize() {
+//        if viewModel.displayingNum.count > 5 {
+//            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (CGFloat(UIScreen.main.bounds.width) * 0.02)
+//        } else {
+//            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2
+//        }
+//    }
 }
