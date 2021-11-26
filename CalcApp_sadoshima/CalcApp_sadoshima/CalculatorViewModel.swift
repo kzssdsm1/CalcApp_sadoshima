@@ -191,6 +191,7 @@ final class CalculatorViewModel: ObservableObject {
     
     // 等号
     private func equal() {
+        print(isCalculating)
         if isCalculating == .addition {
             addition()
         } else if isCalculating == .subtraction {
@@ -213,9 +214,18 @@ final class CalculatorViewModel: ObservableObject {
     
     // 割合化
     private func percent() {
-        secondArgument = Decimal(string: "100")!
+        let tempNum = firstArgument!
         
-        divide()
+        if secondArgument != nil {
+            equal()
+        }
+        secondArgument = Decimal(string: "0.01")!
+        
+        multiply()
+        isCalculating = .none
+        isPressing = .none
+        hiddenArgument = firstArgument
+        firstArgument = tempNum
         
         secondArgument = nil
     }
@@ -254,6 +264,7 @@ final class CalculatorViewModel: ObservableObject {
         firstArgument = nil
         secondArgument = nil
         hiddenArgument = nil
+        isPressing = .none
         setFontSize()
     }
     
