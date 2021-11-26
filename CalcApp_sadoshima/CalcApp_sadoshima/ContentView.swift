@@ -10,8 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel = CalculatorViewModel()
     
-    // ディスプレイテキストのフォントサイズ
-//    @State private var fontSize: CGFloat = .zero
     // 各ボタンの標準の横幅
     private let buttonWidth = CGFloat(UIScreen.main.bounds.width) * 0.19
     // ForEachで回すための数値を格納した配列
@@ -52,13 +50,6 @@ struct ContentView: View {
                             HStack {
                                 ForEach(0...2, id: \.self) { col in
                                     Button(action: {
-                                        // Textのmodifierで設定しようとするとネストが深くなりすぎてコンパイルが通らないのでここで数値の桁数に依ってフォントのサイズを変更する
-//                                        if viewModel.displayingNum.count > 5 {
-//                                            fontSize = proxy.size.width * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (proxy.size.width * 0.02)
-//                                        } else {
-//                                            fontSize = proxy.size.width * 0.2
-//                                        }
-                                        
                                         viewModel.insertNumber(numbers[row][col])
                                     }, label: {
                                         CircleText(isCalculating: $viewModel.isPressing, text: numbers[row][col], buttonColor: .gray)
@@ -125,12 +116,4 @@ struct ContentView: View {
             .background(Color.black.edgesIgnoringSafeArea(.all))
         } // GeometryReader
     } // body
-    
-//    private func setFontSize() {
-//        if viewModel.displayingNum.count > 5 {
-//            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2 - CGFloat((viewModel.displayingNum.count - 5)) * (CGFloat(UIScreen.main.bounds.width) * 0.02)
-//        } else {
-//            fontSize = CGFloat(UIScreen.main.bounds.width) * 0.2
-//        }
-//    }
 }

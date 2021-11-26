@@ -270,83 +270,83 @@ final class CalculatorViewModel: ObservableObject {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
     
-    // 対数関数(Double型由来の誤差発生によりまともに機能していないのであとで書き直す)
-    private func calcLog(_ num: Decimal) -> String {
-        let diviser = Decimal(string: "10")!
-        let divided = num / diviser
-        let multiplied = divided * diviser
-        print(divided)
-        print(multiplied)
-        let log = log10(Double(truncating: multiplied as NSNumber))
-        
-        return "1e\(String(log))"
-    }
-    
-    // 試作
-    private func test(_ decimalVaule: Decimal) -> String {
-        let num = NSDecimalNumber(decimal: decimalVaule)
-        
-        if decimalVaule < 0 {
-            num.multiplying(by: -1)
-        }
-        
-        // 切り捨て
-        let behaviors1: NSDecimalNumberHandler = NSDecimalNumberHandler(
-            roundingMode: NSDecimalNumber.RoundingMode.down,
-            scale: 0,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: false
-        )
-        let diviser = NSDecimalNumber(string: "10")
-        let divided = num.dividing(by: diviser)
-        let rounded1 = divided.rounding(accordingToBehavior: behaviors1)
-        print(rounded1)
-        let multiplied = diviser.multiplying(by: rounded1)
-        print(multiplied)
-        let divided2 = num.dividing(by: multiplied)
-        print("dividing: \(divided2)")
-        
-        let behaviors2: NSDecimalNumberHandler = NSDecimalNumberHandler(
-            roundingMode: NSDecimalNumber.RoundingMode.plain,
-            scale: 0,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: false
-        )
-        
-        let log10 = log10(multiplied.doubleValue)
-        let logString = String(log10)
-        let rounded2 = NSDecimalNumber(string: logString).rounding(accordingToBehavior: behaviors2)
-        
-        var scale: Int16 {
-            if log10 >= 10 {
-                return 4
-            } else if log10 >= 100 {
-                return 3
-            } else {
-                return 5
-            }
-        }
-        
-        let behaviors3: NSDecimalNumberHandler = NSDecimalNumberHandler(
-            roundingMode: NSDecimalNumber.RoundingMode.plain,
-            scale: scale,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: false
-        )
-        let rounded3 = divided2.rounding(accordingToBehavior: behaviors3)
-        
-        if decimalVaule < 0 {
-            rounded3.multiplying(by: -1)
-        }
-        
-        return "\(rounded3)e\(rounded2)"
-    }
+//    // 対数関数(Double型由来の誤差発生によりまともに機能していないのであとで書き直す)
+//    private func calcLog(_ num: Decimal) -> String {
+//        let diviser = Decimal(string: "10")!
+//        let divided = num / diviser
+//        let multiplied = divided * diviser
+//        print(divided)
+//        print(multiplied)
+//        let log = log10(Double(truncating: multiplied as NSNumber))
+//
+//        return "1e\(String(log))"
+//    }
+//
+//    // 試作
+//    private func test(_ decimalVaule: Decimal) -> String {
+//        let num = NSDecimalNumber(decimal: decimalVaule)
+//
+//        if decimalVaule < 0 {
+//            num.multiplying(by: -1)
+//        }
+//
+//        // 切り捨て
+//        let behaviors1: NSDecimalNumberHandler = NSDecimalNumberHandler(
+//            roundingMode: NSDecimalNumber.RoundingMode.down,
+//            scale: 0,
+//            raiseOnExactness: false,
+//            raiseOnOverflow: false,
+//            raiseOnUnderflow: false,
+//            raiseOnDivideByZero: false
+//        )
+//        let diviser = NSDecimalNumber(string: "10")
+//        let divided = num.dividing(by: diviser)
+//        let rounded1 = divided.rounding(accordingToBehavior: behaviors1)
+//        print(rounded1)
+//        let multiplied = diviser.multiplying(by: rounded1)
+//        print(multiplied)
+//        let divided2 = num.dividing(by: multiplied)
+//        print("dividing: \(divided2)")
+//
+//        let behaviors2: NSDecimalNumberHandler = NSDecimalNumberHandler(
+//            roundingMode: NSDecimalNumber.RoundingMode.plain,
+//            scale: 0,
+//            raiseOnExactness: false,
+//            raiseOnOverflow: false,
+//            raiseOnUnderflow: false,
+//            raiseOnDivideByZero: false
+//        )
+//
+//        let log10 = log10(multiplied.doubleValue)
+//        let logString = String(log10)
+//        let rounded2 = NSDecimalNumber(string: logString).rounding(accordingToBehavior: behaviors2)
+//
+//        var scale: Int16 {
+//            if log10 >= 10 {
+//                return 4
+//            } else if log10 >= 100 {
+//                return 3
+//            } else {
+//                return 5
+//            }
+//        }
+//
+//        let behaviors3: NSDecimalNumberHandler = NSDecimalNumberHandler(
+//            roundingMode: NSDecimalNumber.RoundingMode.plain,
+//            scale: scale,
+//            raiseOnExactness: false,
+//            raiseOnOverflow: false,
+//            raiseOnUnderflow: false,
+//            raiseOnDivideByZero: false
+//        )
+//        let rounded3 = divided2.rounding(accordingToBehavior: behaviors3)
+//
+//        if decimalVaule < 0 {
+//            rounded3.multiplying(by: -1)
+//        }
+//
+//        return "\(rounded3)e\(rounded2)"
+//    }
     
     private func arrangeDispNum(_ strValue: String) -> String {
         let num = convertToDecimal(strValue)
