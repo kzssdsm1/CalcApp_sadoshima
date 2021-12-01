@@ -216,14 +216,13 @@ final class CalculatorViewModel: ObservableObject {
     private func percent() {
         let tempNum = firstArgument!
         
-        if secondArgument != nil {
-            equal()
-        }
+        firstArgument = secondArgument
         secondArgument = Decimal(string: "0.01")!
         
         multiply()
         isCalculating = .none
         isPressing = .none
+        secondArgument = firstArgument
         hiddenArgument = firstArgument
         firstArgument = tempNum
         
