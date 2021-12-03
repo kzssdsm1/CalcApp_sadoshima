@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CircleText: View {
+    @Binding var isCalculating: Operator
+    
     let text: String
     let buttonColor: Color
     
@@ -15,7 +17,7 @@ struct CircleText: View {
         GeometryReader { proxy in
             if text == "0" {
                 RoundedRectangle(cornerRadius: 60)
-                    .foregroundColor(buttonColor)
+                    .foregroundColor(.gray)
                     .overlay(
                         HStack {
                             Text(text)
@@ -28,7 +30,7 @@ struct CircleText: View {
                     )
             } else {
                 Circle()
-                    .foregroundColor(buttonColor)
+                    .foregroundColor(text == isCalculating.buttonText(false) ? .white : buttonColor)
                     .overlay(
                         Group {
                             // 符号反転ボタンのみSF Symbolsを使用
@@ -44,7 +46,7 @@ struct CircleText: View {
                             } else {
                                 Text(text)
                                     .font(.system(size: proxy.size.width * 0.4, weight: .medium))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(text == isCalculating.buttonText(false) ? .orange : .white)
                             }
                         }
                     )

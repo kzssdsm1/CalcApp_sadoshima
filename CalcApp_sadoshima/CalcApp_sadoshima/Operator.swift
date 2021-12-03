@@ -25,7 +25,7 @@ enum Operator: CaseIterable {
         case .divide:
             return "÷"
         case .multiply:
-            return "x"
+            return "×"
         case .subtraction:
             return "-"
         case .addition:
