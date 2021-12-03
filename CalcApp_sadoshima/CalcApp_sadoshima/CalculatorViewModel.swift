@@ -45,7 +45,6 @@ final class CalculatorViewModel: ObservableObject {
     
     func insertNumber(_ text: String) {
         isPressing = .none
-        print("ope: \(isCalculating)")
         
         if input == "0" || isInserting {
             input = ""
@@ -63,10 +62,8 @@ final class CalculatorViewModel: ObservableObject {
         
         if isCalculating != .none {
             secondArgument = convertToDecimal(input)
-            print("insert sec: \(secondArgument)")
         } else {
             firstArgument = convertToDecimal(input)
-            print("insert fir: \(firstArgument)")
         }
     }
     
@@ -230,8 +227,6 @@ final class CalculatorViewModel: ObservableObject {
         }
         secondArgument = Decimal(string: "0.01")!
         
-        print("first: \(firstArgument)")
-        print("second: \(secondArgument)")
         multiply()
         isCalculating = .none
         isPressing = .none
