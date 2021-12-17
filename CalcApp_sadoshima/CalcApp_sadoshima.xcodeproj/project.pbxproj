@@ -57,6 +57,9 @@
 		543AC32F27048BB0008BFCB0 /* CalcApp_sadoshima */ = {
 			isa = PBXGroup;
 			children = (
+				54B3486A276C44BF00145133 /* Model */,
+				54B34869276C44A600145133 /* ViewModel */,
+				54B34868276C449F00145133 /* View */,
 				543AC33027048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift */,
 				543AC33227048BB0008BFCB0 /* ContentView.swift */,
 				543AC33427048BB1008BFCB0 /* Assets.xcassets */,
@@ -74,6 +77,27 @@
 				543AC33727048BB1008BFCB0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		54B34868276C449F00145133 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		54B34869276C44A600145133 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		54B3486A276C44BF00145133 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
