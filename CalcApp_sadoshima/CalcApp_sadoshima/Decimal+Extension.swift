@@ -1,8 +1,8 @@
 //
-//  test.swift
+//  Decimal+Extension.swift
 //  CalcApp_sadoshima
 //
-//  Created by 佐渡島和志 on 2022/01/17.
+//  Created by 佐渡島和志 on 2022/01/18.
 //
 
 import Foundation
@@ -100,3 +100,4 @@ extension Decimal {
         return self.ln() / base.ln()
     }
 }
+

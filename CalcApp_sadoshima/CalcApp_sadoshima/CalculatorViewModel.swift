@@ -276,95 +276,17 @@ final class CalculatorViewModel: ObservableObject {
     }
     
     private func convertToString(_ num: Decimal) -> String {
-        return arrangeDispNum("\(num)")
-        //        if num > 999999999.999997 {
-        //            return test(num)
-        //        } else {
-        //            return arrangeDispNum("\(num)")
-        //        }
+        //        return arrangeDispNum("\(num)")
+        if num > 999999999.999997 {
+            return calcExp(num)
+        } else {
+            return arrangeDispNum("\(num)")
+        }
     }
     
     private func convertToDecimal(_ strValue: String) -> Decimal {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
-    
-//    // 対数関数(Double型由来の誤差発生によりまともに機能していないのであとで書き直す)
-//    private func calcLog(_ num: Decimal) -> String {
-//        let diviser = Decimal(string: "10")!
-//        let divided = num / diviser
-//        let multiplied = divided * diviser
-//        print(divided)
-//        print(multiplied)
-//        let log = log10(Double(truncating: multiplied as NSNumber))
-//
-//        return "1e\(String(log))"
-//    }
-//
-//    // 試作
-//    private func test(_ decimalVaule: Decimal) -> String {
-//        let num = NSDecimalNumber(decimal: decimalVaule)
-//
-//        if decimalVaule < 0 {
-//            num.multiplying(by: -1)
-//        }
-//
-//        // 切り捨て
-//        let behaviors1: NSDecimalNumberHandler = NSDecimalNumberHandler(
-//            roundingMode: NSDecimalNumber.RoundingMode.down,
-//            scale: 0,
-//            raiseOnExactness: false,
-//            raiseOnOverflow: false,
-//            raiseOnUnderflow: false,
-//            raiseOnDivideByZero: false
-//        )
-//        let diviser = NSDecimalNumber(string: "10")
-//        let divided = num.dividing(by: diviser)
-//        let rounded1 = divided.rounding(accordingToBehavior: behaviors1)
-//        print(rounded1)
-//        let multiplied = diviser.multiplying(by: rounded1)
-//        print(multiplied)
-//        let divided2 = num.dividing(by: multiplied)
-//        print("dividing: \(divided2)")
-//
-//        let behaviors2: NSDecimalNumberHandler = NSDecimalNumberHandler(
-//            roundingMode: NSDecimalNumber.RoundingMode.plain,
-//            scale: 0,
-//            raiseOnExactness: false,
-//            raiseOnOverflow: false,
-//            raiseOnUnderflow: false,
-//            raiseOnDivideByZero: false
-//        )
-//
-//        let log10 = log10(multiplied.doubleValue)
-//        let logString = String(log10)
-//        let rounded2 = NSDecimalNumber(string: logString).rounding(accordingToBehavior: behaviors2)
-//
-//        var scale: Int16 {
-//            if log10 >= 10 {
-//                return 4
-//            } else if log10 >= 100 {
-//                return 3
-//            } else {
-//                return 5
-//            }
-//        }
-//
-//        let behaviors3: NSDecimalNumberHandler = NSDecimalNumberHandler(
-//            roundingMode: NSDecimalNumber.RoundingMode.plain,
-//            scale: scale,
-//            raiseOnExactness: false,
-//            raiseOnOverflow: false,
-//            raiseOnUnderflow: false,
-//            raiseOnDivideByZero: false
-//        )
-//        let rounded3 = divided2.rounding(accordingToBehavior: behaviors3)
-//
-//        if decimalVaule < 0 {
-//            rounded3.multiplying(by: -1)
-//        }
-//
-//        return "\(rounded3)e\(rounded2)"
-//    }
     
     private func arrangeDispNum(_ strValue: String) -> String {
         let num = convertToDecimal(strValue)
@@ -377,8 +299,8 @@ final class CalculatorViewModel: ObservableObject {
         return formatter
     }
     
-    func test() {
-        let behavior = NSDecimalNumberHandler(
+    private func calcExp(_ num: Decimal) -> String {
+        let behavior1 = NSDecimalNumberHandler(
             roundingMode: NSDecimalNumber.RoundingMode.down,
             scale: 0,
             raiseOnExactness: false,
@@ -387,20 +309,20 @@ final class CalculatorViewModel: ObservableObject {
             raiseOnDivideByZero: false
         )
         
-        let multiplier1 = Decimal(string: "999999999")!
-        let multiplier2 = Decimal(string: "10")!
-        var multiplied = multiplier1 * multiplier2
+        var deci = num
+        
         var isMinus = false
         
-        if multiplied < 0 {
+        if deci < 0 {
             isMinus = true
-            multiplied *= Decimal(string: "-1")!
+            deci *= Decimal(string: "-1")!
         }
         
-        let log = multiplied.log(base: Decimal(string: "10")!)
-        let rounded = NSDecimalNumber(decimal: log).rounding(accordingToBehavior: behavior)
+        let e = Decimal(string: "10")!
+        let log = deci.log(base: e)
+        let rounded = NSDecimalNumber(decimal: log).rounding(accordingToBehavior: behavior1)
         let powed = pow(10, Int(truncating: rounded))
-        let divided = multiplied / powed
+        let divided = deci / powed
         
         let behavior2 = NSDecimalNumberHandler(
             roundingMode: NSDecimalNumber.RoundingMode.plain,
@@ -413,8 +335,6 @@ final class CalculatorViewModel: ObservableObject {
         
         let rounded2 = NSDecimalNumber(decimal: divided).rounding(accordingToBehavior: behavior2)
         
-        print(isMinus)
-        
         var result: String {
             if isMinus {
                 return "-\(rounded2)e\(rounded)"
@@ -423,12 +343,6 @@ final class CalculatorViewModel: ObservableObject {
             }
         }
         
-        print(rounded)
-        print(multiplied)
-        print(rounded2)
-        print(divided)
-        print(multiplied.log(base: Decimal(string: "10")!))
-        print(result)
+        return result
     }
-    
 }
