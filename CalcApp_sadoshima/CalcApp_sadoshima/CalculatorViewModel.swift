@@ -376,4 +376,59 @@ final class CalculatorViewModel: ObservableObject {
         
         return formatter
     }
+    
+    func test() {
+        let behavior = NSDecimalNumberHandler(
+            roundingMode: NSDecimalNumber.RoundingMode.down,
+            scale: 0,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        
+        let multiplier1 = Decimal(string: "999999999")!
+        let multiplier2 = Decimal(string: "10")!
+        var multiplied = multiplier1 * multiplier2
+        var isMinus = false
+        
+        if multiplied < 0 {
+            isMinus = true
+            multiplied *= Decimal(string: "-1")!
+        }
+        
+        let log = multiplied.log(base: Decimal(string: "10")!)
+        let rounded = NSDecimalNumber(decimal: log).rounding(accordingToBehavior: behavior)
+        let powed = pow(10, Int(truncating: rounded))
+        let divided = multiplied / powed
+        
+        let behavior2 = NSDecimalNumberHandler(
+            roundingMode: NSDecimalNumber.RoundingMode.plain,
+            scale: 5,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        
+        let rounded2 = NSDecimalNumber(decimal: divided).rounding(accordingToBehavior: behavior2)
+        
+        print(isMinus)
+        
+        var result: String {
+            if isMinus {
+                return "-\(rounded2)e\(rounded)"
+            } else {
+                return "\(rounded2)e\(rounded)"
+            }
+        }
+        
+        print(rounded)
+        print(multiplied)
+        print(rounded2)
+        print(divided)
+        print(multiplied.log(base: Decimal(string: "10")!))
+        print(result)
+    }
+    
 }

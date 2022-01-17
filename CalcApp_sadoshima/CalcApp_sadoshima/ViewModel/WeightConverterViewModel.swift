@@ -135,8 +135,128 @@ final class WeightConverterViewModel: ObservableObject {
     }
     
     // グラム→分
-    func gramToHun(_ num: NSDecimalNumber) -> NSDecimalNumber {
+    func gramToFun(_ num: NSDecimalNumber) -> NSDecimalNumber {
         let multiplier = NSDecimalNumber(string: "2.66667")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // グラム→匁
+    func gramToMonme(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "0.266667")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // グラム→百目
+    func gramToHyakume(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "0.00266667")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // グラム→斤
+    func gramToKin(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "0.00166667")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→グラム
+    func kilogramToGram(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "1000")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→トン
+    func kilogramToTon(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "0.001")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→グレーン
+    func kilogramToGrain(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "15432.4")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→ドラム
+    func kilogramToDram(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "564.383")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→オンス
+    func kilogramToOunce(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "35.274")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→ポンド
+    func kilogramToPound(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "2.20462")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→ストーン
+    func kilogramToStone(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "0.157473")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→分
+    func kilogramToFun(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "2666.67")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→匁
+    func kilogramToMonme(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "266.667")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→百目
+    func kilogramToHyakume(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "2.66667")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→斤
+    func kilogramToKin(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "1.66667")
+        let multiplied = num.multiplying(by: multiplier)
+        
+        return multiplied
+    }
+    
+    // キログラム→貫
+    func kilogramToKan(_ num: NSDecimalNumber) -> NSDecimalNumber {
+        let multiplier = NSDecimalNumber(string: "0.266667")
         let multiplied = num.multiplying(by: multiplier)
         
         return multiplied

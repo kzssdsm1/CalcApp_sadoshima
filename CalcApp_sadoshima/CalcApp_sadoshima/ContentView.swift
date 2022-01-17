@@ -65,6 +65,7 @@ struct ContentView: View {
                             // 0だけ横幅が大きいの別途設定
                             Button(action: {
                                 viewModel.insertNumber("0")
+                                viewModel.test()
                             }, label: {
                                 CircleText(isCalculating: $viewModel.isPressing, text: "0", buttonColor: .gray)
                                 
