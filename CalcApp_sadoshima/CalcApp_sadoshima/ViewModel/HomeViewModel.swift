@@ -1,14 +1,14 @@
 //
-//  CalculatorViewModel.swift
+//  HomeViewModel.swift
 //  CalcApp_sadoshima
 //
-//  Created by 佐渡島和志 on 2021/10/22.
+//  Created by 佐渡島和志 on 2022/01/21.
 //
 
 import Foundation
 import SwiftUI
 
-final class CalculatorViewModel: ObservableObject {
+final class HomeViewModel: ObservableObject {
     @Published var displayingNum = "0"
     @Published var isCalculating: Operator = .none
     @Published var isPressing: Operator = .none

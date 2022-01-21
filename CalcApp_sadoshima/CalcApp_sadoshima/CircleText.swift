@@ -17,12 +17,12 @@ struct CircleText: View {
         GeometryReader { proxy in
             if text == "0" {
                 RoundedRectangle(cornerRadius: 60)
-                    .foregroundColor(.gray)
+                    .foregroundColor(buttonColor)
                     .overlay(
                         HStack {
                             Text(text)
                                 .font(.system(size: proxy.size.width * 0.2, weight: .medium))
-                                .foregroundColor(.white)
+                                .foregroundColor(.offWhite)
                                 .padding(.leading, proxy.size.width * 0.16)
                             
                             Spacer(minLength: 0)
@@ -30,7 +30,7 @@ struct CircleText: View {
                     )
             } else {
                 Circle()
-                    .foregroundColor(text == isCalculating.buttonText(false) ? .white : buttonColor)
+                    .foregroundColor(text == isCalculating.buttonText(false) ? .offWhite : buttonColor)
                     .overlay(
                         Group {
                             // 符号反転ボタンのみSF Symbolsを使用
@@ -46,7 +46,7 @@ struct CircleText: View {
                             } else {
                                 Text(text)
                                     .font(.system(size: proxy.size.width * 0.4, weight: .medium))
-                                    .foregroundColor(text == isCalculating.buttonText(false) ? .orange : .white)
+                                    .foregroundColor(text == isCalculating.buttonText(false) ? .orange : .offWhite)
                             }
                         }
                     )
