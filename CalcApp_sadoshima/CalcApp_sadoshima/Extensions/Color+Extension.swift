@@ -43,5 +43,6 @@ extension Color {
     static let smalt = Color(hex: "1C588C")
     static let asahanada = Color(hex: "3d708f")
     static let fukagawanezumi = Color(hex: "A6A48F")
+    static let lightnessGreen = Color(hex: "146166")
     static let offWhite = Color(hex: "d8d8d8")
 }

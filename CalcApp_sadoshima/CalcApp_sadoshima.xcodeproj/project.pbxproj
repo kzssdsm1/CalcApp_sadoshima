@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54003D6327A39F1600723263 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54003D6227A39F1600723263 /* Category.swift */; };
+		54003D6527A39FFF00723263 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54003D6427A39FFF00723263 /* Unit.swift */; };
+		54003D6727A3A00A00723263 /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54003D6627A3A00A00723263 /* Conversion.swift */; };
+		54003D6927A3A53D00723263 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54003D6827A3A53D00723263 /* ConverterView.swift */; };
 		5428CD52279A6444002216A7 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD51279A6444002216A7 /* Color+Extension.swift */; };
 		5428CD54279A6B53002216A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD53279A6B53002216A7 /* HomeView.swift */; };
 		5428CD56279A6D09002216A7 /* CalcKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD55279A6D09002216A7 /* CalcKeyboardView.swift */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54003D6227A39F1600723263 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		54003D6427A39FFF00723263 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		54003D6627A3A00A00723263 /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
+		54003D6827A3A53D00723263 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
 		5428CD51279A6444002216A7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		5428CD53279A6B53002216A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5428CD55279A6D09002216A7 /* CalcKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcKeyboardView.swift; sourceTree = "<group>"; };
@@ -110,6 +118,7 @@
 				5428CD53279A6B53002216A7 /* HomeView.swift */,
 				5428CD55279A6D09002216A7 /* CalcKeyboardView.swift */,
 				5428CD59279A6DC3002216A7 /* UnitConverterView.swift */,
+				54003D6827A3A53D00723263 /* ConverterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,6 +134,9 @@
 		54B3486A276C44BF00145133 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				54003D6227A39F1600723263 /* Category.swift */,
+				54003D6427A39FFF00723263 /* Unit.swift */,
+				54003D6627A3A00A00723263 /* Conversion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,14 +212,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				54E61E7B2795E09900D52187 /* MilligramKeyboardView.swift in Sources */,
+				54003D6927A3A53D00723263 /* ConverterView.swift in Sources */,
 				543AC33327048BB0008BFCB0 /* ContentView.swift in Sources */,
 				547E2E2F2706DA09004F3565 /* Operator.swift in Sources */,
+				54003D6527A39FFF00723263 /* Unit.swift in Sources */,
 				543AC33127048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift in Sources */,
 				5428CD5A279A6DC3002216A7 /* UnitConverterView.swift in Sources */,
+				54003D6727A3A00A00723263 /* Conversion.swift in Sources */,
 				54E61E792795DF7200D52187 /* Decimal+Extension.swift in Sources */,
 				547E2E2D2706C206004F3565 /* CircleText.swift in Sources */,
 				5428CD58279A6D21002216A7 /* HomeViewModel.swift in Sources */,
 				5428CD54279A6B53002216A7 /* HomeView.swift in Sources */,
+				54003D6327A39F1600723263 /* Category.swift in Sources */,
 				5428CD56279A6D09002216A7 /* CalcKeyboardView.swift in Sources */,
 				5428CD52279A6444002216A7 /* Color+Extension.swift in Sources */,
 				54A7ED812722751400523136 /* CalculatorViewModel.swift in Sources */,

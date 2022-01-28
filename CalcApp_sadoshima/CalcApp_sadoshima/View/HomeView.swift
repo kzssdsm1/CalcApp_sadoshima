@@ -35,7 +35,7 @@ struct HomeView: View {
                         .opacity(selection == .Calculator ? 1 : 0)
                         .offset(x: selection == .Calculator ? 0 : -500)
                     
-                    UnitConverterView()
+                    ConverterView(unit: Unit(label: "ミリグラム", conversions: ConversionContext.fromMilligram))
                         .opacity(selection == .UnitConverter ? 1 : 0)
                         .offset(x: selection == .UnitConverter ? 0 : -500)
                 } // ZStack
