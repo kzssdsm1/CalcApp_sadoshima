@@ -34,7 +34,7 @@ extension Color {
     }
     
     static let bungy = Color(hex: "40317e")
-    static let violet = Color(hex: "663e8c")
+    static let violet = Color(hex: "661461")
     static let myrtleGreen = Color(hex: "317e67")
     static let darkPink = Color(hex: "7e3148")
     static let offGreen = Color(hex: "6f7e31")
@@ -45,4 +45,6 @@ extension Color {
     static let fukagawanezumi = Color(hex: "A6A48F")
     static let lightnessGreen = Color(hex: "146166")
     static let offWhite = Color(hex: "d8d8d8")
+    static let moegi = Color(hex: "616614")
+    static let darkViolet = Color(hex: "421466")
 }

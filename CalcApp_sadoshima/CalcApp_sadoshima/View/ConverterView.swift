@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConverterView: View {
     @State private var pushedButton = ""
-    @State private var selection = ConversionContext.fromMilligram
+    @State private var selection = LengthContext.fromFemtometre
     
     let unit: Unit
     
