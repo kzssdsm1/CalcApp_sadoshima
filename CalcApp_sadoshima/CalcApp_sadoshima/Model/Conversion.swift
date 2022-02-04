@@ -320,33 +320,3 @@ struct ConversionContext {
         Conversion(label: "匁", value: "0.053333333333333", buttonColor: Color.lightnessGreen)
     ]
 }
-
-struct LengthContext {
-    static let fromFemtometre = [
-        Conversion(label: "ピコメートル", value: "0.001", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル", value: "1.0E-6", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル", value: "1.0E-9", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル", value: "1.0E-12", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル", value: "1.0E-13", buttonColor: Color.asahanada),
-        Conversion(label: "メートル", value: "1.0E-15", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル", value: "1.0E-18", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード", value: "1.0936132983377E-15", buttonColor: Color.smalt),
-        Conversion(label: "フィート", value: "3.2808398950131E-15", buttonColor: Color.smalt),
-        Conversion(label: "インチ", value: "3.9370078740157E-14", buttonColor: Color.smalt),
-        Conversion(label: "マイル", value: "6.2137119223733E-19", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3.3E-15", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.64E-15", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3.3E-14", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "5.5E-16", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "3.3E-16", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-18", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-19", buttonColor: Color.konruri),
-        Conversion(label: "天文単位", value: "6.6845871222684E-27", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-31", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク", value: "3.2407790389471E-32", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5.3995680345572E-19", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム", value: "5.3995680345572E-19", buttonColor: Color.moegi),
-        Conversion(label: "ポイント", value: "2.8346456692913E-12", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム", value: "1.0E-5", buttonColor: Color.violet)
-    ]
-}

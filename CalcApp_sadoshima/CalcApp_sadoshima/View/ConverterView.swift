@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConverterView: View {
     @State private var pushedButton = ""
-    @State private var selection = LengthContext.fromFemtometre
+    @State private var selection = LengthData.fromFemtometre
     
     let unit: Unit
     
