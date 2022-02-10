@@ -1,14 +1,14 @@
 //
-//  AreaData.swift
+//  AreaConversions.swift
 //  CalcApp_sadoshima
 //
-//  Created by 佐渡島和志 on 2022/02/07.
+//  Created by 佐渡島和志 on 2022/02/10.
 //
 
 import Foundation
 import SwiftUI
 
-struct AreaData {
+struct AreaConversions {
     // 平方ミリメートル
     static let fromSquareMillimetre = [
         Conversion(label: "平方センチメートル(cm2)", value: "0.01", buttonColor: Color.asahanada),

@@ -9,757 +9,83 @@ import Foundation
 import SwiftUI
 
 struct LengthData {
+    static let lengths = [femtoMetre, picoMetre, nanoMetre, microMetre, milliMetre, centiMetre, metre, kiloMetre, yard, feet, inch, mile, syaku, kujirajaku, sun, ken, jou, chou, ri, tenmontani, kounen, parsec, kairi, fathom, point, angstrom]
+    
     // フェムトメートル
-    static let fromFemtometre = [
-        Conversion(label: "ピコメートル(pm)", value: "0.001", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1.0E-6", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1.0E-9", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1.0E-12", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "1.0E-13", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1.0E-15", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.0E-18", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "1.0936132983377E-15", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3.2808398950131E-15", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "3.9370078740157E-14", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "6.2137119223733E-19", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3.3E-15", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.64E-15", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3.3E-14", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "5.5E-16", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "3.3E-16", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-18", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-19", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-27", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-31", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-32", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5.3995680345572E-19", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "5.4680664916885E-16", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2.8346456692913E-12", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "1.0E-5", buttonColor: Color.violet)
-    ]
+    static let femtoMetre = Unit(label: "フェムトメートル(fm)", conversions: LengthConversions.fromFemtometre)
     
     // ピコメートル
-    static let fromPicometre = [
-        Conversion(label: "フェムトメートル(fm)", value: "1000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "0.001", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1.0E-6", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1.0E-9", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "1.0E-10", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1.0E-12", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.0E-15", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "1.0936132983377E-12", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3.2808398950131E-12", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "3.9370078740157E-11", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "6.2137119223733E-16", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3.3E-12", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.64E-12", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3.3E-11", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "5.5E-13", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "3.3E-13", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-15", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-16", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-24", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-28", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-29", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5.3995680345572E-16", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "5.4680664916885E-13", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2.8346456692913E-9", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "0.01", buttonColor: Color.violet)
-    ]
+    static let picoMetre = Unit(label: "ピコメートル(pm)", conversions: LengthConversions.fromPicometre)
     
     // ナノメートル
-    static let fromNanometre = [
-        Conversion(label: "フェムトメートル(fm)", value: "1000000", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "0.001", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1.0E-6", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "1.0E-7", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1.0E-9", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.0E-12", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "1.0936132983377E-9", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3.2808398950131E-9", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "3.9370078740157E-8", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "6.2137119223733E-13", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3.3E-9", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.64E-9", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3.3E-8", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "5.5E-10", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "3.3E-10", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-12", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-13", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-21", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-25", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-26", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5.3995680345572E-13", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "5.4680664916885E-10", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2.8346456692913E-6", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "10", buttonColor: Color.violet)
-    ]
+    static let nanoMetre = Unit(label: "ナノメートル(nm)", conversions: LengthConversions.fromNanometre)
     
     // マイクロメートル
-    static let fromMicrometre = [
-        Conversion(label: "フェムトメートル(fm)", value: "1000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1000", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "0.001", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "0.0001", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1.0E-6", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.0E-9", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "1.0936132983377E-6", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3.2808398950131E-6", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "3.9370078740157E-5", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "6.2137119223733E-10", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3.3E-6", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.64E-6", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3.3E-5", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "5.5E-7", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "3.3E-7", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-9", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-10", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-18", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-22", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-23", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5.3995680345572E-10", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "5.4680664916885E-7", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "0.0028346456692913", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "10000", buttonColor: Color.violet)
-    ]
+    static let microMetre = Unit(label: "マイクロメートル(μm)", conversions: LengthConversions.fromMicrometre)
     
     // ミリメートル
-    static let fromMillimetre = [
-        Conversion(label: "フェムトメートル(fm)", value: "1000000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1000000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1000", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "0.1", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.001", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.0E-6", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "0.0010936132983377", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "0.0032808398950131", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "0.039370078740157", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "6.2137119223733E-7", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "0.0033", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "0.00264", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "0.033", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.00055", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.00033", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-6", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-7", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-15", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-19", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-20", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5.3995680345572E-7", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.00054680664916885", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2.8346456692913", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "10000000", buttonColor: Color.violet)
-    ]
+    static let milliMetre = Unit(label: "ミリメートル(mm)", conversions: LengthConversions.fromMillimetre)
     
     // センチメートル
-    static let fromCentimetre = [
-        Conversion(label: "フェムトメートル(fm)", value: "10000000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "10000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "10000000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "10000", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "10", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.01", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.0E-5", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "0.010936132983377", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "0.032808398950131", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "0.39370078740157", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "6.2137119223733E-6", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "0.033", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "0.0264", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "0.33", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.0055", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.0033", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-5", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-6", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-14", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-18", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-19", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5.3995680345572E-6", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.0054680664916885", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "28.346456692913", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "100000000", buttonColor: Color.violet)
-    ]
+    static let centiMetre = Unit(label: "センチメートル(cm)", conversions: LengthConversions.fromCentimetre)
     
     // メートル
-    static let fromMetre = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.0E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1000000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1000000000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1000000", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1000", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "100", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.001", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "1.0936132983377", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3.2808398950131", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "39.370078740157", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.00062137119223733", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3.3", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.64", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "33", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.55", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.33", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.0091666666666667", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.00025462962962963", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-12", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-16", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.00053995680345572", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.54680664916885", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2834.6456692913", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "10000000000", buttonColor: Color.violet)
-    ]
+    static let metre = Unit(label: "メートル(m)", conversions: LengthConversions.fromMetre)
     
     // キロメートル
-    static let fromKilometre = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.0E+18", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1.0E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1000000000000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1000000", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "100000", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1000", buttonColor: Color.asahanada),
-        Conversion(label: "ヤード(yd)", value: "1093.6132983377", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3280.8398950131", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "39370.078740157", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.62137119223733", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3300", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2640", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "33000", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "550", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "330", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.25462962962963", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-9", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-13", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-14", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.53995680345572", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "546.80664916885", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2834645.6692913", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "10000000000000", buttonColor: Color.violet)
-    ]
+    static let kiloMetre = Unit(label: "キロメートル(km)", conversions: LengthConversions.fromKilometre)
     
     // ヤード
-    static let fromYard = [
-        Conversion(label: "フェムトメートル(fm)", value: "9.144E+14", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "914400000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "914400000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "914400", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "914.4", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "91.44", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.9144", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.0009144", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "36", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.00056818181818182", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "3.01752", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.414016", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "30.1752", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.50292", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.301752", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.008382", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.00023283333333333", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "6.1123864646023E-12", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "9.6652156263211E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "2.9633683532132E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.00049373650107991", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.5", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2592", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "9144000000", buttonColor: Color.violet)
-    ]
+    static let yard = Unit(label: "ヤード(yd)", conversions: LengthConversions.fromYard)
     
     // フィート
-    static let fromFeet = [
-        Conversion(label: "フェムトメートル(fm)", value: "3.048E+14", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "304800000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "304800000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "304800", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "304.8", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "30.48", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.3048", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.0003048", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "0.33333333333333", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "12", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.00018939393939394", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "1.00584", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "0.804672", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "10.0584", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.16764", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.100584", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.002794", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "7.7611111111111E-5", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "2.0374621548674E-12", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "3.221738542107E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "9.8778945107108E-18", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.0001645788336933", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.16666666666667", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "865", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "3048000000", buttonColor: Color.violet)
-    ]
+    static let feet = Unit(label: "フィート(ft)", conversions: LengthConversions.fromFeet)
     
     // インチ
-    static let fromInch = [
-        Conversion(label: "フェムトメートル(fm)", value: "25400000000000", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "25400000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "25400000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "25400", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "25.4", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "2.54", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.0254", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "2.54E-5", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "0.027777777777778", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "0.083333333333333", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "1.5782828282828E-5", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "0.08382", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "0.067056", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "0.8382", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.01397", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.008382", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.00023283333333333", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "6.4675925925926E-6", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "1.6978851290562E-13", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "2.6847821184225E-18", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "8.2315787589256E-19", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "1.3714902807775E-5", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.013888888888889", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "72", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "254000000", buttonColor: Color.violet)
-    ]
+    static let inch = Unit(label: "インチ(in)", conversions: LengthConversions.fromInch)
     
     // マイル
-    static let fromMile = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.609344E+18", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1.609344E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1609344000000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1609344000", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1609344", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "160934.4", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1609.344", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.609344", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "1760", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "5280", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "63360", buttonColor: Color.smalt),
-        Conversion(label: "尺", value: "5310.8352", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "4248.66816", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "53108.352", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "885.1392", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "531.08352", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "14.75232", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.40978666666667", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "1.07578001777E-8", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.7010779502325E-13", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "5.2155283016553E-14", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.86897624190065", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "880", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "4561920", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "16093440000000", buttonColor: Color.violet)
-    ]
+    static let mile = Unit(label: "マイル(mi)", conversions: LengthConversions.fromMile)
     
     // 尺
-    static let fromSyaku = [
-        Conversion(label: "フェムトメートル(fm)", value: "3.030303030303E+14", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "303030303030.3", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "303030303.0303", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "303030.3030303", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "303.0303030303", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "30.30303030303", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.3030303030303", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.0003030303030303", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "0.33139796919324", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "0.99419390757973", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "11.930326890957", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.00018829430067798", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "0.8", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "10", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.16666666666667", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.1", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.0027777777777778", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "7.7160493827161E-5", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "2.0256324612935E-12", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "3.2030328303776E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "9.820542542264E-18", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.00016362327377446", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.16569898459662", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "858.98353614889", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "3030303030.303", buttonColor: Color.violet)
-    ]
+    static let syaku = Unit(label: "尺", conversions: LengthConversions.fromSyaku)
     
     // 鯨尺
-    static let fromKujirajaku = [
-        Conversion(label: "フェムトメートル(fm)", value: "3.7878787878788E+14", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "378787878787.88", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "378787878.78788", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "378787.87878788", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "378.78787878788", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "37.878787878788", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.37878787878788", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.00037878787878788", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "0.41424746149156", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "1.2427423844747", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "14.912908613696", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.00023536787584748", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "1.25", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "12.5", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.20833333333333", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.125", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.0034722222222222", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "9.6450617283951E-5", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "2.5320405766168E-12", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "4.003791037972E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "1.227567817783E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.00020452909221808", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.20712373074578", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "1073.7294201861", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "3787878787.8788", buttonColor: Color.violet)
-    ]
+    static let kujirajaku = Unit(label: "鯨尺", conversions: LengthConversions.fromKujirajaku)
     
     // 寸
-    static let fromSun = [
-        Conversion(label: "フェムトメートル(fm)", value: "30303030303030", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "30303030303.03", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "30303030.30303", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "30303.03030303", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "30.30303030303", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "3.030303030303", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.03030303030303", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "3.030303030303E-5", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "0.033139796919324", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "0.099419390757973", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "1.1930326890957", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "1.8829430067798E-5", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "0.1", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "0.08", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.016666666666667", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.01", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.00027777777777778", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "7.716049382716E-6", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "2.0256324612935E-13", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "3.2030328303776E-18", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "9.820542542264E-19", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "1.6362327377446E-5", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.016569898459662", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "85.898353614889", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "303030303.0303", buttonColor: Color.violet)
-    ]
+    static let sun = Unit(label: "寸", conversions: LengthConversions.fromSun)
     
     // 間
-    static let fromKen = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.8181818181818E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1818181818181.8", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1818181818.1818", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1818181.8181818", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1818.1818181818", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "181.81818181818", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1.8181818181818", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.0018181818181818", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "1.9883878151595", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "5.9651634454784", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "71.581961345741", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.0011297658040679", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "6", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "4.8", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "60", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.6", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.016666666666667", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.00046296296296296", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "1.2153794767761E-11", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.9218196982266E-16", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "5.8923255253584E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.00098173964264677", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.99419390757973", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "5153.9012168933", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "18181818181.818", buttonColor: Color.violet)
-    ]
+    static let ken = Unit(label: "間", conversions: LengthConversions.fromKen)
     
     // 丈
-    static let fromJou = [
-        Conversion(label: "フェムトメートル(fm)", value: "3.030303030303E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "3030303030303", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "3030303030.303", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "3030303.030303", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "3030.303030303", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "303.0303030303", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "3.030303030303", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.003030303030303", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "3.3139796919324", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "9.9419390757973", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "119.30326890957", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.0018829430067798", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "10", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "8", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "100", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "1.6666666666667", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.027777777777778", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.00077160493827161", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "2.0256324612935E-11", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "3.2030328303776E-16", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "9.820542542264E-17", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.0016362327377446", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "1.6569898459662", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "8589.8353614889", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "30303030303.03", buttonColor: Color.violet)
-    ]
+    static let jou = Unit(label: "丈", conversions: LengthConversions.fromJou)
     
     // 町
-    static let fromChou = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.0909090909091E+17", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1.0909090909091E+14", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "109090909090.91", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "109090909.09091", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "109090.90909091", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "10909.090909091", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "109.09090909091", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.10909090909091", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "119.30326890957", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "357.9098067287", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "4294.9176807445", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.067785948244073", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "360", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "288", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3600", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "60", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "36", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.027777777777778", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "7.2922768606565E-10", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.1530918189359E-14", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.535395315215E-15", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "0.058904378558806", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "59.651634454784", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "309234.0730136", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "1090909090909.1", buttonColor: Color.violet)
-    ]
+    static let chou = Unit(label: "町", conversions: LengthConversions.fromChou)
     
     // 里
-    static let fromRi = [
-        Conversion(label: "フェムトメートル(fm)", value: "3.9272727272727E+18", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "3.9272727272727E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "3927272727272.7", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "3927272727.2727", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "3927272.7272727", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "392727.27272727", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "3927.2727272727", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "3.9272727272727", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "4294.9176807445", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "12884.753042233", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "154617.0365068", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "2.4402941367866", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "12960", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "10368", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "129600", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "2160", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "1296", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "36", buttonColor: Color.konruri),
-        Conversion(label: "天文単位(AU)", value: "2.6252196698363E-8", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "4.1511305481694E-13", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "1.2727423134774E-13", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "2.120557628117", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "2147.4588403722", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "11132426.62849", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "39272727272727", buttonColor: Color.violet)
-    ]
+    static let ri = Unit(label: "里", conversions: LengthConversions.fromRi)
     
     // 天文単位
-    static let fromTenmontani = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.495978707E+26", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1.495978707E+23", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1.495978707E+20", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1.495978707E+17", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1.495978707E+14", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "14959787070000", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "149597870700", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "149597870.7", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "163602220800.52", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "490806662401.57", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "5889679948818.9", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "92955807.273026", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "493672973310", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "394938378648", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "4936729733100", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "82278828885", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "49367297331", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "1371313814.75", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "38092050.409722", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.5812507409821E-5", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "4.8481364363568E-6", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "80776388.066955", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "81801110400.262", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "4.2405695631496E+14", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "1.495978707E+21", buttonColor: Color.violet)
-    ]
+    static let tenmontani = Unit(label: "天文単位(AU)", conversions: LengthConversions.fromTenmontani)
     
     // 光年
-    static let fromKounen = [
-        Conversion(label: "フェムトメートル(fm)", value: "9.4607304725808E+30", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "9.4607304725808E+27", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "9.4607304725808E+24", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "9.4607304725808E+21", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "9.4607304725808E+18", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "9.4607304725808E+17", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "9.4607304725808E+15", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "9460730472580.8", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "1.0346380656803E+16", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3.1039141970409E+16", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "3.7246970364491E+17", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "5878625373183.6", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "3.1220410559517E+16", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.4976328447613E+16", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3.1220410559517E+17", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "5.2034017599194E+15", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "3.1220410559517E+15", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "86723362665324", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2408982296259", buttonColor: Color.lightnessGreen),
-        Conversion(label: "天文単位(AU)", value: "63241.077084266", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "0.30660137008668", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "5108385784330.9", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "5.1731903284016E+15", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "2.6817818662434E+19", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "9.4607304725808E+25", buttonColor: Color.violet)
-    ]
+    static let kounen = Unit(label: "光年", conversions: LengthConversions.fromKounen)
     
     // パーセク
-    static let fromParsec = [
-        Conversion(label: "フェムトメートル(fm)", value: "3.08567782E+31", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "3.08567782E+28", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "3.08567782E+25", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "3.08567782E+22", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "3.08567782E+19", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "3.08567782E+18", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "3.08567782E+16", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "30856778200000", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "3.3745382983377E+16", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "1.0123614895013E+17", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "1.2148337874016E+18", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "519173513058737", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "1.0182736806E+17", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "8.1461894448E+16", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "1.0182736806E+18", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "1.697122801E+16", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "1.0182736806E+16", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "2.8285380016667E+14", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "7857050004629.6", buttonColor: Color.lightnessGreen),
-        Conversion(label: "天文単位(AU)", value: "206264.82219041", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "3.2615640292713", buttonColor: Color.lightnessGreen),
-        Conversion(label: "海里", value: "16661327321814", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "1.6872691491689E+16", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "8.7468032692913E+19", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "3.08567782E+26", buttonColor: Color.violet)
-    ]
+    static let parsec = Unit(label: "パーセク(pc)", conversions: LengthConversions.fromParsec)
     
     // 海里
-    static let fromKairi = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.852E+18", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1.852E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1852000000000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1852000000", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1852000", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "185200", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1852", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.852", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "2025.3718285214", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "6076.1154855643", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "72913.385826772", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "1.1507794480235", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "6111.6", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "4889.28", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "61116", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "1018.6", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "611.16", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "16.976666666667", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.47157407407407", buttonColor: Color.lightnessGreen),
-        Conversion(label: "天文単位(AU)", value: "1.2379855350441E-8", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.9575655446136E-13", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "6.00192278013E-14", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "1012.6859142607", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "5249763.7795276", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "18520000000000", buttonColor: Color.violet)
-    ]
+    static let kairi = Unit(label: "海里", conversions: LengthConversions.fromKairi)
     
     // ファゾム
-    static let fromFathom = [
-        Conversion(label: "フェムトメートル(fm)", value: "1.8288E+15", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "1828800000000", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "1828800000", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "1828800", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1828.8", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "182.88", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1.8288", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "0.0018288", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "2", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "6", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "72", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "0.0011363636363636", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "6.03504", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "4.828032", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "60.3504", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "1.00584", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.603504", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "0.016764", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "0.00046566666666667", buttonColor: Color.lightnessGreen),
-        Conversion(label: "天文単位(AU)", value: "1.2224772929205E-11", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.9330431252642E-16", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "5.9267367064265E-17", buttonColor: Color.moegi),
-        Conversion(label: "海里", value: "0.00098747300215983", buttonColor: Color.moegi),
-        Conversion(label: "ポイント(pt)", value: "5184", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "18288000000", buttonColor: Color.violet)
-    ]
+    static let fathom = Unit(label: "ファゾム(fath)", conversions: LengthConversions.fromFathom)
     
     // ポイント
-    static let fromPoint = [
-        Conversion(label: "フェムトメートル(fm)", value: "352777777777.78", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "352777777.77778", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "352777.77777778", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "352.77777777778", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "0.35277777777778", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "0.035277777777778", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "0.00035277777777778", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "3.5277777777778E-7", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "0.0003858024691358", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "0.0011574074074074", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "0.013888888888889", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "2.1920594837262E-7", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "0.0011641666666667", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "0.00093133333333333", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "0.011641666666667", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "0.00019402777777778", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "0.00011641666666667", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "3.2337962962963E-6", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "8.9827674897119E-8", buttonColor: Color.lightnessGreen),
-        Conversion(label: "天文単位(AU)", value: "2.3581737903558E-15", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "3.7288640533646E-20", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "1.1432748276286E-20", buttonColor: Color.moegi),
-        Conversion(label: "海里", value: "1.904847612191E-7", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "0.0001929012345679", buttonColor: Color.darkViolet),
-        Conversion(label: "オングストローム(Å)", value: "3527777.7777778", buttonColor: Color.violet)
-    ]
+    static let point = Unit(label: "ポイント(pt)", conversions: LengthConversions.fromPoint)
     
     // オングストローム
-    static let fromAngstrom = [
-        Conversion(label: "フェムトメートル(fm)", value: "100000", buttonColor: Color.asahanada),
-        Conversion(label: "ピコメートル(pm)", value: "100", buttonColor: Color.asahanada),
-        Conversion(label: "ナノメートル(nm)", value: "0.1", buttonColor: Color.asahanada),
-        Conversion(label: "マイクロメートル(μm)", value: "0.0001", buttonColor: Color.asahanada),
-        Conversion(label: "ミリメートル(mm)", value: "1.0E-7", buttonColor: Color.asahanada),
-        Conversion(label: "センチメートル(cm)", value: "1.0E-8", buttonColor: Color.asahanada),
-        Conversion(label: "メートル(m)", value: "1.0E-10", buttonColor: Color.asahanada),
-        Conversion(label: "キロメートル(km)", value: "1.0E-13", buttonColor: Color.smalt),
-        Conversion(label: "ヤード(yd)", value: "1.0936132983377E-10", buttonColor: Color.smalt),
-        Conversion(label: "フィート(ft)", value: "3.2808398950131E-10", buttonColor: Color.smalt),
-        Conversion(label: "インチ(in)", value: "3.9370078740157E-9", buttonColor: Color.smalt),
-        Conversion(label: "マイル(mi)", value: "6.2137119223733E-14", buttonColor: Color.konruri),
-        Conversion(label: "尺", value: "3.3E-10", buttonColor: Color.konruri),
-        Conversion(label: "鯨尺", value: "2.64E-10", buttonColor: Color.konruri),
-        Conversion(label: "寸", value: "3.3E-9", buttonColor: Color.konruri),
-        Conversion(label: "間", value: "5.5E-11", buttonColor: Color.konruri),
-        Conversion(label: "丈", value: "3.3E-11", buttonColor: Color.konruri),
-        Conversion(label: "町", value: "9.1666666666667E-13", buttonColor: Color.konruri),
-        Conversion(label: "里", value: "2.5462962962963E-14", buttonColor: Color.lightnessGreen),
-        Conversion(label: "天文単位(AU)", value: "6.6845871222684E-22", buttonColor: Color.lightnessGreen),
-        Conversion(label: "光年", value: "1.0570008340246E-26", buttonColor: Color.lightnessGreen),
-        Conversion(label: "パーセク(pc)", value: "3.2407790389471E-27", buttonColor: Color.moegi),
-        Conversion(label: "海里", value: "5.3995680345572E-14", buttonColor: Color.moegi),
-        Conversion(label: "ファゾム(fath)", value: "5.4680664916885E-11", buttonColor: Color.darkViolet),
-        Conversion(label: "ポイント(pt)", value: "2.8346456692913E-7", buttonColor: Color.violet)
-    ]
+    static let angstrom = Unit(label: "オングストローム(Å)", conversions: LengthConversions.fromAngstrom)
 }
