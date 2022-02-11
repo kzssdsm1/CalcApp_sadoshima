@@ -47,4 +47,5 @@ extension Color {
     static let offWhite = Color(hex: "d8d8d8")
     static let moegi = Color(hex: "616614")
     static let darkViolet = Color(hex: "421466")
+    static let darkGreen = Color(hex: "1e472e")
 }

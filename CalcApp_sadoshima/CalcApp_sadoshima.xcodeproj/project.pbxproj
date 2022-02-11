@@ -15,7 +15,6 @@
 		5428CD54279A6B53002216A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD53279A6B53002216A7 /* HomeView.swift */; };
 		5428CD56279A6D09002216A7 /* CalcKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD55279A6D09002216A7 /* CalcKeyboardView.swift */; };
 		5428CD58279A6D21002216A7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD57279A6D21002216A7 /* HomeViewModel.swift */; };
-		5428CD5A279A6DC3002216A7 /* UnitConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD59279A6DC3002216A7 /* UnitConverterView.swift */; };
 		543AC33127048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543AC33027048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift */; };
 		543AC33327048BB0008BFCB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543AC33227048BB0008BFCB0 /* ContentView.swift */; };
 		543AC33527048BB1008BFCB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543AC33427048BB1008BFCB0 /* Assets.xcassets */; };
@@ -26,11 +25,13 @@
 		544C773127ACE41A00BD46BB /* LengthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544C773027ACE41A00BD46BB /* LengthData.swift */; };
 		547E2E2D2706C206004F3565 /* CircleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2C2706C206004F3565 /* CircleText.swift */; };
 		547E2E2F2706DA09004F3565 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2E2706DA09004F3565 /* Operator.swift */; };
+		548BA30527B616B600C3903D /* CustomMenuStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548BA30427B616B600C3903D /* CustomMenuStyle.swift */; };
+		548BA30727B61E0000C3903D /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548BA30627B61E0000C3903D /* CustomButtonStyle.swift */; };
+		548BA30927B6278400C3903D /* UnitSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548BA30827B6278400C3903D /* UnitSelectView.swift */; };
 		54A7ED812722751400523136 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A7ED802722751400523136 /* CalculatorViewModel.swift */; };
 		54BC202427B0EBC700E9118D /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202327B0EBC700E9118D /* WeightData.swift */; };
 		54BC202627B0F38000E9118D /* AreaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202527B0F38000E9118D /* AreaData.swift */; };
 		54E61E792795DF7200D52187 /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E61E782795DF7200D52187 /* Decimal+Extension.swift */; };
-		54E61E7B2795E09900D52187 /* MilligramKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E61E7A2795E09900D52187 /* MilligramKeyboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +43,6 @@
 		5428CD53279A6B53002216A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5428CD55279A6D09002216A7 /* CalcKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcKeyboardView.swift; sourceTree = "<group>"; };
 		5428CD57279A6D21002216A7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		5428CD59279A6DC3002216A7 /* UnitConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConverterView.swift; sourceTree = "<group>"; };
 		543AC32D27048BB0008BFCB0 /* CalcApp_sadoshima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalcApp_sadoshima.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		543AC33027048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcApp_sadoshimaApp.swift; sourceTree = "<group>"; };
 		543AC33227048BB0008BFCB0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,11 +54,13 @@
 		544C773027ACE41A00BD46BB /* LengthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthData.swift; sourceTree = "<group>"; };
 		547E2E2C2706C206004F3565 /* CircleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleText.swift; sourceTree = "<group>"; };
 		547E2E2E2706DA09004F3565 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		548BA30427B616B600C3903D /* CustomMenuStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuStyle.swift; sourceTree = "<group>"; };
+		548BA30627B61E0000C3903D /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
+		548BA30827B6278400C3903D /* UnitSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitSelectView.swift; sourceTree = "<group>"; };
 		54A7ED802722751400523136 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		54BC202327B0EBC700E9118D /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
 		54BC202527B0F38000E9118D /* AreaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaData.swift; sourceTree = "<group>"; };
 		54E61E782795DF7200D52187 /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
-		54E61E7A2795E09900D52187 /* MilligramKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilligramKeyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		543AC32F27048BB0008BFCB0 /* CalcApp_sadoshima */ = {
 			isa = PBXGroup;
 			children = (
+				548BA30327B616A200C3903D /* Component */,
 				5428CD50279A642C002216A7 /* Extensions */,
 				54B3486A276C44BF00145133 /* Model */,
 				54B34869276C44A600145133 /* ViewModel */,
@@ -123,14 +126,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		548BA30327B616A200C3903D /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				548BA30427B616B600C3903D /* CustomMenuStyle.swift */,
+				548BA30627B61E0000C3903D /* CustomButtonStyle.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		54B34868276C449F00145133 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				54E61E7A2795E09900D52187 /* MilligramKeyboardView.swift */,
 				5428CD53279A6B53002216A7 /* HomeView.swift */,
 				5428CD55279A6D09002216A7 /* CalcKeyboardView.swift */,
-				5428CD59279A6DC3002216A7 /* UnitConverterView.swift */,
 				54003D6827A3A53D00723263 /* ConverterView.swift */,
+				548BA30827B6278400C3903D /* UnitSelectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -229,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54E61E7B2795E09900D52187 /* MilligramKeyboardView.swift in Sources */,
 				54003D6927A3A53D00723263 /* ConverterView.swift in Sources */,
 				544C773127ACE41A00BD46BB /* LengthData.swift in Sources */,
 				543C456E27B4E3CB00B8C024 /* WeightConversions.swift in Sources */,
@@ -239,16 +249,18 @@
 				54003D6527A39FFF00723263 /* Unit.swift in Sources */,
 				543C457027B4E3D600B8C024 /* AreaConversions.swift in Sources */,
 				543AC33127048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift in Sources */,
-				5428CD5A279A6DC3002216A7 /* UnitConverterView.swift in Sources */,
 				54003D6727A3A00A00723263 /* Conversion.swift in Sources */,
 				54BC202627B0F38000E9118D /* AreaData.swift in Sources */,
 				54E61E792795DF7200D52187 /* Decimal+Extension.swift in Sources */,
 				547E2E2D2706C206004F3565 /* CircleText.swift in Sources */,
+				548BA30527B616B600C3903D /* CustomMenuStyle.swift in Sources */,
 				5428CD58279A6D21002216A7 /* HomeViewModel.swift in Sources */,
 				5428CD54279A6B53002216A7 /* HomeView.swift in Sources */,
+				548BA30727B61E0000C3903D /* CustomButtonStyle.swift in Sources */,
 				54003D6327A39F1600723263 /* Category.swift in Sources */,
 				5428CD56279A6D09002216A7 /* CalcKeyboardView.swift in Sources */,
 				543C456C27B4E3BD00B8C024 /* LengthConversions.swift in Sources */,
+				548BA30927B6278400C3903D /* UnitSelectView.swift in Sources */,
 				5428CD52279A6444002216A7 /* Color+Extension.swift in Sources */,
 				54A7ED812722751400523136 /* CalculatorViewModel.swift in Sources */,
 			);

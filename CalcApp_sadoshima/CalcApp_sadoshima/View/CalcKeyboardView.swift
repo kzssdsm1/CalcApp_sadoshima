@@ -103,7 +103,7 @@ struct CalcKeyboardView: View {
             } // onAppear
             //.frame(minHeight: screenHeight * 0.56)
             .frame(maxWidth: .infinity, maxHeight: screenHeight * 0.56)
-            .background(Color.red)
+            .background(Color.aozumi)
         } // GeometryReader
     } // body
 }

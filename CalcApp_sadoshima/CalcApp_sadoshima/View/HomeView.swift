@@ -22,20 +22,24 @@ struct HomeView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .trailing, spacing: 0) {
-                Spacer(minLength: 0)
-                
-                // 入力された数値及び演算子のディスプレイ
-                Text(viewModel.displayingNum)
-                    .font(.system(size: viewModel.fontSize, weight: .medium))
-                    .foregroundColor(.offWhite)
-                    .padding(.horizontal)
+                VStack {
+                    Spacer(minLength: 0)
+                    
+                    Text(viewModel.displayingNum)
+                        .font(.system(size: viewModel.fontSize, weight: .medium))
+                        .foregroundColor(.offWhite)
+                        .padding(.horizontal)
+                } // VStack
+                .frame(height: proxy.size.height * 0.28)
                 
                 ZStack(alignment: .bottom) {
                     CalcKeyboardView(viewModel: viewModel)
                         .opacity(selection == .Calculator ? 1 : 0)
                         .offset(x: selection == .Calculator ? 0 : -500)
                     
-                    ConverterView(unit: Unit(label: "ミリグラム", conversions: [WeightData.fromMilligram]))
+                    ConverterView(category:
+                                    Category(label: "", units: LengthData.lengths, buttonColor: Color.aozumi)
+                    )
                         .opacity(selection == .UnitConverter ? 1 : 0)
                         .offset(x: selection == .UnitConverter ? 0 : -500)
                 } // ZStack

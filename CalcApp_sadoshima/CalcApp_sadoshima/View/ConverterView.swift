@@ -9,40 +9,57 @@ import SwiftUI
 
 struct ConverterView: View {
     @State private var pushedButton = ""
-    @State private var selection: [Conversion]?
+    @State private var selection: Unit?
     
-    let unit: Unit
+    let category: Category
     
+    private let screenHeight = CGFloat(UIScreen.main.bounds.height)
     private let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
-                ScrollView(.vertical, showsIndicators: false) {
-                    Menu {
-                        Button(action: {
-                            // do something
-                        }, label: {
-                            Text("Item1")
-                        })
-                        Button(action: {
-                            // do something
-                        }, label: {
-                            Text("Item2")
-                        })
-                    } label: {
-                        Text("Menu")
-                    }
+                HStack {
+                    Text("基準単位を選択：")
+                        .font(.system(size: proxy.size.width * 0.033, weight: .medium))
+                        .foregroundColor(Color.offWhite)
+                        .padding(.leading)
                     
+                    Menu {
+                        ForEach(category.units) { item in
+                            Button(action: {
+                                selection = item
+                            }, label: {
+                                Text(item.label)
+                            })
+                        } // ForEach
+                    } label: {
+                        Text(selection?.label ?? "単位を選択")
+                            .font(.system(size: proxy.size.width * 0.033, weight: .medium))
+                            .foregroundColor(Color.offWhite)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .foregroundColor(Color.konruri)
+                                    .frame(height: screenHeight * 0.04)
+                            )
+                    } // Menu
+                    .padding(.vertical)
+                    .padding(.trailing)
+                    
+                    Spacer(minLength: 0)
+                } // HStack
+                
+                ScrollView(.vertical, showsIndicators: false) {
                     if let items = selection {
                         LazyVGrid(columns: columns) {
-                            ForEach(items) { item in
+                            ForEach(items.conversions) { item in
                                 Button(action: {
                                     pushedButton = item.label
                                 }, label: {
                                     RoundedRectangle(cornerRadius: 20)
                                         .foregroundColor(pushedButton == item.label ? .offWhite : item.buttonColor)
-                                        .frame(width: proxy.size.width * 0.26, height: proxy.size.height * 0.11)
+                                        .frame(width: proxy.size.width * 0.26, height: screenHeight * 0.07)
                                         .overlay(
                                             Text(item.label)
                                                 .font(.system(size: proxy.size.width * 0.035, weight: .medium))
@@ -60,7 +77,7 @@ struct ConverterView: View {
             .background(Color.aozumi.edgesIgnoringSafeArea(.all))
         } // GeometryReader
         .onAppear() {
-            selection = unit.conversions
+            selection = category.units[0]
         }
     } // body
 }
