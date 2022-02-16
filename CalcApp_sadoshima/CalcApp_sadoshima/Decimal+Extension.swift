@@ -99,5 +99,26 @@ extension Decimal {
         
         return self.ln() / base.ln()
     }
+    
+    func pow(exp: Decimal) -> Decimal {
+        if isNaN || exp.isNaN { return .nan }
+        else if exp == 0 { return 1 }
+        else if exp < 0 { return 1 / pow(exp: exp * -1) }
+        
+        // Separate Integer and Decimal
+        let integer = exp.floor
+        let decimal = exp - integer
+        
+        // Calculate Integer Part
+        let intX = (integer as NSNumber).intValue
+        if !integer.isZero && intX == 0 { return .nan }
+        let intRes = Foundation.pow(self, intX)
+        
+        // Calculate Decimal Part
+        let decRes = (decimal * ln()).exp()
+        
+        // Merge
+        return intRes * decRes
+    }
 }
 

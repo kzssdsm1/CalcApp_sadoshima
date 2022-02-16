@@ -37,9 +37,7 @@ struct HomeView: View {
                         .opacity(selection == .Calculator ? 1 : 0)
                         .offset(x: selection == .Calculator ? 0 : -500)
                     
-                    ConverterView(category:
-                                    Category(label: "", units: LengthData.lengths, buttonColor: Color.aozumi)
-                    )
+                    UnitSelectView(viewModel: viewModel)
                         .opacity(selection == .UnitConverter ? 1 : 0)
                         .offset(x: selection == .UnitConverter ? 0 : -500)
                 } // ZStack

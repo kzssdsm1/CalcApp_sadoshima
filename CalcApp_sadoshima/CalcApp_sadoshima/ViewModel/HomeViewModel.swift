@@ -214,6 +214,8 @@ final class HomeViewModel: ObservableObject {
     
     // 割合化
     private func percent() {
+        guard firstArgument != nil else { return }
+        
         var tempNum: Decimal?
         
         if let arg = firstArgument {
@@ -276,7 +278,7 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func convertToString(_ num: Decimal) -> String {
-        if num > 999999999.999997 {
+        if num > 999999999.999997 || num < 0.000000001 {
             return calcExp(num)
         } else {
             return arrangeDispNum("\(num)")
@@ -284,6 +286,7 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func convertToDecimal(_ strValue: String) -> Decimal {
+        //print(strValue)
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
     
@@ -319,9 +322,30 @@ final class HomeViewModel: ObservableObject {
         
         let e = Decimal(string: "10")!
         let log = deci.log(base: e)
-        let rounded = NSDecimalNumber(decimal: log).rounding(accordingToBehavior: behavior1)
+        print("log is: \(log)")
+        var rounded = NSDecimalNumber(decimal: log).rounding(accordingToBehavior: behavior1)
+        print(rounded)
+        
+        var isRoundedMinus = false
+        
+        if rounded.intValue < 0 {
+            isRoundedMinus = true
+            var test = Decimal(string: rounded.stringValue)!
+            test *= Decimal(string: "-1")!
+            rounded = NSDecimalNumber(string: "\(test)")
+            print(rounded)
+        }
+        
         let powed = pow(10, Int(truncating: rounded))
-        let divided = deci / powed
+        print(powed)
+        
+        var divided: Decimal?
+        
+        if !isRoundedMinus {
+            divided = deci / powed
+        } else {
+            divided = deci * powed
+        }
         
         let behavior2 = NSDecimalNumberHandler(
             roundingMode: NSDecimalNumber.RoundingMode.plain,
@@ -332,20 +356,48 @@ final class HomeViewModel: ObservableObject {
             raiseOnDivideByZero: false
         )
         
-        let rounded2 = NSDecimalNumber(decimal: divided).rounding(accordingToBehavior: behavior2)
+        let rounded2 = NSDecimalNumber(decimal: divided!).rounding(accordingToBehavior: behavior2)
         
         var result: String {
             if isMinus {
                 return "-\(rounded2)e\(rounded)"
             } else {
-                return "\(rounded2)e\(rounded)"
+                if isRoundedMinus {
+                    return "\(rounded2)e-\(rounded)"
+                } else {
+                    return "\(rounded2)e\(rounded)"
+                }
             }
         }
+        
+        print(result)
         
         return result
     }
     
-    func convertUnit(_ num: Decimal) {
+    func convertUnit(_ num: String) {
+        guard firstArgument != nil else { return }
         
+        var tempNum: Decimal?
+        
+        if let arg = firstArgument {
+            tempNum = arg
+        } else {
+            tempNum = secondArgument
+        }
+        
+        if isCalculating != .none {
+            firstArgument = secondArgument
+        }
+        secondArgument = Decimal(string: num)!
+        
+        multiply()
+        isCalculating = .none
+        isPressing = .none
+        secondArgument = firstArgument
+        hiddenArgument = firstArgument
+        firstArgument = tempNum!
+        
+        secondArgument = nil
     }
 }
