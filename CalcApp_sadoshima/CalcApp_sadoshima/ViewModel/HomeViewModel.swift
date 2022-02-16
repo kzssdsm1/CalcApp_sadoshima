@@ -159,7 +159,8 @@ final class HomeViewModel: ObservableObject {
         
         guard let secondArgument = secondArgument else { return }
         
-        firstArgument! *= secondArgument
+        let multiplaied = firstArgument!.mul(secondArgument)
+        firstArgument = multiplaied
         
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
@@ -278,20 +279,32 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func convertToString(_ num: Decimal) -> String {
+        print("num is \(num)")
         if num > 999999999.999997 || num < 0.000000001 {
             return calcExp(num)
+        } else if num.isNaN {
+            return "Error"
         } else {
             return arrangeDispNum("\(num)")
         }
     }
     
     private func convertToDecimal(_ strValue: String) -> Decimal {
-        //print(strValue)
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
     
     private func arrangeDispNum(_ strValue: String) -> String {
-        let num = convertToDecimal(strValue)
+        let behavior = NSDecimalNumberHandler(
+            roundingMode: NSDecimalNumber.RoundingMode.plain,
+            scale: 9,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        
+        let rounded = NSDecimalNumber(string: strValue).rounding(accordingToBehavior: behavior)
+        let num = convertToDecimal(rounded.stringValue)
         
         guard let formatter = numberFormatter.string(from: num as NSNumber) else {
             print("Failed to arrange: \(strValue) and \(num)")
@@ -322,6 +335,7 @@ final class HomeViewModel: ObservableObject {
         
         let e = Decimal(string: "10")!
         let log = deci.log(base: e)
+        
         print("log is: \(log)")
         var rounded = NSDecimalNumber(decimal: log).rounding(accordingToBehavior: behavior1)
         print(rounded)

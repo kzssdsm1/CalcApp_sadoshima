@@ -77,6 +77,7 @@
 		5428CD50279A642C002216A7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				54E61E782795DF7200D52187 /* Decimal+Extension.swift */,
 				5428CD51279A6444002216A7 /* Color+Extension.swift */,
 			);
 			path = Extensions;
@@ -113,7 +114,6 @@
 				547E2E2C2706C206004F3565 /* CircleText.swift */,
 				547E2E2E2706DA09004F3565 /* Operator.swift */,
 				54A7ED802722751400523136 /* CalculatorViewModel.swift */,
-				54E61E782795DF7200D52187 /* Decimal+Extension.swift */,
 			);
 			path = CalcApp_sadoshima;
 			sourceTree = "<group>";
