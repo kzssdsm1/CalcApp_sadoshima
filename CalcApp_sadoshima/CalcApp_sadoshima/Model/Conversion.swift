@@ -13,4 +13,5 @@ struct Conversion: Identifiable {
     let label: String
     let value: String
     let buttonColor: Color
+    let unit: String
 }

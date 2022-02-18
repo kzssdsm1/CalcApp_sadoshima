@@ -11,6 +11,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     
     @State private var selection: Selection = .Calculator
+    @State private var unit = ""
     
     private let screenHeight = CGFloat(UIScreen.main.bounds.height)
     
@@ -25,7 +26,7 @@ struct HomeView: View {
                 VStack {
                     Spacer(minLength: 0)
                     
-                    Text(viewModel.displayingNum)
+                    Text(viewModel.displayingNum + unit)
                         .font(.system(size: viewModel.fontSize, weight: .medium))
                         .foregroundColor(.offWhite)
                         .padding(.horizontal)

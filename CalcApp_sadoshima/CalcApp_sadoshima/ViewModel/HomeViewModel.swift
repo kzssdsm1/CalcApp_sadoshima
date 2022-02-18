@@ -10,9 +10,11 @@ import SwiftUI
 
 final class HomeViewModel: ObservableObject {
     @Published var displayingNum = "0"
+    @Published var prevNum = ""
     @Published var isCalculating: Operator = .none
     @Published var isPressing: Operator = .none
     @Published var fontSize: CGFloat = .zero
+    @Published var prevNumFontSize: CGFloat = .zero
     
     private let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -105,6 +107,39 @@ final class HomeViewModel: ObservableObject {
         }
         
         setFontSize()
+    }
+    
+    func convertUnit(_ num: String) {
+        guard firstArgument != nil else { return }
+        
+        setPrevNum()
+        
+        let previousOperator = isCalculating
+        let prevSecArgument: Decimal? = secondArgument
+        
+        isConverting = true
+        
+        if secondArgument != nil {
+            let prevFirArgument = firstArgument
+            firstArgument = secondArgument
+            secondArgument = Decimal(string: num)!
+            multiply()
+            secondArgument = firstArgument
+            firstArgument = prevFirArgument
+        } else {
+            secondArgument = Decimal(string: num)!
+            multiply()
+            secondArgument = prevSecArgument
+        }
+        
+        isCalculating = previousOperator
+        isPressing = .none
+        isConverting = false
+    }
+    
+    private func setPrevNum() {
+        prevNum = displayingNum
+        setPrevNumFontSize()
     }
     
     // 加算
@@ -229,6 +264,14 @@ final class HomeViewModel: ObservableObject {
             secondArgument = changeNum
         } else {
             firstArgument = changeNum
+        }
+    }
+    
+    private func setPrevNumFontSize() {
+        if prevNum.count > 5 {
+            prevNumFontSize = dispSize * 0.2 - CGFloat((prevNum.count - 5)) * (dispSize * 0.012)
+        } else {
+            prevNumFontSize = dispSize * 0.2
         }
     }
     
@@ -362,31 +405,5 @@ final class HomeViewModel: ObservableObject {
         print(result)
         
         return result
-    }
-    
-    func convertUnit(_ num: String) {
-        guard firstArgument != nil else { return }
-        
-        let previousOperator = isCalculating
-        let prevSecArgument: Decimal? = secondArgument
-        
-        isConverting = true
-        
-        if secondArgument != nil {
-            let prevFirArgument = firstArgument
-            firstArgument = secondArgument
-            secondArgument = Decimal(string: num)!
-            multiply()
-            secondArgument = firstArgument
-            firstArgument = prevFirArgument
-        } else {
-            secondArgument = Decimal(string: num)!
-            multiply()
-            secondArgument = prevSecArgument
-        }
-        
-        isCalculating = previousOperator
-        isPressing = .none
-        isConverting = false
     }
 }

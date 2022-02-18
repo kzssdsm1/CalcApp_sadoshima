@@ -12,4 +12,5 @@ struct Unit: Identifiable {
     let id = UUID()
     let label: String
     let conversions: [Conversion]
+    let unit: String
 }
