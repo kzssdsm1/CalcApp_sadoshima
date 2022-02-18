@@ -33,6 +33,8 @@ final class HomeViewModel: ObservableObject {
     
     private var input = ""
     
+    private var isConverting = false
+    
     private var isInserting = false
     // 第1引数
     private var firstArgument: Decimal?
@@ -74,7 +76,7 @@ final class HomeViewModel: ObservableObject {
         case .allClear:
             clearText()
         case .percent:
-            percent()
+            convertUnit("0.01")
         case .divide:
             divide()
         case .multiply:
@@ -149,7 +151,7 @@ final class HomeViewModel: ObservableObject {
     
     // 乗算
     private func multiply() {
-        if isCalculating != .multiply && isCalculating != .none {
+        if isCalculating != .multiply && isCalculating != .none && !isConverting {
             equal()
         }
         
@@ -210,33 +212,6 @@ final class HomeViewModel: ObservableObject {
         setFontSize()
         isCalculating = .none
         isPressing = isCalculating
-        secondArgument = nil
-    }
-    
-    // 割合化
-    private func percent() {
-        guard firstArgument != nil else { return }
-        
-        var tempNum: Decimal?
-        
-        if let arg = firstArgument {
-            tempNum = arg
-        } else {
-            tempNum = secondArgument
-        }
-        
-        if isCalculating != .none {
-            firstArgument = secondArgument
-        }
-        secondArgument = Decimal(string: "0.01")!
-        
-        multiply()
-        isCalculating = .none
-        isPressing = .none
-        secondArgument = firstArgument
-        hiddenArgument = firstArgument
-        firstArgument = tempNum!
-        
         secondArgument = nil
     }
     
@@ -392,26 +367,26 @@ final class HomeViewModel: ObservableObject {
     func convertUnit(_ num: String) {
         guard firstArgument != nil else { return }
         
-        var tempNum: Decimal?
+        let previousOperator = isCalculating
+        let prevSecArgument: Decimal? = secondArgument
         
-        if let arg = firstArgument {
-            tempNum = arg
-        } else {
-            tempNum = secondArgument
-        }
+        isConverting = true
         
-        if isCalculating != .none {
+        if secondArgument != nil {
+            let prevFirArgument = firstArgument
             firstArgument = secondArgument
+            secondArgument = Decimal(string: num)!
+            multiply()
+            secondArgument = firstArgument
+            firstArgument = prevFirArgument
+        } else {
+            secondArgument = Decimal(string: num)!
+            multiply()
+            secondArgument = prevSecArgument
         }
-        secondArgument = Decimal(string: num)!
         
-        multiply()
-        isCalculating = .none
+        isCalculating = previousOperator
         isPressing = .none
-        secondArgument = firstArgument
-        hiddenArgument = firstArgument
-        firstArgument = tempNum!
-        
-        secondArgument = nil
+        isConverting = false
     }
 }
