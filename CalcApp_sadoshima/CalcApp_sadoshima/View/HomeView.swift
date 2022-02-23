@@ -11,7 +11,6 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     
     @State private var selection: Selection = .Calculator
-    @State private var unit = ""
     
     private let screenHeight = CGFloat(UIScreen.main.bounds.height)
     
@@ -26,22 +25,58 @@ struct HomeView: View {
                 VStack {
                     Spacer(minLength: 0)
                     
-                    Text(viewModel.displayingNum + unit)
-                        .font(.system(size: viewModel.fontSize, weight: .medium))
-                        .foregroundColor(.offWhite)
-                        .padding(.horizontal)
+                    HStack {
+                        Spacer(minLength: 0)
+                        
+                        Text(viewModel.prevNum)
+                            .font(.system(size: proxy.size.width * 0.07, weight: .medium))
+                            .foregroundColor(.offWhite)
+                            .opacity(viewModel.isShowingPrevNum ? 0.6 : 0)
+                    } // HStack
+                    
+                    HStack {
+                        Spacer(minLength: 0)
+                        
+                        Text(viewModel.displayingNum)
+                            .font(.system(size: viewModel.fontSize, weight: .medium))
+                            .foregroundColor(.offWhite)
+                        
+                        if viewModel.unit != "" {
+                            Text(viewModel.unit)
+                                .font(.system(size: proxy.size.width * 0.06, weight: .medium))
+                                .foregroundColor(.offWhite)
+                        }
+                    } // HStack
                 } // VStack
+                .padding(.horizontal)
                 .frame(height: proxy.size.height * 0.28)
                 
-                ZStack(alignment: .bottom) {
+                if selection == .Calculator {
                     CalcKeyboardView(viewModel: viewModel)
-                        .opacity(selection == .Calculator ? 1 : 0)
-                        .offset(x: selection == .Calculator ? 0 : -500)
-                    
+                        .transition(AnyTransition.opacity.combined(with: .slide))
+                        .onAppear {
+                            viewModel.unit = ""
+                            viewModel.setFontSize()
+                            viewModel.isShowingPrevNum = false
+                        }
+                } else {
                     UnitSelectView(viewModel: viewModel)
-                        .opacity(selection == .UnitConverter ? 1 : 0)
-                        .offset(x: selection == .UnitConverter ? 0 : -500)
-                } // ZStack
+                        .transition(AnyTransition.opacity.combined(with: .slide))
+                        .onAppear {
+                            viewModel.unit = ""
+                            viewModel.isShowingPrevNum = true
+                        }
+                }
+                
+//                ZStack(alignment: .bottom) {
+//                    CalcKeyboardView(viewModel: viewModel)
+//                        .opacity(selection == .Calculator ? 1 : 0)
+//                        .offset(x: selection == .Calculator ? 0 : -500)
+//
+//                    UnitSelectView(viewModel: viewModel)
+//                        .opacity(selection == .UnitConverter ? 1 : 0)
+//                        .offset(x: selection == .UnitConverter ? 0 : -500)
+//                } // ZStack
                 
                 Picker("", selection: $selection.animation(.linear(duration: 0.2))) {
                     Text("計算機").tag(Selection.Calculator)

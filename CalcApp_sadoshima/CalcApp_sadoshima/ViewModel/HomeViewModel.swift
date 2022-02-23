@@ -11,10 +11,12 @@ import SwiftUI
 final class HomeViewModel: ObservableObject {
     @Published var displayingNum = "0"
     @Published var prevNum = ""
+    @Published var unit = ""
     @Published var isCalculating: Operator = .none
     @Published var isPressing: Operator = .none
     @Published var fontSize: CGFloat = .zero
     @Published var prevNumFontSize: CGFloat = .zero
+    @Published var isShowingPrevNum = false
     
     private let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -112,8 +114,6 @@ final class HomeViewModel: ObservableObject {
     func convertUnit(_ num: String) {
         guard firstArgument != nil else { return }
         
-        setPrevNum()
-        
         let previousOperator = isCalculating
         let prevSecArgument: Decimal? = secondArgument
         
@@ -137,8 +137,8 @@ final class HomeViewModel: ObservableObject {
         isConverting = false
     }
     
-    private func setPrevNum() {
-        prevNum = displayingNum
+    func setPrevNum(_ unit: String) {
+        prevNum = "\(displayingNum)\(unit) ="
         setPrevNumFontSize()
     }
     
@@ -275,7 +275,7 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
-    private func setFontSize() {
+    func setFontSize() {
         if displayingNum.count > 5 {
             fontSize = dispSize * 0.2 - CGFloat((displayingNum.count - 5)) * (dispSize * 0.012)
         } else {
@@ -289,6 +289,7 @@ final class HomeViewModel: ObservableObject {
         isCalculating = .none
         hiddenOperator = .none
         input = ""
+        prevNum = ""
         firstArgument = nil
         secondArgument = nil
         hiddenArgument = nil
@@ -376,7 +377,7 @@ final class HomeViewModel: ObservableObject {
         if !isRoundedMinus {
             divided = deci / powed
         } else {
-            divided = deci * powed
+            divided = deci.mul(powed)
         }
         
         let behavior2 = NSDecimalNumberHandler(
@@ -390,16 +391,32 @@ final class HomeViewModel: ObservableObject {
         
         let rounded2 = NSDecimalNumber(decimal: divided!).rounding(accordingToBehavior: behavior2)
         
-        var result: String {
-            if isMinus {
-                return "-\(rounded2)e\(rounded)"
+        var result = ""
+        
+        if isMinus {
+            result = "-\(rounded2)e\(rounded)"
+        } else {
+            if isRoundedMinus {
+                result = "\(rounded2)e-\(rounded)"
             } else {
-                if isRoundedMinus {
-                    return "\(rounded2)e-\(rounded)"
-                } else {
-                    return "\(rounded2)e\(rounded)"
-                }
+                result = "\(rounded2)e\(rounded)"
             }
+        }
+        
+//        var result: String {
+//            if isMinus {
+//                return "-\(rounded2)e\(rounded)"
+//            } else {
+//                if isRoundedMinus {
+//                    return "\(rounded2)e-\(rounded)"
+//                } else {
+//                    return "\(rounded2)e\(rounded)"
+//                }
+//            }
+//        }
+        
+        if rounded.stringValue.contains("NaN") || rounded2.stringValue.contains("NaN") {
+            result = "Underflow"
         }
         
         print(result)

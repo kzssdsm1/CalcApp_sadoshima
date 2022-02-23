@@ -78,6 +78,8 @@ struct ConverterView: View {
                             ForEach(items.conversions) { item in
                                 Button(action: {
                                     pushedButton = item.label
+                                    viewModel.setPrevNum(selection!.unit)
+                                    viewModel.unit = item.unit
                                     viewModel.convertUnit(item.value)
                                 }, label: {
                                     RoundedRectangle(cornerRadius: 20)
