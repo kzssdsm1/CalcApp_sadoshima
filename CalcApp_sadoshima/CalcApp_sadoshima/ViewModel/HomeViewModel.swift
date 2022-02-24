@@ -41,7 +41,7 @@ final class HomeViewModel: ObservableObject {
     
     private var isInserting = false
     // 第1引数
-    private var firstArgument: Decimal?
+    var firstArgument: Decimal?
     // 第2引数
     private var secondArgument: Decimal?
     // 隠れ引数
@@ -138,7 +138,7 @@ final class HomeViewModel: ObservableObject {
     }
     
     func setPrevNum(_ unit: String) {
-        prevNum = "\(displayingNum)\(unit) ="
+        prevNum = "\(displayingNum) \(unit) ="
         setPrevNumFontSize()
     }
     
