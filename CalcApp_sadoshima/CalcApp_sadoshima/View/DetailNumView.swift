@@ -17,7 +17,7 @@ struct DetailNumView: View {
         GeometryReader { proxy in
             ZStack(alignment: .bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
                         Text(NSDecimalNumber(decimal: viewModel.firstArgument!).stringValue)
                             .font(.system(size: proxy.size.width * 0.09, weight: .medium))
                             .foregroundColor(.offWhite)

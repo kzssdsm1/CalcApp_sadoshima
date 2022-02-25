@@ -14,6 +14,7 @@ final class HomeViewModel: ObservableObject {
     @Published var unit = ""
     @Published var isCalculating: Operator = .none
     @Published var isPressing: Operator = .none
+    @Published var selection: Selection = .Calculator
     @Published var fontSize: CGFloat = .zero
     @Published var prevNumFontSize: CGFloat = .zero
     @Published var isShowingPrevNum = false
@@ -48,6 +49,11 @@ final class HomeViewModel: ObservableObject {
     private var hiddenArgument: Decimal?
     
     private var hiddenOperator: Operator = .none
+    
+    enum Selection {
+        case Calculator
+        case UnitConverter
+    }
     
     func insertNumber(_ text: String) {
         isPressing = .none

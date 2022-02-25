@@ -27,7 +27,7 @@ struct CalcKeyboardView: View {
                                         CircleText(isCalculating: $viewModel.isPressing, text: item.buttonText(viewModel.displayingNum == "0" && viewModel.isCalculating == .none), buttonColor: .asahanada)
                                         
                                     })
-                                        .frame(width: proxy.size.width * 0.19, height: proxy.size.width * 0.19)
+                                        .frame(width: proxy.size.width * 0.17, height: proxy.size.width * 0.19)
                                         .padding(proxy.size.width * 0.01)
                                 } else {
                                     EmptyView()
@@ -45,7 +45,7 @@ struct CalcKeyboardView: View {
                                         CircleText(isCalculating: $viewModel.isPressing, text: numbers[row][col], buttonColor: .smalt)
                                         
                                     })
-                                        .frame(width: proxy.size.width * 0.19, height: proxy.size.width * 0.19)
+                                        .frame(width: proxy.size.width * 0.17, height: proxy.size.width * 0.19)
                                         .padding(proxy.size.width * 0.01)
                                 } // ForEach
                             } // HStack
@@ -59,7 +59,7 @@ struct CalcKeyboardView: View {
                                 CircleText(isCalculating: $viewModel.isPressing, text: "0", buttonColor: .smalt)
                                 
                             })
-                                .frame(width: proxy.size.width * 0.19 * 2.2, height: proxy.size.width * 0.19)
+                                .frame(width: proxy.size.width * 0.17 * 2.2, height: proxy.size.width * 0.19)
                                 .padding(proxy.size.width * 0.01)
                             
                             // 小数点ボタン
@@ -69,7 +69,7 @@ struct CalcKeyboardView: View {
                                 CircleText(isCalculating: $viewModel.isPressing, text: ".", buttonColor: .smalt)
                                 
                             })
-                                .frame(width: proxy.size.width * 0.19, height: proxy.size.width * 0.19)
+                                .frame(width: proxy.size.width * 0.17, height: proxy.size.width * 0.19)
                                 .padding(proxy.size.width * 0.01)
                         } // HStack
                     } // VStack
@@ -90,7 +90,7 @@ struct CalcKeyboardView: View {
                                     )
                                     
                                 })
-                                    .frame(width: proxy.size.width * 0.19, height: proxy.size.width * 0.19)
+                                    .frame(width: proxy.size.width * 0.17, height: proxy.size.width * 0.19)
                                     .padding(proxy.size.width * 0.01)
                             }
                         } // ForEach
