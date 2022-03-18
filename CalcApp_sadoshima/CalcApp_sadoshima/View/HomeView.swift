@@ -44,13 +44,15 @@ struct HomeView: View {
                                     Image(systemName: "magnifyingglass")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: proxy.size.width * 0.026)
+                                        //.frame(width: proxy.size.width * 0.035)
+                                        .frame(width: proxy.size.width * 0.035, height: proxy.size.width * 0.035)
+                                        //.minimumScaleFactor(0.35)
                                         .foregroundColor(.offWhite)
-                                        .padding()
+                                        .padding(10)
                                         .background(
                                             RoundedRectangle(cornerRadius: 12)
                                                 .foregroundColor(.darkGreen)
-                                                .frame(height: screenHeight * 0.036)
+                                                //.frame(height: screenHeight * 0.04)
                                         )
                                 })
                             } // HStack

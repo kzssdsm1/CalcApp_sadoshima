@@ -18,6 +18,7 @@ struct ConverterView: View {
     let category: Category
     
     private let screenHeight = CGFloat(UIScreen.main.bounds.height)
+    private let screenWidth = CGFloat(UIScreen.main.bounds.width)
     private let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     
     var body: some View {
@@ -32,16 +33,16 @@ struct ConverterView: View {
                         Image(systemName: "arrow.uturn.backward")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: proxy.size.width * 0.033)
                             .foregroundColor(.offWhite)
+                            .frame(width: 20)
+                            .minimumScaleFactor(0.5)
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
                                     .foregroundColor(.darkGreen)
-                                    .frame(height: screenHeight * 0.04)
                             )
                     })
-                        .padding(.leading)
+                        .padding(.leading, screenWidth * 0.01)
                     
                     Text("基準単位を選択：")
                         .font(.system(size: proxy.size.width * 0.033, weight: .medium))
@@ -82,17 +83,21 @@ struct ConverterView: View {
                                     viewModel.unit = item.unit
                                     viewModel.convertUnit(item.value)
                                 }, label: {
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .foregroundColor(pushedButton == item.label ? .offWhite : item.buttonColor)
-                                        .frame(width: proxy.size.width * 0.26, height: screenHeight * 0.07)
-                                        .overlay(
-                                            Text(item.label)
-                                                .font(.system(size: proxy.size.width * 0.031, weight: .medium))
-                                                .foregroundColor(pushedButton == item.label ? item.buttonColor : .offWhite)
-                                                .padding(proxy.size.width * 0.01)
+                                    Text(item.label)
+                                        .foregroundColor(pushedButton == item.label ? item.buttonColor : .offWhite)
+                                        //.font(.title2)
+                                        .font(.system(size: proxy.size.width * 0.033, weight: .medium))
+                                        .minimumScaleFactor(0.35)
+                                        .lineLimit(2)
+                                        .padding()
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                        .aspectRatio(1.7, contentMode: .fit)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .foregroundColor(pushedButton == item.label ? .offWhite : item.buttonColor)
                                         )
                                 })
-                                    .padding(proxy.size.width * 0.01)
+                                    .padding(screenWidth * 0.01)
                             } // ForEach
                         } // LazyVGrid
                     }
