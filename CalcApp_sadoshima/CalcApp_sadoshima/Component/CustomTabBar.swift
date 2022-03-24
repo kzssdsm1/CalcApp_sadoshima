@@ -35,7 +35,7 @@ struct CustomTabBar: View {
             .onTapGesture {
                 withAnimation(.linear(duration: 0.2)) {
                     viewModel.selection = .Calculator
-                    viewModel.unit = ""
+                    viewModel.displayUnit = ""
                     viewModel.setFontSize()
                     viewModel.isShowingPrevNum = false
                 } // withAnimation
@@ -63,7 +63,7 @@ struct CustomTabBar: View {
             .onTapGesture {
                 withAnimation(.linear(duration: 0.2)) {
                     viewModel.selection = .UnitConverter
-                    viewModel.unit = ""
+                    viewModel.displayUnit = ""
                     viewModel.isShowingPrevNum = true
                 } // withAnimation
             }

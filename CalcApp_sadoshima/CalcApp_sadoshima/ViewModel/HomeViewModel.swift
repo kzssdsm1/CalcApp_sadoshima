@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 final class HomeViewModel: ObservableObject {
-    @Published var displayingNum = "0"
-    @Published var prevNum = ""
-    @Published var unit = ""
+    @Published var displayingNumber = "0"
+    @Published var previousNumber = ""
+    @Published var displayUnit = ""
     @Published var isCalculating: Operator = .none
     @Published var isPressing: Operator = .none
     @Published var selection: Selection = .Calculator
@@ -55,7 +55,7 @@ final class HomeViewModel: ObservableObject {
         case UnitConverter
     }
     
-    func insertNumber(_ text: String) {
+    func insertNumber(_ insertText: String) {
         isPressing = .none
         
         if input == "0" || isInserting {
@@ -63,11 +63,11 @@ final class HomeViewModel: ObservableObject {
             isInserting = false
         }
         
-        input += text
-        displayingNum = arrangeDispNum(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9)))
+        input += insertText
+        displayingNumber = arrangeDispNum(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9)))
         
-        if text == "0" && input.suffix(2) == ".0" {
-            displayingNum += ".0"
+        if insertText == "0" && input.suffix(2) == ".0" {
+            displayingNumber += ".0"
         }
         
         setFontSize()
@@ -108,16 +108,16 @@ final class HomeViewModel: ObservableObject {
         
         if input.isEmpty {
             input = "0."
-            displayingNum = input
+            displayingNumber = input
         } else {
             input += "."
-            displayingNum = input
+            displayingNumber = input
         }
         
         setFontSize()
     }
     
-    func convertUnit(_ num: String) {
+    func convertUnit(_ displayNumber: String) {
         guard firstArgument != nil else { return }
         
         let previousOperator = isCalculating
@@ -128,12 +128,12 @@ final class HomeViewModel: ObservableObject {
         if secondArgument != nil {
             let prevFirArgument = firstArgument
             firstArgument = secondArgument
-            secondArgument = Decimal(string: num)!
+            secondArgument = Decimal(string: displayNumber)!
             multiply()
             secondArgument = firstArgument
             firstArgument = prevFirArgument
         } else {
-            secondArgument = Decimal(string: num)!
+            secondArgument = Decimal(string: displayNumber)!
             multiply()
             secondArgument = prevSecArgument
         }
@@ -144,7 +144,7 @@ final class HomeViewModel: ObservableObject {
     }
     
     func setPrevNum(_ unit: String) {
-        prevNum = "\(displayingNum) \(unit) ="
+        previousNumber = "\(displayingNumber) \(unit) ="
         setPrevNumFontSize()
     }
     
@@ -165,7 +165,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNum = convertToString(firstArgument!)
+        displayingNumber = convertToString(firstArgument!)
         setFontSize()
     }
     
@@ -186,7 +186,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNum = convertToString(firstArgument!)
+        displayingNumber = convertToString(firstArgument!)
         setFontSize()
     }
     
@@ -208,7 +208,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNum = convertToString(firstArgument!)
+        displayingNumber = convertToString(firstArgument!)
         setFontSize()
     }
     
@@ -229,7 +229,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNum = convertToString(firstArgument!)
+        displayingNumber = convertToString(firstArgument!)
         setFontSize()
     }
     
@@ -263,7 +263,7 @@ final class HomeViewModel: ObservableObject {
         changeNum *= -1
         
         input = convertToString(changeNum)
-        displayingNum = input
+        displayingNumber = input
         setFontSize()
         
         if isCalculating != .none {
@@ -274,16 +274,16 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func setPrevNumFontSize() {
-        if prevNum.count > 5 {
-            prevNumFontSize = dispSize * 0.2 - CGFloat((prevNum.count - 5)) * (dispSize * 0.012)
+        if previousNumber.count > 5 {
+            prevNumFontSize = dispSize * 0.2 - CGFloat((previousNumber.count - 5)) * (dispSize * 0.012)
         } else {
             prevNumFontSize = dispSize * 0.2
         }
     }
     
     func setFontSize() {
-        if displayingNum.count > 5 {
-            fontSize = dispSize * 0.2 - CGFloat((displayingNum.count - 5)) * (dispSize * 0.012)
+        if displayingNumber.count > 5 {
+            fontSize = dispSize * 0.2 - CGFloat((displayingNumber.count - 5)) * (dispSize * 0.012)
         } else {
             fontSize = dispSize * 0.2
         }
@@ -291,11 +291,11 @@ final class HomeViewModel: ObservableObject {
     
     // 情報のクリア
     private func clearText() {
-        displayingNum = "0"
+        displayingNumber = "0"
         isCalculating = .none
         hiddenOperator = .none
         input = ""
-        prevNum = ""
+        previousNumber = ""
         firstArgument = nil
         secondArgument = nil
         hiddenArgument = nil
@@ -303,14 +303,14 @@ final class HomeViewModel: ObservableObject {
         setFontSize()
     }
     
-    private func convertToString(_ num: Decimal) -> String {
-        print("num is \(num)")
-        if num > 999999999.999997 || num < 0.000000001 {
-            return calcExp(num)
-        } else if num.isNaN {
+    private func convertToString(_ displayNumber: Decimal) -> String {
+        print("num is \(displayNumber)")
+        if displayNumber > 999999999.999997 || displayNumber < 0.000000001 {
+            return calcExp(displayNumber)
+        } else if displayNumber.isNaN {
             return "Error"
         } else {
-            return arrangeDispNum("\(num)")
+            return arrangeDispNum("\(displayNumber)")
         }
     }
     
@@ -339,7 +339,7 @@ final class HomeViewModel: ObservableObject {
         return formatter
     }
     
-    private func calcExp(_ num: Decimal) -> String {
+    private func calcExp(_ number: Decimal) -> String {
         let behavior1 = NSDecimalNumberHandler(
             roundingMode: NSDecimalNumber.RoundingMode.down,
             scale: 0,
@@ -349,7 +349,7 @@ final class HomeViewModel: ObservableObject {
             raiseOnDivideByZero: false
         )
         
-        var deci = num
+        var deci = number
         
         var isMinus = false
         

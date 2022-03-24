@@ -80,7 +80,7 @@ struct ConverterView: View {
                                 Button(action: {
                                     pushedButton = item.label
                                     viewModel.setPrevNum(selection!.unit)
-                                    viewModel.unit = item.unit
+                                    viewModel.displayUnit = item.unit
                                     viewModel.convertUnit(item.value)
                                 }, label: {
                                     Text(item.label)

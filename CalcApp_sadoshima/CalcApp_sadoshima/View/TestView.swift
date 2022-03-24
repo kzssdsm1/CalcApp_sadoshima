@@ -23,7 +23,7 @@ struct TestView: View {
                                 Button(action: {
                                     viewModel.setOperator(item)
                                 }, label: {
-                                    CircleText(isCalculating: $viewModel.isPressing, text: item.buttonText(viewModel.displayingNum == "0" && viewModel.isCalculating == .none), buttonColor: .asahanada)
+                                    CircleText(isCalculating: $viewModel.isPressing, text: item.buttonText(viewModel.displayingNumber == "0" && viewModel.isCalculating == .none), buttonColor: .asahanada)
                                     
                                 })
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)

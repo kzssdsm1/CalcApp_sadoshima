@@ -20,7 +20,6 @@ struct HomeView: View {
         GeometryReader { proxy in
             ZStack(alignment: .top) {
                 VStack(alignment: .trailing, spacing: 0) {
-                    //NumberDisplay(isShowingSheet: $isShowingSheet, isShowingNotification: $isShowingNotification, viewModel: viewModel)
                     
                     VStack {
                         Spacer(minLength: 0)
@@ -28,13 +27,13 @@ struct HomeView: View {
                         HStack {
                             Spacer(minLength: 0)
 
-                            Text(viewModel.prevNum)
+                            Text(viewModel.previousNumber)
                                 .font(.system(size: proxy.size.width * 0.07, weight: .medium))
                                 .foregroundColor(.offWhite)
                                 .opacity(viewModel.isShowingPrevNum ? 0.6 : 0)
                         } // HStack
 
-                        if viewModel.displayingNum != "Underflow" && viewModel.displayingNum.contains("e") {
+                        if viewModel.displayingNumber != "Underflow" && viewModel.displayingNumber.contains("e") {
                             HStack {
                                 Spacer(minLength: 0)
 
@@ -61,11 +60,11 @@ struct HomeView: View {
                         HStack {
                             Spacer(minLength: 0)
 
-                            Text(viewModel.displayingNum)
+                            Text(viewModel.displayingNumber)
                                 .font(.system(size: viewModel.fontSize, weight: .medium))
                                 .foregroundColor(.offWhite)
                                 .onTapGesture {
-                                    UIPasteboard.general.setValue(viewModel.displayingNum + viewModel.unit, forPasteboardType: kUTTypePlainText as String)
+                                    UIPasteboard.general.setValue(viewModel.displayingNumber + viewModel.displayUnit, forPasteboardType: kUTTypePlainText as String)
                                     isShowingNotification = true
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                                         withAnimation {
@@ -74,8 +73,8 @@ struct HomeView: View {
                                     }
                                 }
 
-                            if viewModel.unit != "" {
-                                Text(viewModel.unit)
+                            if viewModel.displayUnit != "" {
+                                Text(viewModel.displayUnit)
                                     .font(.system(size: proxy.size.width * 0.06, weight: .medium))
                                     .foregroundColor(.offWhite)
                             }
