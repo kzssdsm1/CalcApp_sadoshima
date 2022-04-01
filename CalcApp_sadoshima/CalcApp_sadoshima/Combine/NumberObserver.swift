@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 final class NumberObserver {
     static let shared = NumberObserver()
     
     private init() {}
+    
+    var numberSubject = PassthroughSubject<Decimal, Never>()
 }

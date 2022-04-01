@@ -33,6 +33,7 @@
 		54BC202427B0EBC700E9118D /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202327B0EBC700E9118D /* WeightData.swift */; };
 		54BC202627B0F38000E9118D /* AreaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202527B0F38000E9118D /* AreaData.swift */; };
 		54C8D64A27F6C4250013C3B8 /* NumberObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C8D64927F6C4250013C3B8 /* NumberObserver.swift */; };
+		54C8D64C27F6C7FC0013C3B8 /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C8D64B27F6C7FC0013C3B8 /* ConverterViewModel.swift */; };
 		54E61E792795DF7200D52187 /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E61E782795DF7200D52187 /* Decimal+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		54BC202327B0EBC700E9118D /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
 		54BC202527B0F38000E9118D /* AreaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaData.swift; sourceTree = "<group>"; };
 		54C8D64927F6C4250013C3B8 /* NumberObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberObserver.swift; sourceTree = "<group>"; };
+		54C8D64B27F6C7FC0013C3B8 /* ConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModel.swift; sourceTree = "<group>"; };
 		54E61E782795DF7200D52187 /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				5428CD57279A6D21002216A7 /* HomeViewModel.swift */,
+				54C8D64B27F6C7FC0013C3B8 /* ConverterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54003D6927A3A53D00723263 /* ConverterView.swift in Sources */,
+				54C8D64C27F6C7FC0013C3B8 /* ConverterViewModel.swift in Sources */,
 				544C773127ACE41A00BD46BB /* LengthData.swift in Sources */,
 				54C8D64A27F6C4250013C3B8 /* NumberObserver.swift in Sources */,
 				543C456E27B4E3CB00B8C024 /* WeightConversions.swift in Sources */,
