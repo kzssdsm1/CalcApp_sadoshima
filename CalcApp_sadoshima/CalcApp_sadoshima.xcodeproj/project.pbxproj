@@ -32,6 +32,7 @@
 		54B7803427ECD43D0082E54E /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B7803327ECD43C0082E54E /* TestView.swift */; };
 		54BC202427B0EBC700E9118D /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202327B0EBC700E9118D /* WeightData.swift */; };
 		54BC202627B0F38000E9118D /* AreaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202527B0F38000E9118D /* AreaData.swift */; };
+		54C8D64A27F6C4250013C3B8 /* NumberObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C8D64927F6C4250013C3B8 /* NumberObserver.swift */; };
 		54E61E792795DF7200D52187 /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E61E782795DF7200D52187 /* Decimal+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		54B7803327ECD43C0082E54E /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		54BC202327B0EBC700E9118D /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
 		54BC202527B0F38000E9118D /* AreaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaData.swift; sourceTree = "<group>"; };
+		54C8D64927F6C4250013C3B8 /* NumberObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberObserver.swift; sourceTree = "<group>"; };
 		54E61E782795DF7200D52187 /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,7 @@
 		543AC32F27048BB0008BFCB0 /* CalcApp_sadoshima */ = {
 			isa = PBXGroup;
 			children = (
+				54C8D64627F6B58A0013C3B8 /* Combine */,
 				548BA30327B616A200C3903D /* Component */,
 				5428CD50279A642C002216A7 /* Extensions */,
 				54B3486A276C44BF00145133 /* Model */,
@@ -171,6 +174,14 @@
 				543C456F27B4E3D600B8C024 /* AreaConversions.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		54C8D64627F6B58A0013C3B8 /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				54C8D64927F6C4250013C3B8 /* NumberObserver.swift */,
+			);
+			path = Combine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 			files = (
 				54003D6927A3A53D00723263 /* ConverterView.swift in Sources */,
 				544C773127ACE41A00BD46BB /* LengthData.swift in Sources */,
+				54C8D64A27F6C4250013C3B8 /* NumberObserver.swift in Sources */,
 				543C456E27B4E3CB00B8C024 /* WeightConversions.swift in Sources */,
 				54BC202427B0EBC700E9118D /* WeightData.swift in Sources */,
 				549A5F7627C6836D0056B96C /* DetailNumView.swift in Sources */,
