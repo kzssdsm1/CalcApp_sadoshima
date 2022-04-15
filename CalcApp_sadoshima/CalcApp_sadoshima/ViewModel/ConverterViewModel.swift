@@ -13,7 +13,7 @@ final class ConverterViewModel: ObservableObject {
     private var cancellables: [AnyCancellable] = []
     
     init() {
-        NumberObserver.shared.numberSubject
+        NumberObserver.shared.firstArgumentSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard let self = self else { return }
@@ -27,6 +27,6 @@ final class ConverterViewModel: ObservableObject {
         
         let multiplied = firstArgument.mul(secondArgument)
         
-        NumberObserver.shared.numberSubject.send(multiplied)
+        NumberObserver.shared.firstArgumentSubject.send(multiplied)
     }
 }
