@@ -15,4 +15,5 @@ final class NumberObserver {
     
     var firstArgumentSubject = PassthroughSubject<Decimal, Never>()
     var secondArgumentSubject = PassthroughSubject<Decimal, Never>()
+    var displayingNumberSubject = PassthroughSubject<String, Never>()
 }

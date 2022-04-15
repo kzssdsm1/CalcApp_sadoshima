@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ConverterView: View {
     @StateObject var viewModel: HomeViewModel
+    @StateObject private var viewModel2 = ConverterViewModel()
     
     @Binding var parentSelection: Category?
     
@@ -81,7 +82,7 @@ struct ConverterView: View {
                                     pushedButton = item.label
                                     viewModel.setPrevNum(selection!.unit)
                                     viewModel.displayUnit = item.unit
-                                    viewModel.convertUnit(item.value)
+                                    viewModel2.convertUnit(item.value) 
                                 }, label: {
                                     Text(item.label)
                                         .foregroundColor(pushedButton == item.label ? item.buttonColor : .offWhite)

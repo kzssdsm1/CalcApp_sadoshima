@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 final class HomeViewModel: ObservableObject {
     @Published var displayingNumber = "0"
@@ -49,10 +50,15 @@ final class HomeViewModel: ObservableObject {
     private var hiddenArgument: Decimal?
     
     private var hiddenOperator: Operator = .none
+    private var cancellables: [AnyCancellable] = []
     
     enum Selection {
         case Calculator
         case UnitConverter
+    }
+    
+    init() {
+        bind()
     }
     
     func insertNumber(_ insertText: String) {
@@ -64,7 +70,7 @@ final class HomeViewModel: ObservableObject {
         }
         
         input += insertText
-        displayingNumber = arrangeDispNum(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9)))
+        NumberObserver.shared.displayingNumberSubject.send(arrangeDispNum(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9))))
         
         if insertText == "0" && input.suffix(2) == ".0" {
             displayingNumber += ".0"
@@ -73,9 +79,11 @@ final class HomeViewModel: ObservableObject {
         setFontSize()
         
         if isCalculating != .none {
-            secondArgument = convertToDecimal(input)
+            NumberObserver.shared.secondArgumentSubject.send(convertToDecimal(input))
         } else {
-            firstArgument = convertToDecimal(input)
+            print("input is \(input)")
+            NumberObserver.shared.firstArgumentSubject.send(convertToDecimal(input))
+            print(firstArgument ?? "No fir")
         }
     }
     
@@ -409,17 +417,17 @@ final class HomeViewModel: ObservableObject {
             }
         }
         
-//        var result: String {
-//            if isMinus {
-//                return "-\(rounded2)e\(rounded)"
-//            } else {
-//                if isRoundedMinus {
-//                    return "\(rounded2)e-\(rounded)"
-//                } else {
-//                    return "\(rounded2)e\(rounded)"
-//                }
-//            }
-//        }
+        //        var result: String {
+        //            if isMinus {
+        //                return "-\(rounded2)e\(rounded)"
+        //            } else {
+        //                if isRoundedMinus {
+        //                    return "\(rounded2)e-\(rounded)"
+        //                } else {
+        //                    return "\(rounded2)e\(rounded)"
+        //                }
+        //            }
+        //        }
         
         if rounded.stringValue.contains("NaN") || rounded2.stringValue.contains("NaN") {
             result = "Underflow"
@@ -428,5 +436,34 @@ final class HomeViewModel: ObservableObject {
         print(result)
         
         return result
+    }
+    
+    private func bind() {
+        let firstArgumentSubscriber = NumberObserver.shared.firstArgumentSubject
+            //.receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.firstArgument = value
+            }
+        
+        let secondArgumentSubscriber = NumberObserver.shared.secondArgumentSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.secondArgument = value
+            }
+        
+        let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.displayingNumber = value
+            }
+        
+        cancellables += [
+            firstArgumentSubscriber,
+            secondArgumentSubscriber,
+            displayingNumberSubscriber
+        ]
     }
 }

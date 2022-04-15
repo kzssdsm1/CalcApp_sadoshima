@@ -14,19 +14,29 @@ final class ConverterViewModel: ObservableObject {
     
     init() {
         NumberObserver.shared.firstArgumentSubject
-            .receive(on: DispatchQueue.main)
+            //.receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard let self = self else { return }
                 self.firstArgument = value
             }
             .store(in: &cancellables)
+        
+        print(firstArgument ?? "No Data")
     }
     
-    func convertUnit(_ secondArgument: Decimal) {
+    func convertUnit(_ strValue: String) {
         guard let firstArgument = firstArgument else { return }
         
+        let secondArgument = convertToDecimal(strValue)
         let multiplied = firstArgument.mul(secondArgument)
+        let displayString = String("\(multiplied)")
         
         NumberObserver.shared.firstArgumentSubject.send(multiplied)
+        NumberObserver.shared.displayingNumberSubject.send(displayString)
+        NumberObserver.shared.secondArgumentSubject.send(secondArgument)
+    }
+    
+    private func convertToDecimal(_ strValue: String) -> Decimal {
+        return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
 }
