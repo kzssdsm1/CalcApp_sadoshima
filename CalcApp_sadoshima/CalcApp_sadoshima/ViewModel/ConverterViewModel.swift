@@ -29,10 +29,9 @@ final class ConverterViewModel: ObservableObject {
         
         let secondArgument = convertToDecimal(strValue)
         let multiplied = firstArgument.mul(secondArgument)
-        let displayString = String("\(multiplied)")
         
         NumberObserver.shared.firstArgumentSubject.send(multiplied)
-        NumberObserver.shared.displayingNumberSubject.send(displayString)
+        NumberObserver.shared.calculatedNumberSubject.send(multiplied)
         NumberObserver.shared.secondArgumentSubject.send(secondArgument)
     }
     

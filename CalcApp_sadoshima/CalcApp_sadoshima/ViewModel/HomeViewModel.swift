@@ -453,6 +453,12 @@ final class HomeViewModel: ObservableObject {
                 self.secondArgument = value
             }
         
+        let calculatedNumberSubscriber = NumberObserver.shared.calculatedNumberSubject
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                NumberObserver.shared.displayingNumberSubject.send(self.convertToString(value))
+            }
+        
         let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
@@ -463,6 +469,7 @@ final class HomeViewModel: ObservableObject {
         cancellables += [
             firstArgumentSubscriber,
             secondArgumentSubscriber,
+            calculatedNumberSubscriber,
             displayingNumberSubscriber
         ]
     }
