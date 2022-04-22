@@ -14,14 +14,11 @@ final class ConverterViewModel: ObservableObject {
     
     init() {
         NumberObserver.shared.firstArgumentSubject
-            //.receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard let self = self else { return }
                 self.firstArgument = value
             }
             .store(in: &cancellables)
-        
-        print(firstArgument ?? "No Data")
     }
     
     func convertUnit(_ strValue: String) {

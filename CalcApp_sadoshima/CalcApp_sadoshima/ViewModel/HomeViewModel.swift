@@ -81,9 +81,7 @@ final class HomeViewModel: ObservableObject {
         if isCalculating != .none {
             NumberObserver.shared.secondArgumentSubject.send(convertToDecimal(input))
         } else {
-            print("input is \(input)")
             NumberObserver.shared.firstArgumentSubject.send(convertToDecimal(input))
-            print(firstArgument ?? "No fir")
         }
     }
     
@@ -173,7 +171,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNumber = convertToString(firstArgument!)
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
         setFontSize()
     }
     
@@ -194,7 +192,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNumber = convertToString(firstArgument!)
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
         setFontSize()
     }
     
@@ -216,7 +214,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNumber = convertToString(firstArgument!)
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
         setFontSize()
     }
     
@@ -237,7 +235,7 @@ final class HomeViewModel: ObservableObject {
         hiddenArgument = secondArgument
         hiddenOperator = isCalculating
         
-        displayingNumber = convertToString(firstArgument!)
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
         setFontSize()
     }
     
@@ -281,6 +279,10 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    private func convertToDecimal(_ strValue: String) -> Decimal {
+        return Decimal(string: strValue, locale: Locale.current) ?? 0
+    }
+    
     private func setPrevNumFontSize() {
         if previousNumber.count > 5 {
             prevNumFontSize = dispSize * 0.2 - CGFloat((previousNumber.count - 5)) * (dispSize * 0.012)
@@ -311,21 +313,6 @@ final class HomeViewModel: ObservableObject {
         setFontSize()
     }
     
-    private func convertToString(_ displayNumber: Decimal) -> String {
-        print("num is \(displayNumber)")
-        if displayNumber > 999999999.999997 || displayNumber < 0.000000001 {
-            return calcExp(displayNumber)
-        } else if displayNumber.isNaN {
-            return "Error"
-        } else {
-            return arrangeDispNum("\(displayNumber)")
-        }
-    }
-    
-    private func convertToDecimal(_ strValue: String) -> Decimal {
-        return Decimal(string: strValue, locale: Locale.current) ?? 0
-    }
-    
     private func arrangeDispNum(_ strValue: String) -> String {
         let behavior = NSDecimalNumberHandler(
             roundingMode: NSDecimalNumber.RoundingMode.plain,
@@ -340,107 +327,14 @@ final class HomeViewModel: ObservableObject {
         let num = convertToDecimal(rounded.stringValue)
         
         guard let formatter = numberFormatter.string(from: num as NSNumber) else {
-            print("Failed to arrange: \(strValue) and \(num)")
             return "0"
         }
         
         return formatter
     }
     
-    private func calcExp(_ number: Decimal) -> String {
-        let behavior1 = NSDecimalNumberHandler(
-            roundingMode: NSDecimalNumber.RoundingMode.down,
-            scale: 0,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: false
-        )
-        
-        var deci = number
-        
-        var isMinus = false
-        
-        if deci < 0 {
-            isMinus = true
-            deci *= Decimal(string: "-1")!
-        }
-        
-        let e = Decimal(string: "10")!
-        let log = deci.log(base: e)
-        
-        print("log is: \(log)")
-        var rounded = NSDecimalNumber(decimal: log).rounding(accordingToBehavior: behavior1)
-        print(rounded)
-        
-        var isRoundedMinus = false
-        
-        if rounded.intValue < 0 {
-            isRoundedMinus = true
-            var test = Decimal(string: rounded.stringValue)!
-            test *= Decimal(string: "-1")!
-            rounded = NSDecimalNumber(string: "\(test)")
-            print(rounded)
-        }
-        
-        let powed = pow(10, Int(truncating: rounded))
-        print(powed)
-        
-        var divided: Decimal?
-        
-        if !isRoundedMinus {
-            divided = deci / powed
-        } else {
-            divided = deci.mul(powed)
-        }
-        
-        let behavior2 = NSDecimalNumberHandler(
-            roundingMode: NSDecimalNumber.RoundingMode.plain,
-            scale: 5,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: false
-        )
-        
-        let rounded2 = NSDecimalNumber(decimal: divided!).rounding(accordingToBehavior: behavior2)
-        
-        var result = ""
-        
-        if isMinus {
-            result = "-\(rounded2)e\(rounded)"
-        } else {
-            if isRoundedMinus {
-                result = "\(rounded2)e-\(rounded)"
-            } else {
-                result = "\(rounded2)e\(rounded)"
-            }
-        }
-        
-        //        var result: String {
-        //            if isMinus {
-        //                return "-\(rounded2)e\(rounded)"
-        //            } else {
-        //                if isRoundedMinus {
-        //                    return "\(rounded2)e-\(rounded)"
-        //                } else {
-        //                    return "\(rounded2)e\(rounded)"
-        //                }
-        //            }
-        //        }
-        
-        if rounded.stringValue.contains("NaN") || rounded2.stringValue.contains("NaN") {
-            result = "Underflow"
-        }
-        
-        print(result)
-        
-        return result
-    }
-    
     private func bind() {
         let firstArgumentSubscriber = NumberObserver.shared.firstArgumentSubject
-            //.receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard let self = self else { return }
                 self.firstArgument = value
@@ -454,23 +348,14 @@ final class HomeViewModel: ObservableObject {
             }
         
         let calculatedNumberSubscriber = NumberObserver.shared.calculatedNumberSubject
-            .sink { [weak self] value in
-                guard let self = self else { return }
-                NumberObserver.shared.displayingNumberSubject.send(self.convertToString(value))
-            }
-        
-        let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] value in
-                guard let self = self else { return }
-                self.displayingNumber = value
+            .sink { value in
+                NumberObserver.shared.displayingNumberSubject.send(value)
             }
         
         cancellables += [
             firstArgumentSubscriber,
             secondArgumentSubscriber,
-            calculatedNumberSubscriber,
-            displayingNumberSubscriber
+            calculatedNumberSubscriber
         ]
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NumberDisplayView: View {
+    @Binding var isShowingPreviousNumber: Bool
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }

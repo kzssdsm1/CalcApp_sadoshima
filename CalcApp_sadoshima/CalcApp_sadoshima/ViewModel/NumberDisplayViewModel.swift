@@ -10,6 +10,8 @@ import Combine
 
 final class NumberDisplayViewModel: ObservableObject {
     @Published var displayingNumber = ""
+    @Published var detailNumber = ""
+    @Published var previousNumber = ""
     
     private var cancellables: [AnyCancellable] = []
     
@@ -29,12 +31,33 @@ final class NumberDisplayViewModel: ObservableObject {
     }()
     
     init() {
-        NumberObserver.shared.displayingNumberSubject
+        bind()
+    }
+    
+    private func bind() {
+        let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
-                self.displayingNumber = value
+                self.displayingNumber = self.convertToString(value)
             }
-            .store(in: &cancellables)
+        
+        let previousNumberSubscriber = NumberObserver.shared.previousNumberSubject
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.previousNumber = value
+            }
+        
+        let firstArgumentSubscriber = NumberObserver.shared.firstArgumentSubject
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.detailNumber = "\(value)"
+            }
+        
+        cancellables += [
+            displayingNumberSubscriber,
+            previousNumberSubscriber,
+            firstArgumentSubscriber
+        ]
     }
     
     private func convertToString(_ displayNumber: Decimal) -> String {
