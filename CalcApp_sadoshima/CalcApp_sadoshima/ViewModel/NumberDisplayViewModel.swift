@@ -38,7 +38,7 @@ final class NumberDisplayViewModel: ObservableObject {
         let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
-                self.displayingNumber = self.convertToString(value)
+                self.displayingNumber = self.arrangeDisplayNumber(value)
             }
         
         let previousNumberSubscriber = NumberObserver.shared.previousNumberSubject
@@ -60,13 +60,15 @@ final class NumberDisplayViewModel: ObservableObject {
         ]
     }
     
-    private func convertToString(_ displayNumber: Decimal) -> String {
-        if displayNumber > 999999999.999997 || displayNumber < 0.000000001 {
-            return calcExp(displayNumber)
-        } else if displayNumber.isNaN {
+    private func arrangeDisplayNumber(_ displayNumber: String) -> String {
+        let num = (displayNumber as NSString).doubleValue
+        
+        if num > 999999999.999997 || num < 0.000000001 {
+            return calcExp(convertToDecimal(displayNumber))
+        } else if displayNumber == "NaN" {
             return "Error"
         } else {
-            return arrangeDispNum("\(displayNumber)")
+            return roundNumber("\(displayNumber)")
         }
     }
     
@@ -74,7 +76,7 @@ final class NumberDisplayViewModel: ObservableObject {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
     
-    private func arrangeDispNum(_ strValue: String) -> String {
+    private func roundNumber(_ strValue: String) -> String {
         let behavior = NSDecimalNumberHandler(
             roundingMode: NSDecimalNumber.RoundingMode.plain,
             scale: 9,

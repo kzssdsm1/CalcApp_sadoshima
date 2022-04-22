@@ -70,10 +70,10 @@ final class HomeViewModel: ObservableObject {
         }
         
         input += insertText
-        NumberObserver.shared.displayingNumberSubject.send(arrangeDispNum(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9))))
+        NumberObserver.shared.displayingNumberSubject.send(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9)))
         
         if insertText == "0" && input.suffix(2) == ".0" {
-            displayingNumber += ".0"
+            NumberObserver.shared.displayingNumberSubject.send(input)
         }
         
         setFontSize()
@@ -269,7 +269,7 @@ final class HomeViewModel: ObservableObject {
         changeNum *= -1
         
         input = convertToString(changeNum)
-        displayingNumber = input
+        NumberObserver.shared.displayingNumberSubject.send(input)
         setFontSize()
         
         if isCalculating != .none {
@@ -279,8 +279,36 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    private func convertToString(_ displayNumber: Decimal) -> String {
+        if displayNumber.isNaN {
+            return "Error"
+        } else {
+            return arrangeDispNum("\(displayNumber)")
+        }
+    }
+    
     private func convertToDecimal(_ strValue: String) -> Decimal {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
+    }
+    
+    private func arrangeDispNum(_ strValue: String) -> String {
+        let behavior = NSDecimalNumberHandler(
+            roundingMode: NSDecimalNumber.RoundingMode.plain,
+            scale: 9,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: false
+        )
+        
+        let rounded = NSDecimalNumber(string: strValue).rounding(accordingToBehavior: behavior)
+        let num = convertToDecimal(rounded.stringValue)
+        
+        guard let formatter = numberFormatter.string(from: num as NSNumber) else {
+            return "0"
+        }
+        
+        return formatter
     }
     
     private func setPrevNumFontSize() {
@@ -313,26 +341,6 @@ final class HomeViewModel: ObservableObject {
         setFontSize()
     }
     
-    private func arrangeDispNum(_ strValue: String) -> String {
-        let behavior = NSDecimalNumberHandler(
-            roundingMode: NSDecimalNumber.RoundingMode.plain,
-            scale: 9,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: false
-        )
-        
-        let rounded = NSDecimalNumber(string: strValue).rounding(accordingToBehavior: behavior)
-        let num = convertToDecimal(rounded.stringValue)
-        
-        guard let formatter = numberFormatter.string(from: num as NSNumber) else {
-            return "0"
-        }
-        
-        return formatter
-    }
-    
     private func bind() {
         let firstArgumentSubscriber = NumberObserver.shared.firstArgumentSubject
             .sink { [weak self] value in
@@ -348,8 +356,9 @@ final class HomeViewModel: ObservableObject {
             }
         
         let calculatedNumberSubscriber = NumberObserver.shared.calculatedNumberSubject
-            .sink { value in
-                NumberObserver.shared.displayingNumberSubject.send(value)
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                NumberObserver.shared.displayingNumberSubject.send(self.convertToString(value))
             }
         
         cancellables += [
