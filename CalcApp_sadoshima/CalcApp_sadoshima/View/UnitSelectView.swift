@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UnitSelectView: View {
-    @StateObject var viewModel: HomeViewModel
+    @Binding var displayingUnit: String
     
     @State private var selection: Category?
     
@@ -25,7 +25,7 @@ struct UnitSelectView: View {
         GeometryReader { proxy in
             ZStack {
                 if let item = selection {
-                    ConverterView(viewModel: viewModel, parentSelection: $selection, category: item)
+                    ConverterView(parentSelection: $selection, displayingUnit: $displayingUnit, category: item)
                         .transition(AnyTransition.opacity.combined(with: .slide))
                 }
                 

@@ -9,8 +9,7 @@ import Foundation
 import Combine
 
 final class NumberDisplayViewModel: ObservableObject {
-    @Published var displayingNumber = ""
-    @Published var detailNumber = ""
+    @Published var displayingNumber = "0"
     @Published var previousNumber = ""
     
     private var cancellables: [AnyCancellable] = []
@@ -47,23 +46,16 @@ final class NumberDisplayViewModel: ObservableObject {
                 self.previousNumber = value
             }
         
-        let firstArgumentSubscriber = NumberObserver.shared.firstArgumentSubject
-            .sink { [weak self] value in
-                guard let self = self else { return }
-                self.detailNumber = "\(value)"
-            }
-        
         cancellables += [
             displayingNumberSubscriber,
-            previousNumberSubscriber,
-            firstArgumentSubscriber
+            previousNumberSubscriber
         ]
     }
     
     private func arrangeDisplayNumber(_ displayNumber: String) -> String {
         let num = (displayNumber as NSString).doubleValue
         
-        if num > 999999999.999997 || num < 0.000000001 {
+        if num > 999999999.999997 || num < 0.000000001 && num != 0.0 {
             return calcExp(convertToDecimal(displayNumber))
         } else if displayNumber == "NaN" {
             return "Error"

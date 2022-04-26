@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ConverterView: View {
-    @StateObject var viewModel: HomeViewModel
-    @StateObject private var viewModel2 = ConverterViewModel()
+    @StateObject private var viewModel = ConverterViewModel()
     
     @Binding var parentSelection: Category?
+    @Binding var displayingUnit: String
     
     @State private var pushedButton = ""
     @State private var selection: Unit?
@@ -80,9 +80,8 @@ struct ConverterView: View {
                             ForEach(items.conversions) { item in
                                 Button(action: {
                                     pushedButton = item.label
-                                    viewModel.setPrevNum(selection!.unit)
-                                    viewModel.displayUnit = item.unit
-                                    viewModel2.convertUnit(item.value) 
+                                    displayingUnit = item.unit
+                                    viewModel.convertUnit(item.value) 
                                 }, label: {
                                     Text(item.label)
                                         .foregroundColor(pushedButton == item.label ? item.buttonColor : .offWhite)

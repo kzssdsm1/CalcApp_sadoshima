@@ -114,13 +114,11 @@ final class HomeViewModel: ObservableObject {
         
         if input.isEmpty {
             input = "0."
-            displayingNumber = input
+            NumberObserver.shared.displayingNumberSubject.send(input)
         } else {
             input += "."
-            displayingNumber = input
+            NumberObserver.shared.displayingNumberSubject.send(input)
         }
-        
-        setFontSize()
     }
     
     func convertUnit(_ displayNumber: String) {

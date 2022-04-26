@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomTabBar: View {
-    @StateObject var viewModel: HomeViewModel
+    @Binding var selection: Selection
     
     private let screenHeight = CGFloat(UIScreen.main.bounds.height)
     
@@ -34,13 +34,10 @@ struct CustomTabBar: View {
             } // VStack
             .onTapGesture {
                 withAnimation(.linear(duration: 0.2)) {
-                    viewModel.selection = .Calculator
-                    viewModel.displayUnit = ""
-                    viewModel.setFontSize()
-                    viewModel.isShowingPrevNum = false
+                    selection = .Calculator
                 } // withAnimation
             }
-            .opacity(viewModel.selection == .Calculator ? 1 : 0.7)
+            .opacity(selection == .Calculator ? 1 : 0.7)
             
             Spacer(minLength: 0)
             
@@ -62,12 +59,10 @@ struct CustomTabBar: View {
             } // VStack
             .onTapGesture {
                 withAnimation(.linear(duration: 0.2)) {
-                    viewModel.selection = .UnitConverter
-                    viewModel.displayUnit = ""
-                    viewModel.isShowingPrevNum = true
+                    selection = .UnitConverter
                 } // withAnimation
             }
-            .opacity(viewModel.selection == .UnitConverter ? 1 : 0.7)
+            .opacity(selection == .UnitConverter ? 1 : 0.7)
             
             Spacer(minLength: 0)
         } // HStack
