@@ -32,6 +32,8 @@
 		548BA30927B6278400C3903D /* UnitSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548BA30827B6278400C3903D /* UnitSelectView.swift */; };
 		549A5F7627C6836D0056B96C /* DetailNumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549A5F7527C6836D0056B96C /* DetailNumView.swift */; };
 		54A54D752817BCAD009C5FB6 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A54D742817BCAD009C5FB6 /* Selection.swift */; };
+		54A5C9C62819097100AB7EFB /* NumberKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A5C9C52819097100AB7EFB /* NumberKeyboardView.swift */; };
+		54A5C9C82819098B00AB7EFB /* NumberKeyboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A5C9C72819098B00AB7EFB /* NumberKeyboardViewModel.swift */; };
 		54B7803427ECD43D0082E54E /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B7803327ECD43C0082E54E /* TestView.swift */; };
 		54BC202427B0EBC700E9118D /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202327B0EBC700E9118D /* WeightData.swift */; };
 		54BC202627B0F38000E9118D /* AreaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BC202527B0F38000E9118D /* AreaData.swift */; };
@@ -67,6 +69,8 @@
 		548BA30827B6278400C3903D /* UnitSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitSelectView.swift; sourceTree = "<group>"; };
 		549A5F7527C6836D0056B96C /* DetailNumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNumView.swift; sourceTree = "<group>"; };
 		54A54D742817BCAD009C5FB6 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		54A5C9C52819097100AB7EFB /* NumberKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardView.swift; sourceTree = "<group>"; };
+		54A5C9C72819098B00AB7EFB /* NumberKeyboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardViewModel.swift; sourceTree = "<group>"; };
 		54B7803327ECD43C0082E54E /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		54BC202327B0EBC700E9118D /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
 		54BC202527B0F38000E9118D /* AreaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaData.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				548BA30827B6278400C3903D /* UnitSelectView.swift */,
 				549A5F7527C6836D0056B96C /* DetailNumView.swift */,
 				547F156A280933040038BEC8 /* NumberDisplayView.swift */,
+				54A5C9C52819097100AB7EFB /* NumberKeyboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				5428CD57279A6D21002216A7 /* HomeViewModel.swift */,
 				54C8D64B27F6C7FC0013C3B8 /* ConverterViewModel.swift */,
 				547F156E280933360038BEC8 /* NumberDisplayViewModel.swift */,
+				54A5C9C72819098B00AB7EFB /* NumberKeyboardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -270,6 +276,7 @@
 				54C8D64C27F6C7FC0013C3B8 /* ConverterViewModel.swift in Sources */,
 				544C773127ACE41A00BD46BB /* LengthData.swift in Sources */,
 				54C8D64A27F6C4250013C3B8 /* NumberObserver.swift in Sources */,
+				54A5C9C62819097100AB7EFB /* NumberKeyboardView.swift in Sources */,
 				543C456E27B4E3CB00B8C024 /* WeightConversions.swift in Sources */,
 				547F156F280933360038BEC8 /* NumberDisplayViewModel.swift in Sources */,
 				547F156B280933040038BEC8 /* NumberDisplayView.swift in Sources */,
@@ -292,6 +299,7 @@
 				548BA30727B61E0000C3903D /* CustomButtonStyle.swift in Sources */,
 				54003D6327A39F1600723263 /* Category.swift in Sources */,
 				5428CD56279A6D09002216A7 /* CalcKeyboardView.swift in Sources */,
+				54A5C9C82819098B00AB7EFB /* NumberKeyboardViewModel.swift in Sources */,
 				543C456C27B4E3BD00B8C024 /* LengthConversions.swift in Sources */,
 				548BA30927B6278400C3903D /* UnitSelectView.swift in Sources */,
 				5428CD52279A6444002216A7 /* Color+Extension.swift in Sources */,
