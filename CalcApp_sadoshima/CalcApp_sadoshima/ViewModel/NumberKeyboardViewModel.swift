@@ -12,7 +12,6 @@ final class NumberKeyboardViewModel: ObservableObject {
     private var input = ""
     private var firstArgument: Decimal? {
         didSet {
-            guard let firstArgument = firstArgument else { return }
             guard firstArgument != oldValue else { return }
             
             NumberObserver.shared.firstArgumentSubject.send(firstArgument)
@@ -20,7 +19,6 @@ final class NumberKeyboardViewModel: ObservableObject {
     }
     private var secondArgument: Decimal? {
         didSet {
-            guard let secondArgument = secondArgument else { return }
             guard secondArgument != oldValue else { return }
             
             NumberObserver.shared.firstArgumentSubject.send(secondArgument)
