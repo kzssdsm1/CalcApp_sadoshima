@@ -10,12 +10,50 @@ import Combine
 
 final class NumberKeyboardViewModel: ObservableObject {
     private var input = ""
+    private var firstArgument: Decimal? {
+        didSet {
+            guard let firstArgument = firstArgument else { return }
+            guard firstArgument != oldValue else { return }
+            
+            NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+        }
+    }
+    private var secondArgument: Decimal? {
+        didSet {
+            guard let secondArgument = secondArgument else { return }
+            guard secondArgument != oldValue else { return }
+            
+            NumberObserver.shared.firstArgumentSubject.send(secondArgument)
+        }
+    }
+    private var cancellables: [AnyCancellable] = []
     
     init() {
         bind()
     }
     
     private func bind() {
+        let firstArgumentSubscriber = NumberObserver.shared.firstArgumentSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.firstArgument = value
+            }
+        
+        let secondArgumentSubscriber = NumberObserver.shared.secondArgumentSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.secondArgument = value
+            }
+        
+        cancellables += [
+            firstArgumentSubscriber,
+            secondArgumentSubscriber
+        ]
+    }
+    
+    func insertNumber(_ insertNumber: String) {
         
     }
     
