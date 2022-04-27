@@ -51,8 +51,17 @@ final class NumberKeyboardViewModel: ObservableObject {
         ]
     }
     
+    private func convertToDecimal(_ strValue: String) -> Decimal {
+        return Decimal(string: strValue, locale: Locale.current) ?? 0
+    }
+    
     func insertNumber(_ insertNumber: String) {
+        guard !input.contains(".") && input.count >= 9,
+              input.contains(".") && input.count >= 10 else { return }
         
+        input += insertNumber
+        
+        NumberObserver.shared.displayingNumberSubject.send(input)
     }
     
     func insertDecimalPoint() {
