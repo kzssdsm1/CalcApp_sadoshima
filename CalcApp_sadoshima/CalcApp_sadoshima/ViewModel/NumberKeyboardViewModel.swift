@@ -24,6 +24,9 @@ final class NumberKeyboardViewModel: ObservableObject {
             NumberObserver.shared.firstArgumentSubject.send(secondArgument)
         }
     }
+    private var operationsInProgress: Operator = .none
+    private var previousArgument: Decimal?
+    private var previousOperation: Operator = .none
     private var cancellables: [AnyCancellable] = []
     
     init() {
@@ -51,6 +54,81 @@ final class NumberKeyboardViewModel: ObservableObject {
         ]
     }
     
+    // 加算
+    private func addition() {
+        input = ""
+        operationsInProgress = .addition
+        
+        guard let secondArgument = secondArgument else { return }
+        
+        firstArgument! += secondArgument
+        previousArgument = secondArgument
+        previousOperation = operationsInProgress
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
+    }
+    
+    // 減算
+    private func subtraction() {
+        input = ""
+        operationsInProgress = .subtraction
+        
+        guard let secondArgument = secondArgument else { return }
+        
+        firstArgument! -= secondArgument
+        previousArgument = secondArgument
+        previousOperation = operationsInProgress
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
+    }
+    
+    // 乗算
+    private func multiply() {
+        input = ""
+        operationsInProgress = .multiply
+        
+        guard let secondArgument = secondArgument else { return }
+        
+        let multiplaied = firstArgument!.mul(secondArgument)
+        
+        firstArgument = multiplaied
+        previousArgument = secondArgument
+        previousOperation = operationsInProgress
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
+    }
+    
+    // 除算
+    private func divide() {
+        input = ""
+        operationsInProgress = .multiply
+        
+        guard let secondArgument = secondArgument else { return }
+        
+        firstArgument! /= secondArgument
+        previousArgument = secondArgument
+        previousOperation = operationsInProgress
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
+    }
+    
+    // 符号反転
+    private func changeSign() {
+        guard !input.isEmpty else { return }
+        
+        let number = convertToDecimal(input)
+        
+        input = "\(number)"
+        
+        NumberObserver.shared.displayingNumberSubject.send(input)
+        
+        if operationsInProgress != .none {
+            secondArgument = number
+        } else {
+            firstArgument = number
+        }
+    }
+    
     private func convertToDecimal(_ strValue: String) -> Decimal {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
@@ -62,6 +140,12 @@ final class NumberKeyboardViewModel: ObservableObject {
         input += insertNumber
         
         NumberObserver.shared.displayingNumberSubject.send(input)
+        
+        if operationsInProgress != .none {
+            secondArgument = convertToDecimal(input)
+        } else {
+            firstArgument = convertToDecimal(input)
+        }
     }
     
     func insertDecimalPoint() {
