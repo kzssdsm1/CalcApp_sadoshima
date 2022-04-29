@@ -9,7 +9,9 @@ import Foundation
 import Combine
 
 final class NumberKeyboardViewModel: ObservableObject {
+    // 入力された数値を保持しておく変数
     private var input = ""
+    // 第一引数
     private var firstArgument: Decimal? {
         didSet {
             guard firstArgument != oldValue else { return }
@@ -17,6 +19,7 @@ final class NumberKeyboardViewModel: ObservableObject {
             NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         }
     }
+    // 第二引数
     private var secondArgument: Decimal? {
         didSet {
             guard secondArgument != oldValue else { return }
@@ -24,8 +27,11 @@ final class NumberKeyboardViewModel: ObservableObject {
             NumberObserver.shared.firstArgumentSubject.send(secondArgument)
         }
     }
+    // 進行中の演算
     private var operationsInProgress: Operator = .none
+    // 前回使用した第二引数
     private var previousArgument: Decimal?
+    // 前回行った演算
     private var previousOperation: Operator = .none
     private var cancellables: [AnyCancellable] = []
     
@@ -129,10 +135,12 @@ final class NumberKeyboardViewModel: ObservableObject {
         }
     }
     
+    // String型からDecimal型へ変換する関数
     private func convertToDecimal(_ strValue: String) -> Decimal {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
     
+    // 数値の入力を行うメソッド
     func insertNumber(_ insertNumber: String) {
         guard !input.contains(".") && input.count >= 9,
               input.contains(".") && input.count >= 10 else { return }
@@ -148,6 +156,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         }
     }
     
+    // 小数点を挿入するメソッド
     func insertDecimalPoint() {
         guard !input.contains(".") || input.count < 9 else { return }
         
