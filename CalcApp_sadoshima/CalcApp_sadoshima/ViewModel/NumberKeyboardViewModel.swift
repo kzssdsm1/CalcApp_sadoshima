@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 final class NumberKeyboardViewModel: ObservableObject {
+    @Published var canShowDetailNumber = false
+    
     // 入力された数値を保持しておく変数
     private var input = ""
     // 第一引数
@@ -54,9 +56,17 @@ final class NumberKeyboardViewModel: ObservableObject {
                 self.secondArgument = value
             }
         
+        let showDetailNumberAuthoritySubscriber = NumberObserver.shared.canShowDetailNumber
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.canShowDetailNumber = value
+            }
+        
         cancellables += [
             firstArgumentSubscriber,
-            secondArgumentSubscriber
+            secondArgumentSubscriber,
+            showDetailNumberAuthoritySubscriber
         ]
     }
     

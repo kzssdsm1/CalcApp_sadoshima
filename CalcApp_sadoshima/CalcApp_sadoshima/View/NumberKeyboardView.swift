@@ -9,17 +9,12 @@ import SwiftUI
 
 struct NumberKeyboardView: View {
     @StateObject private var viewModel = NumberKeyboardViewModel()
-    @State private var deci: Decimal?
+    
+    private let numbers = [["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"]]
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onAppear {
-                deci = convertToDecimal("0.")
-                print(deci ?? "no deci")
-            }
-    }
-    
-    private func convertToDecimal(_ strValue: String) -> Decimal {
-        return Decimal(string: strValue, locale: Locale.current) ?? 0
-    }
+        VStack(spacing: 0) {
+            
+        } // VStack
+    } // body
 }

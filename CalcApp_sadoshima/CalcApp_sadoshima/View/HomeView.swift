@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var isShowingNotification = false
     @State private var isShowingSheet = false
     @State private var displayingUnit = ""
+    @State private var detailNumberItem: Decimal?
     @State private var selection: Selection = .Calculator {
         didSet {
             displayingUnit = ""

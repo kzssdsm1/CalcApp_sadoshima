@@ -16,6 +16,7 @@ enum Operator: CaseIterable {
     case subtraction
     case addition
     case equal
+    case detail
     case none
     
     func buttonText(_ isAC: Bool) -> String {
@@ -40,6 +41,8 @@ enum Operator: CaseIterable {
             } else {
                 return "C"
             }
+        case .detail:
+            return "magnifyingglass"
         case .none:
             return ""
         }
