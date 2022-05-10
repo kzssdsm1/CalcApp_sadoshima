@@ -127,6 +127,40 @@ final class NumberKeyboardViewModel: ObservableObject {
         }
     }
     
+    // 等号
+    private func equal() {
+        if operationsInProgress == .addition {
+            addition()
+        } else if operationsInProgress == .subtraction {
+            subtraction()
+        } else if operationsInProgress == .multiply {
+            multiply()
+        } else if operationsInProgress == .divide {
+            divide()
+        } else if operationsInProgress == .none && previousOperation != .none {
+            guard let num = previousArgument else { return }
+            
+            operationsInProgress = previousOperation
+            secondArgument = num
+            
+            equal()
+        }
+        
+        operationsInProgress = .none
+        secondArgument = nil
+    }
+    
+    // 情報のクリア
+    private func clearText() {
+        NumberObserver.shared.displayingNumberSubject.send("0")
+        input = ""
+        operationsInProgress = .none
+        previousOperation = .none
+        firstArgument = nil
+        secondArgument = nil
+        previousArgument = nil
+    }
+    
     // String型からDecimal型へ変換する関数
     private func convertToDecimal(_ strValue: String) -> Decimal {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
