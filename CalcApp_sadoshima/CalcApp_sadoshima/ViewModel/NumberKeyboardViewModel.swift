@@ -70,8 +70,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         firstArgument! += secondArgument
         previousArgument = secondArgument
         previousOperation = operationsInProgress
-        
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
     }
     
     // 減算
@@ -84,8 +82,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         firstArgument! -= secondArgument
         previousArgument = secondArgument
         previousOperation = operationsInProgress
-        
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
     }
     
     // 乗算
@@ -100,8 +96,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         firstArgument = multiplaied
         previousArgument = secondArgument
         previousOperation = operationsInProgress
-        
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
     }
     
     // 除算
@@ -114,8 +108,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         firstArgument! /= secondArgument
         previousArgument = secondArgument
         previousOperation = operationsInProgress
-        
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument!)
     }
     
     // 符号反転
