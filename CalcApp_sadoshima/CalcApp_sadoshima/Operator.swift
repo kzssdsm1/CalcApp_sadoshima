@@ -42,7 +42,7 @@ enum Operator: CaseIterable {
                 return "C"
             }
         case .detail:
-            return "magnifyingglass"
+            return "showdetail"
         case .none:
             return ""
         }
