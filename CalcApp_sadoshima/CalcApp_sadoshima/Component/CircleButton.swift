@@ -16,7 +16,7 @@ struct CircleButton: View {
     
     var body: some View {
         GeometryReader { proxy in
-            if operationsInProgress == .detail {
+            if text == "showdetail" {
                 Circle()
                     .foregroundColor(canShowDetailNumber ? buttonColor : .gray)
                     .opacity(canShowDetailNumber ? 1 : 0.7)

@@ -8,6 +8,7 @@
 import Foundation
 
 enum Operator: CaseIterable {
+    case detail
     case allClear
     case plusMinus
     case percent
@@ -16,7 +17,6 @@ enum Operator: CaseIterable {
     case subtraction
     case addition
     case equal
-    case detail
     case none
     
     func buttonText(_ isAC: Bool) -> String {

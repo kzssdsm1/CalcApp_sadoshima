@@ -87,6 +87,8 @@ final class HomeViewModel: ObservableObject {
     
     func setOperator(_ paramOperator: Operator) {
         switch paramOperator {
+        case .detail:
+            return
         case .plusMinus:
             changeSign()
         case .allClear:

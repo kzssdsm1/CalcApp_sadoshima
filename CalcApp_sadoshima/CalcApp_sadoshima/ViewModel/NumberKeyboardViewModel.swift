@@ -10,17 +10,22 @@ import Combine
 
 final class NumberKeyboardViewModel: ObservableObject {
     @Published var canShowDetailNumber = false
+    // 進行中の演算
+    @Published var operationsInProgress: Operator = .none
     
-    // 入力された数値を保持しておく変数
-    private var input = ""
+    // 前回行った演算
+    var previousOperation: Operator = .none
     // 第一引数
-    private var firstArgument: Decimal? {
+    var firstArgument: Decimal? {
         didSet {
             guard firstArgument != oldValue else { return }
             
             NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         }
     }
+    
+    // 入力された数値を保持しておく変数
+    private var input = ""
     // 第二引数
     private var secondArgument: Decimal? {
         didSet {
@@ -29,12 +34,8 @@ final class NumberKeyboardViewModel: ObservableObject {
             NumberObserver.shared.firstArgumentSubject.send(secondArgument)
         }
     }
-    // 進行中の演算
-    private var operationsInProgress: Operator = .none
     // 前回使用した第二引数
     private var previousArgument: Decimal?
-    // 前回行った演算
-    private var previousOperation: Operator = .none
     private var cancellables: [AnyCancellable] = []
     
     init() {
