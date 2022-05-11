@@ -31,7 +31,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         didSet {
             guard secondArgument != oldValue else { return }
             
-            NumberObserver.shared.firstArgumentSubject.send(secondArgument)
+            NumberObserver.shared.secondArgumentSubject.send(secondArgument)
         }
     }
     // 前回使用した第二引数
@@ -79,6 +79,10 @@ final class NumberKeyboardViewModel: ObservableObject {
         guard let secondArgument = secondArgument else { return }
         
         firstArgument! += secondArgument
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+        NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
+        
         previousArgument = secondArgument
         previousOperation = operationsInProgress
     }
@@ -91,6 +95,10 @@ final class NumberKeyboardViewModel: ObservableObject {
         guard let secondArgument = secondArgument else { return }
         
         firstArgument! -= secondArgument
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+        NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
+        
         previousArgument = secondArgument
         previousOperation = operationsInProgress
     }
@@ -105,6 +113,10 @@ final class NumberKeyboardViewModel: ObservableObject {
         let multiplaied = firstArgument!.mul(secondArgument)
         
         firstArgument = multiplaied
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+        NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
+        
         previousArgument = secondArgument
         previousOperation = operationsInProgress
     }
@@ -112,11 +124,15 @@ final class NumberKeyboardViewModel: ObservableObject {
     // 除算
     private func divide() {
         input = ""
-        operationsInProgress = .multiply
+        operationsInProgress = .divide
         
         guard let secondArgument = secondArgument else { return }
         
         firstArgument! /= secondArgument
+        
+        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+        NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
+        
         previousArgument = secondArgument
         previousOperation = operationsInProgress
     }
@@ -164,6 +180,7 @@ final class NumberKeyboardViewModel: ObservableObject {
     // 情報のクリア
     private func clearText() {
         NumberObserver.shared.displayingNumberSubject.send("0")
+        canShowDetailNumber = false
         input = ""
         operationsInProgress = .none
         previousOperation = .none
@@ -177,10 +194,41 @@ final class NumberKeyboardViewModel: ObservableObject {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }
     
+    func setOperator(_ paramOperator: Operator) {
+        switch paramOperator {
+        case .detail:
+            return
+        case .plusMinus:
+            changeSign()
+        case .allClear:
+            clearText()
+        case .percent:
+            return
+            //convertUnit("0.01")
+        case .divide:
+            divide()
+        case .multiply:
+            multiply()
+        case .subtraction:
+            subtraction()
+        case .addition:
+            addition()
+        case .equal:
+            equal()
+        case .none:
+            // 何もしない
+            return
+        }
+    }
+    
     // 数値の入力を行うメソッド
     func insertNumber(_ insertNumber: String) {
-        guard !input.contains(".") && input.count >= 9,
-              input.contains(".") && input.count >= 10 else { return }
+        guard !input.contains(".") && input.count <= 9 else { return }
+//
+//        guard input.contains(".") && input.count <= 10 else { return }
+        
+//        guard !input.contains(".") && input.count < 10,
+//              input.contains(".") && input.count < 11 else { return }
         
         input += insertNumber
         

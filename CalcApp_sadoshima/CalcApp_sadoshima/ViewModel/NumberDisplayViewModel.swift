@@ -53,6 +53,8 @@ final class NumberDisplayViewModel: ObservableObject {
     }
     
     private func arrangeDisplayNumber(_ displayNumber: String) -> String {
+        NumberObserver.shared.canShowDetailNumber.send(false)
+        
         let num = (displayNumber as NSString).doubleValue
         
         if num > 999999999.999997 || num < 0.000000001 && num != 0.0 {
@@ -156,6 +158,10 @@ final class NumberDisplayViewModel: ObservableObject {
         
         if rounded.stringValue.contains("NaN") || rounded2.stringValue.contains("NaN") {
             result = "Error"
+        }
+        
+        if result != "Error" {
+            NumberObserver.shared.canShowDetailNumber.send(true)
         }
         
         return result

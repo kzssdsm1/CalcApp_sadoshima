@@ -9,12 +9,10 @@ import SwiftUI
 import MobileCoreServices
 
 struct HomeView: View {
-    @StateObject private var viewModel = HomeViewModel()
-    
     @State private var isShowingNotification = false
+    @State private var detailNumberItem = ""
     @State private var isShowingSheet = false
     @State private var displayingUnit = ""
-    @State private var detailNumberItem: Decimal?
     @State private var selection: Selection = .Calculator {
         didSet {
             displayingUnit = ""
@@ -36,7 +34,7 @@ struct HomeView: View {
                     )
                     
                     ZStack(alignment: .bottom) {
-                        TestView(viewModel: viewModel)
+                        NumberKeyboardView(detailNumberItem: $detailNumberItem, isShowingSheet: $isShowingSheet) 
                             .opacity(selection == .Calculator ? 1 : 0)
                             .offset(x: selection == .Calculator ? 0 : -500)
                         
@@ -50,7 +48,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 .background(Color.aozumi.edgesIgnoringSafeArea(.all))
                 .sheet(isPresented: $isShowingSheet) {
-                    DetailNumView(viewModel: viewModel)
+                    DetailNumView(detailNumberText: detailNumberItem)
                 }
                 
                 RoundedRectangle(cornerRadius: 12)

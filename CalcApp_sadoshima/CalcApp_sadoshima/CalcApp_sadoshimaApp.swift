@@ -12,7 +12,7 @@ struct CalcApp_sadoshimaApp: App {
     var body: some Scene {
         WindowGroup {
             //ContentView()
-            NumberKeyboardView()
+            HomeView()
         }
     }
 }

@@ -10,7 +10,8 @@ import SwiftUI
 struct NumberKeyboardView: View {
     @StateObject private var viewModel = NumberKeyboardViewModel()
     
-    //@Binding var detailNumberItem: Decimal?
+    @Binding var detailNumberItem: String
+    @Binding var isShowingSheet: Bool
     
     private let numbers = [["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"]]
     private let padding = CGFloat(UIScreen.main.bounds.width) * 0.01
@@ -24,9 +25,13 @@ struct NumberKeyboardView: View {
                             if item == .detail || item == .allClear || item == .percent {
                                 Button(action: {
                                     if item == .detail && viewModel.canShowDetailNumber {
-                                        //detailNumberItem = viewModel.firstArgument!
+                                        print("now \(viewModel.firstArgument ?? 0)")
+                                        detailNumberItem = "\(viewModel.firstArgument!)"
+                                        isShowingSheet = true
+                                        print("on \(detailNumberItem)")
+                                    } else {
+                                        viewModel.setOperator(item)
                                     }
-                                    //viewModel.setOperator(item)
                                 }, label: {
                                     CircleButton(
                                         operationsInProgress: $viewModel.operationsInProgress,
@@ -98,7 +103,7 @@ struct NumberKeyboardView: View {
                         
                         // 符号反転ボタン
                         Button(action: {
-                            
+                            viewModel.setOperator(Operator.plusMinus)
                         }, label: {
                             CircleButton(
                                 operationsInProgress: $viewModel.operationsInProgress,
@@ -120,7 +125,7 @@ struct NumberKeyboardView: View {
                             EmptyView()
                         } else {
                             Button(action: {
-                                //                                viewModel.setOperator(item)
+                                viewModel.setOperator(item)
                             }, label: {
                                 CircleButton(
                                     operationsInProgress: $viewModel.operationsInProgress,

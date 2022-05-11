@@ -9,7 +9,7 @@ import SwiftUI
 import MobileCoreServices
 
 struct DetailNumView: View {
-    @StateObject var viewModel: HomeViewModel
+    let detailNumberText: String
     
     @State private var isShowingNotification = false
     
@@ -18,11 +18,11 @@ struct DetailNumView: View {
             ZStack(alignment: .bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(NSDecimalNumber(decimal: viewModel.firstArgument!).stringValue)
+                        Text(detailNumberText)
                             .font(.system(size: proxy.size.width * 0.09, weight: .medium))
                             .foregroundColor(.offWhite)
                             .onTapGesture {
-                                UIPasteboard.general.setValue(NSDecimalNumber(decimal: viewModel.firstArgument!).stringValue, forPasteboardType: kUTTypePlainText as String)
+                                UIPasteboard.general.setValue(detailNumberText, forPasteboardType: kUTTypePlainText as String)
                                 isShowingNotification = true
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                                     withAnimation {
