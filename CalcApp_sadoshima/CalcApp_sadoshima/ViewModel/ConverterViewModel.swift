@@ -36,8 +36,8 @@ final class ConverterViewModel: ObservableObject {
         let multiplied = firstArgument.mul(secondArgument)
         
         self.firstArgument = multiplied
+        NumberObserver.shared.previousArgumentSubject.send(secondArgument)
         NumberObserver.shared.calculatedNumberSubject.send(multiplied)
-        NumberObserver.shared.secondArgumentSubject.send(secondArgument)
     }
     
     private func convertToDecimal(_ strValue: String) -> Decimal {

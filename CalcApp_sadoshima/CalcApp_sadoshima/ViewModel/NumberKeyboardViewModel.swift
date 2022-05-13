@@ -27,13 +27,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         }
     }
     // 第二引数
-    private var secondArgument: Decimal? {
-        didSet {
-            guard secondArgument != oldValue else { return }
-            
-            NumberObserver.shared.secondArgumentSubject.send(secondArgument)
-        }
-    }
+    private var secondArgument: Decimal?
     // 前回使用した第二引数
     private var previousArgument: Decimal?
     private var cancellables: [AnyCancellable] = []
@@ -50,11 +44,12 @@ final class NumberKeyboardViewModel: ObservableObject {
                 self.firstArgument = value
             }
         
-        let secondArgumentSubscriber = NumberObserver.shared.secondArgumentSubject
+        let previousArgumentSubscriber = NumberObserver.shared.previousArgumentSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 guard let self = self else { return }
-                self.secondArgument = value
+                self.previousArgument = value
+                self.previousOperation = .multiply
             }
         
         let showDetailNumberAuthoritySubscriber = NumberObserver.shared.canShowDetailNumber
@@ -66,7 +61,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         cancellables += [
             firstArgumentSubscriber,
-            secondArgumentSubscriber,
+            previousArgumentSubscriber,
             showDetailNumberAuthoritySubscriber
         ]
     }
@@ -96,7 +91,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument! -= secondArgument
         
-//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument
@@ -114,7 +108,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument = multiplaied
         
-//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument
@@ -130,7 +123,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument! /= secondArgument
         
-//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument

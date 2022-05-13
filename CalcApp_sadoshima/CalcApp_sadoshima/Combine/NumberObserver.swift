@@ -14,7 +14,7 @@ final class NumberObserver {
     private init() {}
     
     var firstArgumentSubject = CurrentValueSubject<Decimal?, Never>(nil)
-    var secondArgumentSubject = PassthroughSubject<Decimal?, Never>()
+    var previousArgumentSubject = PassthroughSubject<Decimal?, Never>()
     var calculatedNumberSubject = CurrentValueSubject<Decimal, Never>(0)
     var displayingNumberSubject = CurrentValueSubject<String, Never>("")
     var previousNumberSubject = PassthroughSubject<String, Never>()
