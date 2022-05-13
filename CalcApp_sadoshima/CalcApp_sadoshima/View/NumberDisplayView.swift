@@ -40,13 +40,14 @@ struct NumberDisplayView: View {
                             copyToPasteboard()
                         } // onTapGesture
                     
-                    if displayingUnit != "" {
+                    if selection == .UnitConverter && displayingUnit != "" {
                         Text(displayingUnit)
                             .font(.system(size: proxy.size.width * 0.06, weight: .medium))
                             .foregroundColor(.offWhite)
                     }
                 } // HStack
             } // VStack
+            .padding(10)
         } // GeometryReader
     } // body
     

@@ -79,7 +79,7 @@ final class HomeViewModel: ObservableObject {
         setFontSize()
         
         if isCalculating != .none {
-            NumberObserver.shared.secondArgumentSubject.send(convertToDecimal(input))
+//            NumberObserver.shared.secondArgumentSubject.send(convertToDecimal(input))
         } else {
             NumberObserver.shared.firstArgumentSubject.send(convertToDecimal(input))
         }
@@ -348,12 +348,12 @@ final class HomeViewModel: ObservableObject {
                 self.firstArgument = value
             }
         
-        let secondArgumentSubscriber = NumberObserver.shared.secondArgumentSubject
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] value in
-                guard let self = self else { return }
-                self.secondArgument = value
-            }
+//        let secondArgumentSubscriber = NumberObserver.shared.secondArgumentSubject
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] value in
+//                guard let self = self else { return }
+//                self.secondArgument = value
+//            }
         
         let calculatedNumberSubscriber = NumberObserver.shared.calculatedNumberSubject
             .sink { [weak self] value in
@@ -363,7 +363,7 @@ final class HomeViewModel: ObservableObject {
         
         cancellables += [
             firstArgumentSubscriber,
-            secondArgumentSubscriber,
+//            secondArgumentSubscriber,
             calculatedNumberSubscriber
         ]
     }

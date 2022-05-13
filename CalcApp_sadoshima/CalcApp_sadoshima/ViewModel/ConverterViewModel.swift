@@ -27,7 +27,7 @@ final class ConverterViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func convertUnit(_ strValue: String) {
+    func convertUnit(strValue: String, unit: String) {
         guard let firstArgument = firstArgument else { return }
         
         NumberObserver.shared.previousNumberSubject.send("\(firstArgument)")
@@ -35,9 +35,13 @@ final class ConverterViewModel: ObservableObject {
         let secondArgument = convertToDecimal(strValue)
         let multiplied = firstArgument.mul(secondArgument)
         
+        print("multiplied is \(multiplied)")
+        
         self.firstArgument = multiplied
+        
+        print("first is \(self.firstArgument ?? 0)")
         NumberObserver.shared.previousArgumentSubject.send(secondArgument)
-        NumberObserver.shared.calculatedNumberSubject.send(multiplied)
+        NumberObserver.shared.displayingNumberSubject.send("\(multiplied)")
     }
     
     private func convertToDecimal(_ strValue: String) -> Decimal {

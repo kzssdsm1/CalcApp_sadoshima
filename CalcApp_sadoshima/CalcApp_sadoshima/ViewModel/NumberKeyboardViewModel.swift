@@ -21,6 +21,7 @@ final class NumberKeyboardViewModel: ObservableObject {
     // 第一引数
     private var firstArgument: Decimal? {
         didSet {
+            // 前回と数値が同じでなければストリームに値を流す
             guard firstArgument != oldValue else { return }
             
             NumberObserver.shared.firstArgumentSubject.send(firstArgument)
@@ -75,7 +76,6 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument! += secondArgument
         
-//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument
@@ -189,6 +189,7 @@ final class NumberKeyboardViewModel: ObservableObject {
     func setOperator(_ paramOperator: Operator) {
         switch paramOperator {
         case .detail:
+            // 何もしない
             return
         case .plusMinus:
             changeSign()
