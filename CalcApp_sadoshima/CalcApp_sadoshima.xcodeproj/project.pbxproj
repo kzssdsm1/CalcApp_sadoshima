@@ -11,6 +11,8 @@
 		54003D6527A39FFF00723263 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54003D6427A39FFF00723263 /* Unit.swift */; };
 		54003D6727A3A00A00723263 /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54003D6627A3A00A00723263 /* Conversion.swift */; };
 		54003D6927A3A53D00723263 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54003D6827A3A53D00723263 /* ConverterView.swift */; };
+		54176D82282E134000C8298F /* DetailNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54176D81282E134000C8298F /* DetailNumberViewModel.swift */; };
+		54176D84282E13D700C8298F /* DetailNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54176D83282E13D700C8298F /* DetailNumberView.swift */; };
 		5422AE3A282B859200284027 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422AE39282B859200284027 /* CircleButton.swift */; };
 		5428CD52279A6444002216A7 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD51279A6444002216A7 /* Color+Extension.swift */; };
 		5428CD54279A6B53002216A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD53279A6B53002216A7 /* HomeView.swift */; };
@@ -48,6 +50,8 @@
 		54003D6427A39FFF00723263 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		54003D6627A3A00A00723263 /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 		54003D6827A3A53D00723263 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
+		54176D81282E134000C8298F /* DetailNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNumberViewModel.swift; sourceTree = "<group>"; };
+		54176D83282E13D700C8298F /* DetailNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNumberView.swift; sourceTree = "<group>"; };
 		5422AE39282B859200284027 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		5428CD51279A6444002216A7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		5428CD53279A6B53002216A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				549A5F7527C6836D0056B96C /* DetailNumView.swift */,
 				547F156A280933040038BEC8 /* NumberDisplayView.swift */,
 				54A5C9C52819097100AB7EFB /* NumberKeyboardView.swift */,
+				54176D83282E13D700C8298F /* DetailNumberView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				54C8D64B27F6C7FC0013C3B8 /* ConverterViewModel.swift */,
 				547F156E280933360038BEC8 /* NumberDisplayViewModel.swift */,
 				54A5C9C72819098B00AB7EFB /* NumberKeyboardViewModel.swift */,
+				54176D81282E134000C8298F /* DetailNumberViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 				54C8D64C27F6C7FC0013C3B8 /* ConverterViewModel.swift in Sources */,
 				544C773127ACE41A00BD46BB /* LengthData.swift in Sources */,
 				54C8D64A27F6C4250013C3B8 /* NumberObserver.swift in Sources */,
+				54176D84282E13D700C8298F /* DetailNumberView.swift in Sources */,
 				54A5C9C62819097100AB7EFB /* NumberKeyboardView.swift in Sources */,
 				543C456E27B4E3CB00B8C024 /* WeightConversions.swift in Sources */,
 				547F156F280933360038BEC8 /* NumberDisplayViewModel.swift in Sources */,
@@ -300,6 +307,7 @@
 				5428CD58279A6D21002216A7 /* HomeViewModel.swift in Sources */,
 				5428CD54279A6B53002216A7 /* HomeView.swift in Sources */,
 				548BA30727B61E0000C3903D /* CustomButtonStyle.swift in Sources */,
+				54176D82282E134000C8298F /* DetailNumberViewModel.swift in Sources */,
 				54003D6327A39F1600723263 /* Category.swift in Sources */,
 				5428CD56279A6D09002216A7 /* CalcKeyboardView.swift in Sources */,
 				5422AE3A282B859200284027 /* CircleButton.swift in Sources */,

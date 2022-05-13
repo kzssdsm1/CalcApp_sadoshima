@@ -15,17 +15,17 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 前回行った演算
     var previousOperation: Operator = .none
+    
+    // 入力された数値を保持しておく変数
+    private var input = ""
     // 第一引数
-    var firstArgument: Decimal? {
+    private var firstArgument: Decimal? {
         didSet {
             guard firstArgument != oldValue else { return }
             
             NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         }
     }
-    
-    // 入力された数値を保持しておく変数
-    private var input = ""
     // 第二引数
     private var secondArgument: Decimal? {
         didSet {
@@ -80,7 +80,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument! += secondArgument
         
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument
@@ -96,7 +96,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument! -= secondArgument
         
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument
@@ -114,7 +114,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument = multiplaied
         
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument
@@ -130,7 +130,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument! /= secondArgument
         
-        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+//        NumberObserver.shared.firstArgumentSubject.send(firstArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument

@@ -10,7 +10,7 @@ import SwiftUI
 struct NumberKeyboardView: View {
     @StateObject private var viewModel = NumberKeyboardViewModel()
     
-    @Binding var detailNumberItem: String
+//    @Binding var detailNumberItem: String
     @Binding var isShowingSheet: Bool
     
     private let numbers = [["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"]]
@@ -25,10 +25,7 @@ struct NumberKeyboardView: View {
                             if item == .detail || item == .allClear || item == .percent {
                                 Button(action: {
                                     if item == .detail && viewModel.canShowDetailNumber {
-                                        print("now \(viewModel.firstArgument ?? 0)")
-                                        detailNumberItem = "\(viewModel.firstArgument!)"
                                         isShowingSheet = true
-                                        print("on \(detailNumberItem)")
                                     } else {
                                         viewModel.setOperator(item)
                                     }

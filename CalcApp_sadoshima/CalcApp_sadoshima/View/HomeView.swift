@@ -10,7 +10,7 @@ import MobileCoreServices
 
 struct HomeView: View {
     @State private var isShowingNotification = false
-    @State private var detailNumberItem = ""
+//    @State private var detailNumberItem = ""
     @State private var isShowingSheet = false
     @State private var displayingUnit = ""
     @State private var selection: Selection = .Calculator {
@@ -34,7 +34,7 @@ struct HomeView: View {
                     )
                     
                     ZStack(alignment: .bottom) {
-                        NumberKeyboardView(detailNumberItem: $detailNumberItem, isShowingSheet: $isShowingSheet) 
+                        NumberKeyboardView(isShowingSheet: $isShowingSheet) 
                             .opacity(selection == .Calculator ? 1 : 0)
                             .offset(x: selection == .Calculator ? 0 : -500)
                         
@@ -48,7 +48,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 .background(Color.aozumi.edgesIgnoringSafeArea(.all))
                 .sheet(isPresented: $isShowingSheet) {
-                    DetailNumView(detailNumberText: detailNumberItem)
+                    DetailNumberView()
                 }
                 
                 RoundedRectangle(cornerRadius: 12)
