@@ -22,13 +22,7 @@ struct DetailNumberView: View {
                             .font(.system(size: proxy.size.width * 0.09, weight: .medium))
                             .foregroundColor(.offWhite)
                             .onTapGesture {
-                                UIPasteboard.general.setValue("\(viewModel.detailNumber ?? 0)", forPasteboardType: kUTTypePlainText as String)
-                                isShowingNotification = true
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                                    withAnimation {
-                                        isShowingNotification = false
-                                    }
-                                }
+                                copyToPasteboard()
                             }
                     } // VStack
                 } // ScrollView
@@ -49,4 +43,14 @@ struct DetailNumberView: View {
             } // ZStack
         } // GeometryReader
     } // body
+    
+    private func copyToPasteboard() {
+        UIPasteboard.general.setValue("\(viewModel.detailNumber ?? 0)", forPasteboardType: kUTTypePlainText as String)
+        isShowingNotification = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            withAnimation {
+                isShowingNotification = false
+            }
+        }
+    }
 }
