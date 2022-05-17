@@ -14,6 +14,7 @@ struct NumberDisplayView: View {
     @Binding var isShowingSheet: Bool
     @Binding var isShowingNotification: Bool
     @Binding var displayingUnit: String
+    @Binding var previousUnit: String
     @Binding var selection: Selection
     
     var body: some View {
@@ -24,7 +25,7 @@ struct NumberDisplayView: View {
                 HStack {
                     Spacer(minLength: 0)
                     
-                    Text(viewModel.previousNumber)
+                    Text(String("\(viewModel.previousNumber) \(previousUnit) ="))
                         .font(.system(size: proxy.size.width * 0.07, weight: .medium))
                         .foregroundColor(.offWhite)
                         .opacity(selection == .UnitConverter ? 0.6 : 0)

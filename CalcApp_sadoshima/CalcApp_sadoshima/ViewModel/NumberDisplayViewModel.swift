@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class NumberDisplayViewModel: ObservableObject {
     @Published var displayingNumber = "0"
@@ -41,15 +42,8 @@ final class NumberDisplayViewModel: ObservableObject {
                 self.displayingNumber = self.arrangeDisplayNumber(value)
             }
         
-        let previousUnitSubscriber = NumberObserver.shared.previousUnitSubject
-            .sink { [weak self] value in
-                guard let self = self else { return }
-                self.previousNumber += " \(value)"
-            }
-        
         cancellables += [
-            displayingNumberSubscriber,
-            previousUnitSubscriber
+            displayingNumberSubscriber
         ]
     }
     

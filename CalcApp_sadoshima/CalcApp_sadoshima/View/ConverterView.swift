@@ -12,6 +12,7 @@ struct ConverterView: View {
     
     @Binding var parentSelection: Category?
     @Binding var displayingUnit: String
+    @Binding var previousUnit: String
     
     @State private var pushedButton = ""
     @State private var selection: Unit?
@@ -81,7 +82,7 @@ struct ConverterView: View {
                                 Button(action: {
                                     pushedButton = item.label
                                     displayingUnit = item.unit
-                                    print(selection?.unit ?? "no item")
+                                    previousUnit = selection?.unit ?? ""
                                     viewModel.convertUnit(strValue: item.value, unit: selection?.unit ?? "")
                                 }, label: {
                                     Text(item.label)

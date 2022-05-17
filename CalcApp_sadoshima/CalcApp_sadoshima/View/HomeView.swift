@@ -13,6 +13,7 @@ struct HomeView: View {
 //    @State private var detailNumberItem = ""
     @State private var isShowingSheet = false
     @State private var displayingUnit = ""
+    @State private var previousUnit = ""
     @State private var selection: Selection = .Calculator {
         didSet {
             displayingUnit = ""
@@ -30,6 +31,7 @@ struct HomeView: View {
                         isShowingSheet: $isShowingSheet,
                         isShowingNotification: $isShowingNotification,
                         displayingUnit: $displayingUnit,
+                        previousUnit: $previousUnit,
                         selection: $selection
                     )
                     
@@ -38,7 +40,7 @@ struct HomeView: View {
                             .opacity(selection == .Calculator ? 1 : 0)
                             .offset(x: selection == .Calculator ? 0 : -500)
                         
-                        UnitSelectView(displayingUnit: $displayingUnit)
+                        UnitSelectView(displayingUnit: $displayingUnit, previousUnit: $previousUnit)
                             .opacity(selection == .UnitConverter ? 1 : 0)
                             .offset(x: selection == .UnitConverter ? 0 : -500)
                     } // ZStack
