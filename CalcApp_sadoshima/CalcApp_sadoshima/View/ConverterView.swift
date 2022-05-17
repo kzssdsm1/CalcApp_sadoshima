@@ -81,7 +81,8 @@ struct ConverterView: View {
                                 Button(action: {
                                     pushedButton = item.label
                                     displayingUnit = item.unit
-                                    viewModel.convertUnit(strValue: item.value, unit: selection?.label ?? "")
+                                    print(selection?.unit ?? "no item")
+                                    viewModel.convertUnit(strValue: item.value, unit: selection?.unit ?? "")
                                 }, label: {
                                     Text(item.label)
                                         .foregroundColor(pushedButton == item.label ? item.buttonColor : .offWhite)
