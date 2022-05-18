@@ -25,7 +25,7 @@ struct NumberDisplayView: View {
                 HStack {
                     Spacer(minLength: 0)
                     
-                    Text(String("\(viewModel.previousNumber) \(previousUnit) ="))
+                    Text(viewModel.previousNumber)
                         .font(.system(size: proxy.size.width * 0.07, weight: .medium))
                         .foregroundColor(.offWhite)
                         .opacity(selection == .UnitConverter ? 0.6 : 0)
@@ -45,6 +45,14 @@ struct NumberDisplayView: View {
                         Text(displayingUnit)
                             .font(.system(size: proxy.size.width * 0.06, weight: .medium))
                             .foregroundColor(.offWhite)
+                            .onAppear {
+                                viewModel.previousNumber = ""
+                                previousUnit = ""
+                            }
+                            .onDisappear() {
+                                viewModel.previousNumber = ""
+                                previousUnit = ""
+                            }
                     }
                 } // HStack
             } // VStack

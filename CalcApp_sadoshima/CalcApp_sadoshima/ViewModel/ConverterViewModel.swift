@@ -9,34 +9,55 @@ import Foundation
 import Combine
 
 final class ConverterViewModel: ObservableObject {
-    private var firstArgument: Decimal? {
+    private var firstArgument: Decimal?
+    private var previousNumber = "" {
         didSet {
-            guard firstArgument != oldValue else { return }
+            guard previousNumber != oldValue else { return }
             
-            NumberObserver.shared.firstArgumentSubject.send(firstArgument)
+            NumberObserver.shared.previousNumberSubject.send(previousNumber)
+            print("success")
         }
     }
+    private var arrangedNumber = ""
     private var cancellables: [AnyCancellable] = []
     
     init() {
-        NumberObserver.shared.firstArgumentSubject
+        bind()
+    }
+    
+    private func bind() {
+        let arrangedNumberSubscriber = NumberObserver.shared.arrangedNumberSubject
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.arrangedNumber = value
+            }
+        
+        let converArgumentSubscriber = NumberObserver.shared.convertArgumentSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
                 self.firstArgument = value
             }
-            .store(in: &cancellables)
+        
+        cancellables += [
+            arrangedNumberSubscriber,
+            converArgumentSubscriber
+        ]
     }
     
-    func convertUnit(strValue: String) {
+    func convertUnit(strValue: String, unit: String) {
         guard let firstArgument = firstArgument else { return }
         
+        let sendString = "\(arrangedNumber) \(unit) ="
+        print("send is \(sendString)")
         let secondArgument = convertToDecimal(strValue)
         let multiplied = firstArgument.mul(secondArgument)
         
         self.firstArgument = multiplied
         
+        NumberObserver.shared.firstArgumentSubject.send(self.firstArgument)
         NumberObserver.shared.previousArgumentSubject.send(secondArgument)
         NumberObserver.shared.displayingNumberSubject.send("\(multiplied)")
+        previousNumber = sendString
     }
     
     private func convertToDecimal(_ strValue: String) -> Decimal {

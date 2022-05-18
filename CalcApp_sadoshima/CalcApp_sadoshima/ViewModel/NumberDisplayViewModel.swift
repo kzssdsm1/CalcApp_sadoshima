@@ -10,7 +10,11 @@ import Combine
 import UIKit
 
 final class NumberDisplayViewModel: ObservableObject {
-    @Published var displayingNumber = "0"
+    @Published var displayingNumber = "0"  {
+        didSet {
+            NumberObserver.shared.arrangedNumberSubject.send(displayingNumber)
+        }
+    }
     @Published var previousNumber = ""
     
     private var cancellables: [AnyCancellable] = []
@@ -38,12 +42,19 @@ final class NumberDisplayViewModel: ObservableObject {
         let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
-                self.previousNumber = self.displayingNumber
                 self.displayingNumber = self.arrangeDisplayNumber(value)
             }
         
+        let previousNumberSubscriber = NumberObserver.shared.previousNumberSubject
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.previousNumber = value
+                print("prev is \(self.previousNumber)")
+            }
+        
         cancellables += [
-            displayingNumberSubscriber
+            displayingNumberSubscriber,
+            previousNumberSubscriber
         ]
     }
     

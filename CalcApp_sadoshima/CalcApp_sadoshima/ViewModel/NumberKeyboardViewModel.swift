@@ -21,6 +21,8 @@ final class NumberKeyboardViewModel: ObservableObject {
     // 第一引数
     private var firstArgument: Decimal? {
         didSet {
+            NumberObserver.shared.convertArgumentSubject.send(firstArgument)
+            
             // 前回と数値が同じでなければストリームに値を流す
             guard firstArgument != oldValue else { return }
             
@@ -229,6 +231,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         if operationsInProgress != .none {
             secondArgument = convertToDecimal(input)
+            NumberObserver.shared.convertArgumentSubject.send(secondArgument)
         } else {
             firstArgument = convertToDecimal(input)
         }
