@@ -205,6 +205,30 @@ final class NumberKeyboardViewModel: ObservableObject {
         secondArgument = nil
     }
     
+    
+    // 割合化
+    private func proportionation() {
+        guard firstArgument != nil else { return }
+        
+        let previousOperation = operationsInProgress
+        let previousSecondArgument: Decimal? = secondArgument
+        
+        if secondArgument != nil {
+            let previousFirstArgument = firstArgument
+            firstArgument = secondArgument
+            secondArgument = Decimal(string: "0.01")!
+            multiply()
+            secondArgument = firstArgument
+            firstArgument = previousFirstArgument
+        } else {
+            secondArgument = Decimal(string: "0.01")!
+            multiply()
+            secondArgument = previousSecondArgument
+        }
+        
+        operationsInProgress = previousOperation
+    }
+    
     // 情報のクリア
     private func clearText() {
         NumberObserver.shared.displayingNumberSubject.send("0")
@@ -232,8 +256,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         case .allClear:
             clearText()
         case .percent:
-            return
-            //convertUnit("0.01")
+            proportionation()
         case .divide:
             divide()
         case .multiply:

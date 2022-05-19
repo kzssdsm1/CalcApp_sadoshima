@@ -8,10 +8,12 @@
 import Foundation
 
 extension Decimal {
+    // アンダーフロー防止用
     var abs: Decimal {
         return self < 0 ? -self : self
     }
     
+    // アンダーフロー防止用の独自の乗算関数
     func mul(_ y: Decimal) -> Decimal {
         let r = self * y
         if self.abs < 1 && y.abs < 1 && r.abs >= 1 {
