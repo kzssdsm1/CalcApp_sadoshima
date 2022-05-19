@@ -16,7 +16,6 @@
 		5422AE3A282B859200284027 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5422AE39282B859200284027 /* CircleButton.swift */; };
 		5428CD52279A6444002216A7 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD51279A6444002216A7 /* Color+Extension.swift */; };
 		5428CD54279A6B53002216A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD53279A6B53002216A7 /* HomeView.swift */; };
-		5428CD58279A6D21002216A7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5428CD57279A6D21002216A7 /* HomeViewModel.swift */; };
 		543AC33127048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543AC33027048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift */; };
 		543AC33527048BB1008BFCB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543AC33427048BB1008BFCB0 /* Assets.xcassets */; };
 		543AC33827048BB1008BFCB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 543AC33727048BB1008BFCB0 /* Preview Assets.xcassets */; };
@@ -51,7 +50,6 @@
 		5422AE39282B859200284027 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		5428CD51279A6444002216A7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		5428CD53279A6B53002216A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		5428CD57279A6D21002216A7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		543AC32D27048BB0008BFCB0 /* CalcApp_sadoshima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalcApp_sadoshima.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		543AC33027048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcApp_sadoshimaApp.swift; sourceTree = "<group>"; };
 		543AC33427048BB1008BFCB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 		54B34869276C44A600145133 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5428CD57279A6D21002216A7 /* HomeViewModel.swift */,
 				54C8D64B27F6C7FC0013C3B8 /* ConverterViewModel.swift */,
 				547F156E280933360038BEC8 /* NumberDisplayViewModel.swift */,
 				54A5C9C72819098B00AB7EFB /* NumberKeyboardViewModel.swift */,
@@ -289,7 +286,6 @@
 				54BC202627B0F38000E9118D /* AreaData.swift in Sources */,
 				54E61E792795DF7200D52187 /* Decimal+Extension.swift in Sources */,
 				548BA30527B616B600C3903D /* CustomMenuStyle.swift in Sources */,
-				5428CD58279A6D21002216A7 /* HomeViewModel.swift in Sources */,
 				5428CD54279A6B53002216A7 /* HomeView.swift in Sources */,
 				548BA30727B61E0000C3903D /* CustomButtonStyle.swift in Sources */,
 				54176D82282E134000C8298F /* DetailNumberViewModel.swift in Sources */,
