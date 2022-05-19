@@ -42,7 +42,7 @@ final class NumberDisplayViewModel: ObservableObject {
         let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
-                if value == "0." {
+                if value.hasSuffix(".") {
                     self.displayingNumber = value
                 } else {
                     self.displayingNumber = self.arrangeDisplayNumber(value)

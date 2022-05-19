@@ -78,6 +78,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         input = ""
         operationsInProgress = .addition
         
+        // アプリ落ち防止
         guard let secondArgument = secondArgument else { return }
         
         if firstArgument == nil {
