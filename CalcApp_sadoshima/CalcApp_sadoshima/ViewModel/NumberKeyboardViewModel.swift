@@ -301,7 +301,7 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 小数点を挿入するメソッド
     func insertDecimalPoint() {
-        guard !input.contains(".") && input.count < 9 else { return }
+        guard !input.contains(".") && input.count < 9 || !input.contains(".") && input.contains("-") && input.count < 10 else { return }
         
         if input.isEmpty {
             input = "0."
