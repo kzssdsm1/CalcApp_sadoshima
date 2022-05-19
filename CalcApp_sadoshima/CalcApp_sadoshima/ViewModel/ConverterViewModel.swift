@@ -59,6 +59,10 @@ final class ConverterViewModel: ObservableObject {
         previousNumber = sendString
     }
     
+    func setCurrentUnit(_ unit: String) {
+        NumberObserver.shared.currentUnitSubject.send(unit)
+    }
+    
     private func convertToDecimal(_ strValue: String) -> Decimal {
         return Decimal(string: strValue, locale: Locale.current) ?? 0
     }

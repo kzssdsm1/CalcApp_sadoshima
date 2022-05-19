@@ -10,15 +10,8 @@ import MobileCoreServices
 
 struct HomeView: View {
     @State private var isShowingNotification = false
-//    @State private var detailNumberItem = ""
     @State private var isShowingSheet = false
-    @State private var displayingUnit = ""
-    @State private var previousUnit = ""
-    @State private var selection: Selection = .Calculator {
-        didSet {
-            displayingUnit = ""
-        }
-    }
+    @State private var selection: Selection = .Calculator
     
     private let screenHeight = CGFloat(UIScreen.main.bounds.height)
     
@@ -30,8 +23,6 @@ struct HomeView: View {
                     NumberDisplayView(
                         isShowingSheet: $isShowingSheet,
                         isShowingNotification: $isShowingNotification,
-                        displayingUnit: $displayingUnit,
-                        previousUnit: $previousUnit,
                         selection: $selection
                     )
                     
@@ -40,7 +31,7 @@ struct HomeView: View {
                             .opacity(selection == .Calculator ? 1 : 0)
                             .offset(x: selection == .Calculator ? 0 : -500)
                         
-                        UnitSelectView(displayingUnit: $displayingUnit, previousUnit: $previousUnit)
+                        UnitSelectView()
                             .opacity(selection == .UnitConverter ? 1 : 0)
                             .offset(x: selection == .UnitConverter ? 0 : -500)
                     } // ZStack

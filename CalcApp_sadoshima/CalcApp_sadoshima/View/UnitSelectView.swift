@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct UnitSelectView: View {
-    @Binding var displayingUnit: String
-    @Binding var previousUnit: String
-    
     @State private var selection: Category?
     
     private let screenHeight = CGFloat(UIScreen.main.bounds.height)
@@ -26,7 +23,7 @@ struct UnitSelectView: View {
         GeometryReader { proxy in
             ZStack {
                 if let item = selection {
-                    ConverterView(parentSelection: $selection, displayingUnit: $displayingUnit, previousUnit: $previousUnit, category: item)
+                    ConverterView(parentSelection: $selection, category: item)
                         .transition(AnyTransition.opacity.combined(with: .slide))
                 }
                 

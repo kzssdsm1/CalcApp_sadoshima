@@ -13,8 +13,6 @@ struct NumberDisplayView: View {
     
     @Binding var isShowingSheet: Bool
     @Binding var isShowingNotification: Bool
-    @Binding var displayingUnit: String
-    @Binding var previousUnit: String
     @Binding var selection: Selection
     
     private let screenHeight = CGFloat(UIScreen.main.bounds.height)
@@ -43,17 +41,17 @@ struct NumberDisplayView: View {
                             copyToPasteboard()
                         } // onTapGesture
                     
-                    if selection == .UnitConverter && displayingUnit != "" {
-                        Text(displayingUnit)
+                    if selection == .UnitConverter && viewModel.currentUnit != "" {
+                        Text(viewModel.currentUnit)
                             .font(.system(size: proxy.size.width * 0.06, weight: .medium))
                             .foregroundColor(.offWhite)
                             .onAppear {
                                 viewModel.previousNumber = ""
-                                previousUnit = ""
+                                viewModel.currentUnit = ""
                             }
                             .onDisappear() {
                                 viewModel.previousNumber = ""
-                                previousUnit = ""
+                                viewModel.currentUnit = ""
                             }
                     }
                 } // HStack
@@ -64,7 +62,7 @@ struct NumberDisplayView: View {
     } // body
     
     private func copyToPasteboard() {
-        UIPasteboard.general.setValue(viewModel.displayingNumber + displayingUnit, forPasteboardType: kUTTypePlainText as String)
+        UIPasteboard.general.setValue(viewModel.displayingNumber + viewModel.currentUnit, forPasteboardType: kUTTypePlainText as String)
         isShowingNotification = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             withAnimation {

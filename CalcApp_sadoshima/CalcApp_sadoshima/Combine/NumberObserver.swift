@@ -20,4 +20,5 @@ final class NumberObserver {
     var canShowDetailNumber = PassthroughSubject<Bool, Never>()
     var convertArgumentSubject = CurrentValueSubject<Decimal?, Never>(nil)
     var previousNumberSubject = PassthroughSubject<String, Never>()
+    var currentUnitSubject = PassthroughSubject<String, Never>()
 }

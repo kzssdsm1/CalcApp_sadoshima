@@ -16,6 +16,7 @@ final class NumberDisplayViewModel: ObservableObject {
         }
     }
     @Published var previousNumber = ""
+    @Published var currentUnit = ""
     
     private var cancellables: [AnyCancellable] = []
     
@@ -56,9 +57,16 @@ final class NumberDisplayViewModel: ObservableObject {
                 self.previousNumber = value
             }
         
+        let currentUnitSubscriber = NumberObserver.shared.currentUnitSubject
+            .sink { [weak self] value in
+                guard let self = self else { return }
+                self.currentUnit = value
+            }
+        
         cancellables += [
             displayingNumberSubscriber,
-            previousNumberSubscriber
+            previousNumberSubscriber,
+            currentUnitSubscriber
         ]
     }
     
