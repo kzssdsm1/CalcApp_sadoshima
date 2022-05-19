@@ -15,7 +15,6 @@ final class ConverterViewModel: ObservableObject {
             guard previousNumber != oldValue else { return }
             
             NumberObserver.shared.previousNumberSubject.send(previousNumber)
-            print("success")
         }
     }
     private var arrangedNumber = ""
