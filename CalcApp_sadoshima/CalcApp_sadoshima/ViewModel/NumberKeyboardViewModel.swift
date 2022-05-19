@@ -278,7 +278,18 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         input += insertNumber
         
-        NumberObserver.shared.displayingNumberSubject.send(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9)))
+        if !input.contains(".") && !input.contains("-") {
+            let prefix = String(input.prefix(9))
+            input = prefix
+        } else if input.contains(".") && input.contains("-") {
+            let prefix = String(input.prefix(11))
+            input = prefix
+        } else {
+            let prefix = String(input.prefix(10))
+            input = prefix
+        }
+        
+        NumberObserver.shared.displayingNumberSubject.send(input)
         
         if operationsInProgress != .none {
             secondArgument = convertToDecimal(input)
@@ -290,7 +301,7 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 小数点を挿入するメソッド
     func insertDecimalPoint() {
-        guard !input.contains(".") || input.count < 9 else { return }
+        guard !input.contains(".") && input.count < 9 else { return }
         
         if input.isEmpty {
             input = "0."

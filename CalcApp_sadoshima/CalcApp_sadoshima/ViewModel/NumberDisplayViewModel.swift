@@ -42,10 +42,11 @@ final class NumberDisplayViewModel: ObservableObject {
         let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
+                
+                self.displayingNumber = self.arrangeDisplayNumber(value)
+                
                 if value.hasSuffix(".") {
-                    self.displayingNumber = value
-                } else {
-                    self.displayingNumber = self.arrangeDisplayNumber(value)
+                    self.displayingNumber += "."
                 }
             }
         
@@ -66,7 +67,7 @@ final class NumberDisplayViewModel: ObservableObject {
         
         let num = (displayNumber as NSString).doubleValue
         
-        if num > 999999999.999997 || num < 0.000000001 && num != 0.0 {
+        if num > 999999999.999997 || num < 0.000000001 && num != 0.0 && !displayNumber.contains("-") || displayNumber.contains("-") && num < -999999999.999997 && num != 0.0 {
             return calcExp(convertToDecimal(displayNumber))
         } else if displayNumber == "NaN" {
             return "Error"
