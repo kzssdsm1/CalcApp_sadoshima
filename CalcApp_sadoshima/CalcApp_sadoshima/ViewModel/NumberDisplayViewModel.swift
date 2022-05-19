@@ -42,14 +42,17 @@ final class NumberDisplayViewModel: ObservableObject {
         let displayingNumberSubscriber = NumberObserver.shared.displayingNumberSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
-                self.displayingNumber = self.arrangeDisplayNumber(value)
+                if value == "0." {
+                    self.displayingNumber = value
+                } else {
+                    self.displayingNumber = self.arrangeDisplayNumber(value)
+                }
             }
         
         let previousNumberSubscriber = NumberObserver.shared.previousNumberSubject
             .sink { [weak self] value in
                 guard let self = self else { return }
                 self.previousNumber = value
-                print("prev is \(self.previousNumber)")
             }
         
         cancellables += [

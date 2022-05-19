@@ -76,6 +76,10 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         guard let secondArgument = secondArgument else { return }
         
+        if firstArgument == nil {
+            firstArgument = 0
+        }
+        
         firstArgument! += secondArgument
         
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
@@ -91,6 +95,10 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         guard let secondArgument = secondArgument else { return }
         
+        if firstArgument == nil {
+            firstArgument = 0
+        }
+        
         firstArgument! -= secondArgument
         
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
@@ -105,6 +113,10 @@ final class NumberKeyboardViewModel: ObservableObject {
         operationsInProgress = .multiply
         
         guard let secondArgument = secondArgument else { return }
+        
+        if firstArgument == nil {
+            firstArgument = 0
+        }
         
         let multiplaied = firstArgument!.mul(secondArgument)
         
@@ -123,6 +135,10 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         guard let secondArgument = secondArgument else { return }
         
+        if firstArgument == nil {
+            firstArgument = 0
+        }
+        
         firstArgument! /= secondArgument
         
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
@@ -136,15 +152,16 @@ final class NumberKeyboardViewModel: ObservableObject {
         guard !input.isEmpty else { return }
         
         let number = convertToDecimal(input)
+        let multiplied = number.mul(-1)
         
-        input = "\(number)"
+        input = "\(multiplied)"
         
         NumberObserver.shared.displayingNumberSubject.send(input)
         
         if operationsInProgress != .none {
-            secondArgument = number
+            secondArgument = multiplied
         } else {
-            firstArgument = number
+            firstArgument = multiplied
         }
     }
     
@@ -218,16 +235,10 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 数値の入力を行うメソッド
     func insertNumber(_ insertNumber: String) {
-        guard !input.contains(".") && input.count <= 9 else { return }
-//
-//        guard input.contains(".") && input.count <= 10 else { return }
-        
-//        guard !input.contains(".") && input.count < 10,
-//              input.contains(".") && input.count < 11 else { return }
         
         input += insertNumber
         
-        NumberObserver.shared.displayingNumberSubject.send(input)
+        NumberObserver.shared.displayingNumberSubject.send(input.contains(".") ? String(input.prefix(10)) : String(input.prefix(9)))
         
         if operationsInProgress != .none {
             secondArgument = convertToDecimal(input)

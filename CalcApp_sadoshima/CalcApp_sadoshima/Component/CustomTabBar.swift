@@ -67,6 +67,7 @@ struct CustomTabBar: View {
             Spacer(minLength: 0)
         } // HStack
         .padding(.vertical)
-        .frame(maxHeight: screenHeight * 0.1)
+        .padding(.bottom)
+        .frame(maxHeight: screenHeight * 0.08)
     } // body
 }

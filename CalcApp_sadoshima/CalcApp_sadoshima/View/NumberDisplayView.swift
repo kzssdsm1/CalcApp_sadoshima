@@ -17,6 +17,8 @@ struct NumberDisplayView: View {
     @Binding var previousUnit: String
     @Binding var selection: Selection
     
+    private let screenHeight = CGFloat(UIScreen.main.bounds.height)
+    
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 0) {
@@ -26,7 +28,7 @@ struct NumberDisplayView: View {
                     Spacer(minLength: 0)
                     
                     Text(viewModel.previousNumber)
-                        .font(.system(size: proxy.size.width * 0.07, weight: .medium))
+                        .font(.system(size: proxy.size.height * 0.1, weight: .medium))
                         .foregroundColor(.offWhite)
                         .opacity(selection == .UnitConverter ? 0.6 : 0)
                 } // HStack
@@ -35,7 +37,7 @@ struct NumberDisplayView: View {
                     Spacer(minLength: 0)
                     
                     Text(viewModel.displayingNumber)
-                        .font(.system(size: 25, weight: .medium))
+                        .font(.system(size: proxy.size.height * 0.14, weight: .medium))
                         .foregroundColor(.offWhite)
                         .onTapGesture {
                             copyToPasteboard()
@@ -58,6 +60,7 @@ struct NumberDisplayView: View {
             } // VStack
             .padding(10)
         } // GeometryReader
+        .frame(height: screenHeight * 0.3)
     } // body
     
     private func copyToPasteboard() {
