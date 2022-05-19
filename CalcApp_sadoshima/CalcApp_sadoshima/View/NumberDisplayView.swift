@@ -45,13 +45,8 @@ struct NumberDisplayView: View {
                         Text(viewModel.currentUnit)
                             .font(.system(size: proxy.size.width * 0.06, weight: .medium))
                             .foregroundColor(.offWhite)
-                            .onAppear {
-                                viewModel.previousNumber = ""
-                                viewModel.currentUnit = ""
-                            }
                             .onDisappear() {
                                 viewModel.previousNumber = ""
-                                viewModel.currentUnit = ""
                             }
                     }
                 } // HStack
