@@ -25,7 +25,6 @@
 		543C457027B4E3D600B8C024 /* AreaConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543C456F27B4E3D600B8C024 /* AreaConversions.swift */; };
 		544C773127ACE41A00BD46BB /* LengthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544C773027ACE41A00BD46BB /* LengthData.swift */; };
 		546D15D927C89173009663B9 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546D15D827C89173009663B9 /* CustomTabBar.swift */; };
-		547E2E2D2706C206004F3565 /* CircleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2C2706C206004F3565 /* CircleText.swift */; };
 		547E2E2F2706DA09004F3565 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547E2E2E2706DA09004F3565 /* Operator.swift */; };
 		547F156B280933040038BEC8 /* NumberDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547F156A280933040038BEC8 /* NumberDisplayView.swift */; };
 		547F156F280933360038BEC8 /* NumberDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547F156E280933360038BEC8 /* NumberDisplayViewModel.swift */; };
@@ -62,7 +61,6 @@
 		543C456F27B4E3D600B8C024 /* AreaConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaConversions.swift; sourceTree = "<group>"; };
 		544C773027ACE41A00BD46BB /* LengthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthData.swift; sourceTree = "<group>"; };
 		546D15D827C89173009663B9 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		547E2E2C2706C206004F3565 /* CircleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleText.swift; sourceTree = "<group>"; };
 		547E2E2E2706DA09004F3565 /* Operator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
 		547F156A280933040038BEC8 /* NumberDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberDisplayView.swift; sourceTree = "<group>"; };
 		547F156E280933360038BEC8 /* NumberDisplayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberDisplayViewModel.swift; sourceTree = "<group>"; };
@@ -127,8 +125,6 @@
 				543AC33027048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift */,
 				543AC33427048BB1008BFCB0 /* Assets.xcassets */,
 				543AC33627048BB1008BFCB0 /* Preview Content */,
-				547E2E2C2706C206004F3565 /* CircleText.swift */,
-				547E2E2E2706DA09004F3565 /* Operator.swift */,
 			);
 			path = CalcApp_sadoshima;
 			sourceTree = "<group>";
@@ -180,6 +176,7 @@
 		54B3486A276C44BF00145133 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				547E2E2E2706DA09004F3565 /* Operator.swift */,
 				54003D6227A39F1600723263 /* Category.swift */,
 				54003D6427A39FFF00723263 /* Unit.swift */,
 				54003D6627A3A00A00723263 /* Conversion.swift */,
@@ -291,7 +288,6 @@
 				54003D6727A3A00A00723263 /* Conversion.swift in Sources */,
 				54BC202627B0F38000E9118D /* AreaData.swift in Sources */,
 				54E61E792795DF7200D52187 /* Decimal+Extension.swift in Sources */,
-				547E2E2D2706C206004F3565 /* CircleText.swift in Sources */,
 				548BA30527B616B600C3903D /* CustomMenuStyle.swift in Sources */,
 				5428CD58279A6D21002216A7 /* HomeViewModel.swift in Sources */,
 				5428CD54279A6B53002216A7 /* HomeView.swift in Sources */,

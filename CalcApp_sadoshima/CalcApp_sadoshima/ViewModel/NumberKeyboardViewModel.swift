@@ -71,6 +71,10 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 加算
     private func addition() {
+        if operationsInProgress != .addition && operationsInProgress != .none {
+            equal()
+        }
+        
         input = ""
         operationsInProgress = .addition
         
@@ -90,6 +94,10 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 減算
     private func subtraction() {
+        if operationsInProgress != .subtraction && operationsInProgress != .none {
+            equal()
+        }
+        
         input = ""
         operationsInProgress = .subtraction
         
@@ -109,6 +117,10 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 乗算
     private func multiply() {
+        if operationsInProgress != .multiply && operationsInProgress != .none {
+            equal()
+        }
+        
         input = ""
         operationsInProgress = .multiply
         
@@ -130,6 +142,10 @@ final class NumberKeyboardViewModel: ObservableObject {
     
     // 除算
     private func divide() {
+        if operationsInProgress != .divide && operationsInProgress != .none {
+            equal()
+        }
+        
         input = ""
         operationsInProgress = .divide
         
