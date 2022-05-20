@@ -8,6 +8,7 @@
 import Foundation
 
 enum Operator: CaseIterable {
+    case detail
     case allClear
     case plusMinus
     case percent
@@ -40,6 +41,8 @@ enum Operator: CaseIterable {
             } else {
                 return "C"
             }
+        case .detail:
+            return "showdetail"
         case .none:
             return ""
         }
