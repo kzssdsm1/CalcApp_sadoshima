@@ -26,7 +26,7 @@ struct NumberDisplayView: View {
                     Spacer(minLength: 0)
                     
                     Text(viewModel.previousNumber)
-                        .font(.system(size: proxy.size.height * 0.1, weight: .medium))
+                        .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.1 : proxy.size.height * 0.15, weight: .medium))
                         .foregroundColor(.offWhite)
                         .opacity(selection == .UnitConverter ? 0.6 : 0)
                 } // HStack
@@ -35,7 +35,7 @@ struct NumberDisplayView: View {
                     Spacer(minLength: 0)
                     
                     Text(viewModel.displayingNumber)
-                        .font(.system(size: proxy.size.height * 0.14, weight: .medium))
+                        .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.14 : proxy.size.height * 0.19, weight: .medium))
                         .foregroundColor(.offWhite)
                         .onTapGesture {
                             copyToPasteboard()
@@ -43,7 +43,7 @@ struct NumberDisplayView: View {
                     
                     if selection == .UnitConverter && viewModel.currentUnit != "" {
                         Text(viewModel.currentUnit)
-                            .font(.system(size: proxy.size.width * 0.06, weight: .medium))
+                            .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.08 : proxy.size.height * 0.13, weight: .medium))
                             .foregroundColor(.offWhite)
                             .onDisappear() {
                                 viewModel.previousNumber = ""
@@ -51,7 +51,8 @@ struct NumberDisplayView: View {
                     }
                 } // HStack
             } // VStack
-            .padding(10)
+            .padding(.vertical, 10)
+            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 10 : 20)
         } // GeometryReader
         .frame(height: screenHeight * 0.3)
     } // body
