@@ -21,13 +21,13 @@ struct CustomTabBar: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(minWidth: 22, minHeight: 22)
-                    .minimumScaleFactor(0.01)
+                    .minimumScaleFactor(0.5)
                     .foregroundColor(.offWhite)
                     .layoutPriority(0)
                 
                 Text("計算機")
                     .font(.system(size: 27, weight: .medium))
-                    .minimumScaleFactor(0.5)
+                    .minimumScaleFactor(0.5) // Appleの指針により最低でもピクセルサイズ11以上を維持するように
                     .lineLimit(1)
                     .foregroundColor(.offWhite)
                     .layoutPriority(1)
@@ -68,6 +68,6 @@ struct CustomTabBar: View {
         } // HStack
         .padding(.vertical)
         .padding(.bottom)
-        .frame(maxHeight: screenHeight * 0.08)
+        .frame(maxHeight: UIDevice.current.userInterfaceIdiom == .phone ? screenHeight * 0.08 : screenHeight * 0.11)
     } // body
 }

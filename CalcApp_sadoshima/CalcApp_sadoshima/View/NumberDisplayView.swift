@@ -26,7 +26,7 @@ struct NumberDisplayView: View {
                     Spacer(minLength: 0)
                     
                     Text(viewModel.previousNumber)
-                        .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.1 : proxy.size.height * 0.15, weight: .medium))
+                        .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.14 : proxy.size.height * 0.15, weight: .medium))
                         .foregroundColor(.offWhite)
                         .opacity(selection == .UnitConverter ? 0.6 : 0)
                 } // HStack
@@ -35,7 +35,7 @@ struct NumberDisplayView: View {
                     Spacer(minLength: 0)
                     
                     Text(viewModel.displayingNumber)
-                        .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.14 : proxy.size.height * 0.19, weight: .medium))
+                        .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.18 : proxy.size.height * 0.19, weight: .medium))
                         .foregroundColor(.offWhite)
                         .onTapGesture {
                             copyToPasteboard()
@@ -43,7 +43,7 @@ struct NumberDisplayView: View {
                     
                     if selection == .UnitConverter && viewModel.currentUnit != "" {
                         Text(viewModel.currentUnit)
-                            .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.08 : proxy.size.height * 0.13, weight: .medium))
+                            .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.11 : proxy.size.height * 0.13, weight: .medium))
                             .foregroundColor(.offWhite)
                             .onDisappear() {
                                 viewModel.previousNumber = ""
