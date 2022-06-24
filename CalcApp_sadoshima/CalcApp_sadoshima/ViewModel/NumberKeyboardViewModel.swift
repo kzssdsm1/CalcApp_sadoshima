@@ -87,6 +87,7 @@ final class NumberKeyboardViewModel: ObservableObject {
         
         firstArgument! += secondArgument
         
+        print("added \(firstArgument ?? 0)")
         NumberObserver.shared.displayingNumberSubject.send("\(firstArgument!)")
         
         previousArgument = secondArgument

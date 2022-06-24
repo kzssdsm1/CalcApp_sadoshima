@@ -44,6 +44,8 @@ final class NumberDisplayViewModel: ObservableObject {
             .sink { [weak self] value in
                 guard let self = self else { return }
                 
+                //print("disp is \(value)")
+                
                 self.displayingNumber = self.arrangeDisplayNumber(value)
                 
                 if value.hasSuffix(".") {
@@ -104,6 +106,8 @@ final class NumberDisplayViewModel: ObservableObject {
         guard let formatter = numberFormatter.string(from: num as NSNumber) else {
             return "0"
         }
+        
+        print("disp is \(formatter)")
         
         return formatter
     }
