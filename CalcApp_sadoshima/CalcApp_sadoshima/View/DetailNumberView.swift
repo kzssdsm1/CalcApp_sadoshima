@@ -18,12 +18,16 @@ struct DetailNumberView: View {
             ZStack(alignment: .bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(String("\(viewModel.detailNumber ?? 0)"))
-                            .font(.system(size: proxy.size.width * 0.09, weight: .medium))
-                            .foregroundColor(.offWhite)
-                            .onTapGesture {
-                                copyToPasteboard()
-                            }
+                        HStack {
+                            Text(String("\(viewModel.detailNumber ?? 0)"))
+                                .font(.system(size: proxy.size.width * 0.09, weight: .medium))
+                                .foregroundColor(.offWhite)
+                                .onTapGesture {
+                                    copyToPasteboard()
+                                }
+                            
+                            Spacer(minLength: 0)
+                        } // HStack
                     } // VStack
                 } // ScrollView
                 .padding()

@@ -15,8 +15,16 @@ struct UnitSelectView: View {
     private let categories = [
         Category(label: "長さ", units: LengthData.lengths, buttonColor: Color.asahanada),
         Category(label: "重さ", units: WeightData.weights, buttonColor: Color.smalt),
-        Category(label: "面積", units: AreaData.areas, buttonColor: Color.konruri)
-        
+        Category(label: "面積", units: AreaData.areas, buttonColor: Color.konruri),
+        Category(label: "体積", units: VolumeData.volumes, buttonColor: Color.lightnessGreen),
+        Category(label: "速度", units: VelocityData.velocitys, buttonColor: Color.moegi),
+        Category(label: "時間", units: TimeData.times, buttonColor: Color.darkViolet),
+        Category(label: "エネルギー等", units: EnergyData.energys, buttonColor: Color.violet),
+        Category(label: "圧力", units: PressureData.pressures, buttonColor: Color.redViolet),
+        Category(label: "角度", units: AngleData.angles, buttonColor: Color.vividGreen),
+        Category(label: "温度", units: TemperatureData.temperatures, buttonColor: Color.offViolet),
+        Category(label: "力", units: ForceData.forces, buttonColor: Color.offBlue),
+        Category(label: "加速度", units: AccelerationData.accelerations, buttonColor: Color.wine)
     ]
     
     var body: some View {
@@ -52,6 +60,7 @@ struct UnitSelectView: View {
                                     .overlay(
                                         Text(item.label)
                                             .font(.system(size: proxy.size.width * 0.035, weight: .medium))
+                                            .minimumScaleFactor(0.7)
                                             .foregroundColor(.offWhite)
                                     )
                             })
