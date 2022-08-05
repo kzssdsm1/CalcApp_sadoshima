@@ -29,7 +29,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1.6666666666667E-18", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "2.6666666666667E-17", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "2.6666666666667E-16", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5.0E-15", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5.0E-15", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // ピコグラム
@@ -52,7 +52,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1.6666666666667E-15", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "2.6666666666667E-14", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "2.6666666666667E-13", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5.0E-12", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5.0E-12", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // ナノグラム
@@ -75,7 +75,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1.6666666666667E-12", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "2.6666666666667E-11", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "2.6666666666667E-10", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5.0E-9", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5.0E-9", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // マイクログラム
@@ -98,7 +98,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1.6666666666667E-9", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "2.6666666666667E-8", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "2.6666666666667E-7", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5.0E-6", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5.0E-6", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // ミリグラム
@@ -121,7 +121,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1.6666666666667e-6", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "2.6666666666667E-5", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "0.00026666666666667", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "0.005", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "0.005", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // グラム
@@ -144,7 +144,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "0.0016666666666667", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "0.026666666666667", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "0.26666666666667", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // キログラム
@@ -167,7 +167,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1.6666666666667", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "26.666666666667", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "266.66666666667", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5000", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5000", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // トン
@@ -190,7 +190,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1666.6666666667", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "26666.666666667", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "266666.66666667", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5000000", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5000000", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // グレーン
@@ -213,7 +213,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "0.00010799818333333", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "0.0017279709333333", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "0.017279709333333", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "0.32399455", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "0.32399455", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // ドラム
@@ -236,7 +236,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "0.0029530753255208", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "0.047249205208333", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "0.47249205208333", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "8.8592259765625", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "8.8592259765625", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // オンス
@@ -259,7 +259,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "0.047249205208333", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "0.75598728333333", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "7.5598728333333", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "141.747615625", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "141.747615625", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // ポンド
@@ -282,7 +282,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "0.75598728333333", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "12.095796533333", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "120.95796533333", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "2267.96185", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "2267.96185", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // クォーター
@@ -305,7 +305,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "21.167643933333", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "338.68230293333", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "3386.8230293333", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "63502.9318", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "63502.9318", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // ショートトン
@@ -328,7 +328,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1511.9745666667", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "24191.593066667", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "241915.93066667", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "4535923.7", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "4535923.7", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // ロングトン
@@ -351,7 +351,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "1693.4115146667", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "27094.584234667", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "270945.84234667", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "5080234.544", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "5080234.544", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // 貫
@@ -374,7 +374,7 @@ struct WeightConversions {
         Conversion(label: "斤", value: "6.25", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "100", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "1000", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "18750", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "18750", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // 斤
@@ -397,7 +397,7 @@ struct WeightConversions {
         Conversion(label: "貫", value: "0.16", buttonColor: Color.konruri, unit: "貫"),
         Conversion(label: "両", value: "16", buttonColor: Color.konruri, unit: "両"),
         Conversion(label: "匁", value: "160", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "3000", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "3000", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // 両
@@ -420,7 +420,7 @@ struct WeightConversions {
         Conversion(label: "貫", value: "0.01", buttonColor: Color.konruri, unit: "貫"),
         Conversion(label: "斤", value: "0.0625", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "匁", value: "10", buttonColor: Color.konruri, unit: "匁"),
-        Conversion(label: "カラット(kt)", value: "187.5", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "187.5", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // 匁
@@ -443,11 +443,11 @@ struct WeightConversions {
         Conversion(label: "貫", value: "0.001", buttonColor: Color.konruri, unit: "貫"),
         Conversion(label: "斤", value: "0.00625", buttonColor: Color.konruri, unit: "斤"),
         Conversion(label: "両", value: "0.1", buttonColor: Color.konruri, unit: "両"),
-        Conversion(label: "カラット(kt)", value: "18.75", buttonColor: Color.lightnessGreen, unit: "kt")
+        Conversion(label: "カラット(ct)", value: "18.75", buttonColor: Color.lightnessGreen, unit: "ct")
     ]
     
     // カラット
-    static let fromKarat = [
+    static let fromCarat = [
         Conversion(label: "フェムトグラム(fg)", value: "2.0E+14", buttonColor: Color.asahanada, unit: "fg"),
         Conversion(label: "ピコグラム(pg)", value: "200000000000", buttonColor: Color.asahanada, unit: "pg"),
         Conversion(label: "ナノグラム(ng)", value: "200000000", buttonColor: Color.asahanada, unit: "ng"),

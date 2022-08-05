@@ -48,4 +48,9 @@ extension Color {
     static let moegi = Color(hex: "616614")
     static let darkViolet = Color(hex: "421466")
     static let darkGreen = Color(hex: "1e472e")
+    static let redViolet = Color(hex: "661438")
+    static let vividGreen = Color(hex: "386614")
+    static let offViolet = Color(hex: "7a49a5")
+    static let offBlue = Color(hex: "4974a5")
+    static let wine = Color(hex: "A54974")
 }
