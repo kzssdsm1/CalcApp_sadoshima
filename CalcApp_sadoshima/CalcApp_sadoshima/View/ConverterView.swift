@@ -73,6 +73,26 @@ struct ConverterView: View {
                     Spacer(minLength: 0)
                 } // HStack
                 
+                if category.label == "体積" {
+                    HStack {
+                        Text("※ミリリットル = 立方センチメートル = シーシー")
+                            .font(.system(size: proxy.size.width * 0.034, weight: .medium))
+                            .foregroundColor(Color.offWhite)
+                            .padding([.bottom, .leading])
+                        
+                        Spacer(minLength: 0)
+                    } // HStack
+                } else if category.label == "長さ" {
+                    HStack {
+                        Text("※フェムトメートル = ユカワ")
+                            .font(.system(size: proxy.size.width * 0.034, weight: .medium))
+                            .foregroundColor(Color.offWhite)
+                            .padding([.bottom, .leading])
+                        
+                        Spacer(minLength: 0)
+                    } // HStack
+                }
+                
                 ScrollView(.vertical, showsIndicators: true) {
                     if let items = selection {
                         LazyVGrid(columns: columns) {

@@ -28,6 +28,8 @@ struct NumberDisplayView: View {
                     Text(viewModel.previousNumber)
                         .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.14 : proxy.size.height * 0.15, weight: .medium))
                         .foregroundColor(.offWhite)
+                        .minimumScaleFactor(0.35)
+                        .lineLimit(1)
                         .opacity(selection == .UnitConverter ? 0.6 : 0)
                 } // HStack
                 
@@ -37,6 +39,9 @@ struct NumberDisplayView: View {
                     Text(viewModel.displayingNumber)
                         .font(.system(size: UIDevice.current.userInterfaceIdiom == .phone ? proxy.size.height * 0.18 : proxy.size.height * 0.19, weight: .medium))
                         .foregroundColor(.offWhite)
+                        .minimumScaleFactor(0.35)
+                        .lineLimit(1)
+                        .padding(.leading)
                         .onTapGesture {
                             copyToPasteboard()
                         } // onTapGesture

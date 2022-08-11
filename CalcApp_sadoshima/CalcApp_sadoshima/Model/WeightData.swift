@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct WeightData {
-    static let weights = [femtogram, picogram, nanogram, microgram, milligram, gram, kilogram, ton, grain, dram, ounce, pound, quarter, shortTon, longTon, kan, kin, ryo, monme, karat]
+    static let weights = [femtogram, picogram, nanogram, microgram, milligram, gram, kilogram, ton, grain, dram, ounce, pound, quarter, shortTon, longTon, kan, kin, ryo, monme, carat]
     
     // フェムトグラム
     static let femtogram = Unit(label: "フェムトグラム(fg)", conversions: WeightConversions.fromFemtogram, unit: "fg")
@@ -69,5 +69,5 @@ struct WeightData {
     static let monme = Unit(label: "匁", conversions: WeightConversions.fromMonme, unit: "匁")
     
     // カラット
-    static let karat = Unit(label: "カラット(kt)", conversions: WeightConversions.fromKarat, unit: "kt")
+    static let carat = Unit(label: "カラット(kt)", conversions: WeightConversions.fromCarat, unit: "kt")
 }
