@@ -10,7 +10,6 @@ import SwiftUI
 struct NumberKeyboardView: View {
     @StateObject private var viewModel = NumberKeyboardViewModel()
     
-//    @Binding var detailNumberItem: String
     @Binding var isShowingSheet: Bool
     
     private let numbers = [["7", "8", "9"], ["4", "5", "6"], ["1", "2", "3"]]
@@ -39,6 +38,7 @@ struct NumberKeyboardView: View {
                                 })
                                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                                     .aspectRatio(1, contentMode: .fit)
+                                    .disabled(item == .detail && !viewModel.canShowDetailNumber)
                                     .padding(padding)
                             } else {
                                 EmptyView()
