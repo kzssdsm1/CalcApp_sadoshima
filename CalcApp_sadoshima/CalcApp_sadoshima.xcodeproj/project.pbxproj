@@ -72,7 +72,7 @@
 		5422AE39282B859200284027 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		5428CD51279A6444002216A7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		5428CD53279A6B53002216A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		543AC32D27048BB0008BFCB0 /* CalcApp_sadoshima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalcApp_sadoshima.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		543AC32D27048BB0008BFCB0 /* 単位換算機能付き電卓.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "単位換算機能付き電卓.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		543AC33027048BB0008BFCB0 /* CalcApp_sadoshimaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcApp_sadoshimaApp.swift; sourceTree = "<group>"; };
 		543AC33427048BB1008BFCB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		543AC33727048BB1008BFCB0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		543AC32E27048BB0008BFCB0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				543AC32D27048BB0008BFCB0 /* CalcApp_sadoshima.app */,
+				543AC32D27048BB0008BFCB0 /* 単位換算機能付き電卓.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 			);
 			name = CalcApp_sadoshima;
 			productName = CalcApp_sadoshima;
-			productReference = 543AC32D27048BB0008BFCB0 /* CalcApp_sadoshima.app */;
+			productReference = 543AC32D27048BB0008BFCB0 /* 単位換算機能付き電卓.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -495,7 +495,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CalcApp_sadoshima/Preview Content\"";
 				DEVELOPMENT_TEAM = PNHDUJ8FZK;
 				ENABLE_PREVIEWS = YES;
@@ -511,9 +511,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.office-meet.sadoshima.CalcApp-sadoshima";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "単位換算機能付き電卓";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -527,7 +527,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CalcApp_sadoshima/Preview Content\"";
 				DEVELOPMENT_TEAM = PNHDUJ8FZK;
 				ENABLE_PREVIEWS = YES;
@@ -543,9 +543,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.office-meet.sadoshima.CalcApp-sadoshima";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "単位換算機能付き電卓";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
